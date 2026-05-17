@@ -402,6 +402,7 @@
   @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.35} }
   .status-text { font-size: 13px; color: var(--muted); flex: 1; }
   .status-badge { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
+  .badge-sorteo        { background: rgba(161,0,255,.1);    color: #c87aff;      border: 1px solid rgba(161,0,255,.25); }
   .badge-registro      { background: rgba(58,159,213,.1);   color: var(--blue);  border: 1px solid rgba(58,159,213,.2); }
   .badge-grupos        { background: rgba(200,241,53,.08);  color: var(--lime);  border: 1px solid rgba(200,241,53,.2); }
   .badge-eliminatorias { background: rgba(161,0,255,.1);    color: #c87aff;      border: 1px solid rgba(161,0,255,.25); }
@@ -449,6 +450,113 @@
   .step-line { width: 60px; height: 2px; background: var(--border); margin-bottom: 18px; transition: background .3s; flex-shrink: 0; }
   .step-line.done { background: var(--acc); }
 
+
+  /* ── SORTEO ──────────────────────────────────────── */
+  .sorteo-hero { text-align: center; padding: 32px 0 20px; }
+  .sorteo-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    color: var(--lime); letter-spacing: 4px; line-height: 1;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    text-shadow: 0 0 40px var(--lime-glow);
+  }
+  .sorteo-title svg { width: 36px; height: 36px; color: var(--acc); }
+  .sorteo-sub { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+  .sorteo-phase-title {
+    display: flex; align-items: center; gap: 14px;
+    margin: 28px 0 20px; font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; color: var(--text); letter-spacing: 2px;
+  }
+  .sorteo-phase-num {
+    font-size: 13px; font-weight: 700; background: var(--acc);
+    color: #fff; border-radius: 6px; padding: 4px 10px; letter-spacing: 1px;
+    font-family: 'Barlow', sans-serif; flex-shrink: 0;
+  }
+  .sorteo-phase-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* BOMBO */
+  .sorteo-bombo {
+    display: flex; justify-content: center; align-items: center;
+    padding: 24px 0 16px; position: relative;
+  }
+  .bombo-ball-container {
+    position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px;
+  }
+  .bombo-ball {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(161,0,255,.5), rgba(161,0,255,.15));
+    border: 2px solid var(--acc); display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 40px var(--acc-glow), inset 0 0 20px rgba(161,0,255,.2);
+  }
+  .bombo-ball svg { width: 44px; height: 44px; color: var(--lime); }
+  .bombo-ball.spinning { animation: bombSpin 1.5s linear infinite; }
+  .bombo-ball.picking  { animation: bombPick .4s ease-in-out infinite alternate; }
+  @keyframes bombSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  @keyframes bombPick { from{transform:scale(1) rotate(-5deg)} to{transform:scale(1.12) rotate(5deg)} }
+  .bombo-name-flash {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--lime);
+    letter-spacing: 2px; min-height: 32px; text-align: center;
+    text-shadow: 0 0 20px var(--lime-glow);
+    animation: nameFlash .15s ease-in-out;
+  }
+  @keyframes nameFlash { from{opacity:0;transform:scale(.8)} to{opacity:1;transform:scale(1)} }
+
+  /* PAIR REVEAL */
+  .pair-reveal-area {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px; margin-top: 12px;
+  }
+  .pair-card-reveal {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+    animation: pairReveal .5s cubic-bezier(.34,1.56,.64,1);
+    opacity: 0; animation-fill-mode: forwards;
+  }
+  @keyframes pairReveal {
+    from { opacity:0; transform: translateY(20px) scale(.9); }
+    to   { opacity:1; transform: translateY(0) scale(1); }
+  }
+  .pair-card-reveal.complete { border-color: rgba(200,241,53,.3); background: rgba(200,241,53,.03); }
+  .pair-num-badge {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--acc);
+    min-width: 32px; text-align: center;
+  }
+  .pair-names { flex: 1; min-width: 0; }
+  .pair-p1 { font-weight: 700; font-size: 15px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pair-p2 { font-weight: 700; font-size: 15px; color: var(--lime); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pair-vs { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 2px; margin: 2px 0; }
+  .pair-pending-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--acc); animation: pulse 1s infinite; flex-shrink: 0;
+  }
+
+  /* GROUP REVEAL */
+  .group-reveal-area {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px; margin-top: 12px;
+  }
+  .group-reveal-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; animation: pairReveal .5s cubic-bezier(.34,1.56,.64,1);
+    opacity: 0; animation-fill-mode: forwards;
+  }
+  .group-reveal-header {
+    background: linear-gradient(90deg, rgba(161,0,255,.15), transparent);
+    border-bottom: 1px solid var(--border); padding: 12px 16px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--lime); letter-spacing: 2px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .group-pair-item {
+    padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,.04);
+    font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px;
+    animation: pairReveal .4s cubic-bezier(.34,1.56,.64,1); opacity:0; animation-fill-mode: forwards;
+  }
+  .group-pair-item:last-child { border-bottom: none; }
+  .group-pair-item svg { width: 12px; height: 12px; color: var(--lime); flex-shrink: 0; }
+
+  .sorteo-actions { display: flex; justify-content: center; margin-top: 32px; padding-bottom: 32px; }
+  .btn-lg { padding: 14px 32px; font-size: 14px; border-radius: 8px; }
   /* UTIL */
   .text-center{text-align:center} .text-muted{color:var(--muted)} .text-lime{color:var(--lime)}
   .text-green{color:var(--green)} .text-red{color:var(--red)}
@@ -498,19 +606,25 @@
     </div>
     <div class="step-line" id="stepLine-1"></div>
     <div class="step-container">
-      <div class="step-dot" id="step-2"><svg><use href="#ico-chart"/></svg></div>
-      <div class="step-label" id="stepLabel-2">Grupos</div>
+      <div class="step-dot" id="step-2"><svg><use href="#ico-bolt"/></svg></div>
+      <div class="step-label" id="stepLabel-2">Sorteo</div>
     </div>
     <div class="step-line" id="stepLine-2"></div>
     <div class="step-container">
-      <div class="step-dot" id="step-3"><svg><use href="#ico-swords"/></svg></div>
-      <div class="step-label" id="stepLabel-3">Eliminatoria</div>
+      <div class="step-dot" id="step-3"><svg><use href="#ico-chart"/></svg></div>
+      <div class="step-label" id="stepLabel-3">Grupos</div>
+    </div>
+    <div class="step-line" id="stepLine-3"></div>
+    <div class="step-container">
+      <div class="step-dot" id="step-4"><svg><use href="#ico-swords"/></svg></div>
+      <div class="step-label" id="stepLabel-4">Eliminatoria</div>
     </div>
   </div>
 
   <!-- TABS -->
   <div class="tabs">
     <button class="tab-btn active" onclick="showTab('registro')"     id="tabBtn-registro"><svg><use href="#ico-users"/></svg>Registro</button>
+    <button class="tab-btn"        onclick="showTab('sorteo')"       id="tabBtn-sorteo"><svg><use href="#ico-bolt"/></svg>Sorteo</button>
     <button class="tab-btn"        onclick="showTab('grupos')"       id="tabBtn-grupos"><svg><use href="#ico-chart"/></svg>Fase de Grupos</button>
     <button class="tab-btn"        onclick="showTab('eliminatoria')" id="tabBtn-eliminatoria"><svg><use href="#ico-swords"/></svg>Eliminatorias</button>
   </div>
@@ -557,7 +671,7 @@
       </div>
       <div class="flex gap-8 flex-wrap">
         <button class="btn btn-outline" onclick="clearAllPlayers()" id="clearPlayersBtn"><svg><use href="#ico-trash"/></svg>Limpiar todo</button>
-        <button class="btn btn-acc"     onclick="confirmGenerateGroups()" id="generateGroupsBtn"><svg><use href="#ico-bolt"/></svg>Generar Grupos</button>
+        <button class="btn btn-acc"     onclick="confirmGeneratePairs()" id="generateGroupsBtn"><svg><use href="#ico-bolt"/></svg>Sorteo de Parejas</button>
       </div>
     </div>
     <div class="player-grid" id="playerGrid">
@@ -568,11 +682,57 @@
     </div>
   </div>
 
+  <!-- TAB 1b: SORTEO -->
+  <div class="tab-pane" id="pane-sorteo">
+    <div class="sorteo-hero">
+      <div class="sorteo-title"><svg><use href="#ico-bolt"/></svg> SORTEO EN VIVO</div>
+      <div class="sorteo-sub">Las parejas y grupos se deciden aquí</div>
+    </div>
+
+    <!-- FASE 1: PAREJAS -->
+    <div id="sorteo-pairs-section">
+      <div class="sorteo-phase-title">
+        <span class="sorteo-phase-num">01</span>
+        <span>Formación de Parejas</span>
+        <div class="sorteo-phase-line"></div>
+      </div>
+      <div class="sorteo-bombo" id="sorteo-bombo-pairs">
+        <div class="bombo-ball-container" id="bomboBallContainer">
+          <div class="bombo-ball spinning" id="bomboBall">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M7 4.5 C7 8 9 10 9 12 C9 14 7 16 7 19.5"/><path d="M17 4.5 C17 8 15 10 15 12 C15 14 17 16 17 19.5"/></svg>
+          </div>
+          <div class="bombo-name-flash" id="bomboNameFlash"></div>
+        </div>
+      </div>
+      <div id="pairRevealArea" class="pair-reveal-area"></div>
+      <div class="sorteo-actions" id="sorteoActionsArea" style="display:none">
+        <button class="btn btn-acc btn-lg" onclick="startGroupDraw()" id="startGroupDrawBtn">
+          <svg><use href="#ico-bolt"/></svg>Sorteo de Grupos
+        </button>
+      </div>
+    </div>
+
+    <!-- FASE 2: GRUPOS -->
+    <div id="sorteo-groups-section" style="display:none">
+      <div class="sorteo-phase-title" style="margin-top:32px;">
+        <span class="sorteo-phase-num">02</span>
+        <span>Asignación de Grupos</span>
+        <div class="sorteo-phase-line"></div>
+      </div>
+      <div id="groupRevealArea" class="group-reveal-area"></div>
+      <div class="sorteo-actions" id="sorteoGroupActions" style="display:none">
+        <button class="btn btn-lime btn-lg" onclick="confirmStartGroupPhase()">
+          <svg><use href="#ico-flag"/></svg>Comenzar Fase de Grupos
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- TAB 2: FASE DE GRUPOS -->
   <div class="tab-pane" id="pane-grupos">
     <div id="noGroupsMsg" class="alert alert-info">
       <svg><use href="#ico-info"/></svg>
-      Los grupos aún no han sido generados. Ve a la pestaña de Registro y pulsa "Generar Grupos".
+      Los grupos aún no han comenzado. Completa el sorteo y pulsa "Comenzar Fase de Grupos".
     </div>
     <div id="groupsContent" style="display:none">
       <div class="flex justify-between items-center" style="margin-bottom:16px;flex-wrap:wrap;gap:8px;">
@@ -642,7 +802,8 @@
 // ── STATE ─────────────────────────────────────────
 let state = {
   players: [], pairs: [], groups: [], groupMatches: [],
-  groupsFinished: false, mainBracket: null, consolBracket: null, phase: 'registro'
+  groupsFinished: false, mainBracket: null, consolBracket: null,
+  phase: 'registro'  // registro | sorteo | grupos | eliminatoria
 };
 let firebaseMode = false, dbRef = null;
 
@@ -697,11 +858,11 @@ function openModal(title, body, onConfirm) {
 function closeModal() { document.getElementById('confirmModal').classList.remove('open'); }
 
 // ── RENDER ALL ────────────────────────────────────
-function renderAll() { renderProgress(); renderStatus(); renderPlayers(); renderGroups(); renderElim(); }
+function renderAll() { renderProgress(); renderStatus(); renderPlayers(); renderSorteo(); renderGroups(); renderElim(); }
 
 function renderProgress() {
-  const m={registro:1,grupos:2,eliminatoria:3}, cur=m[state.phase]||1;
-  for(let i=1;i<=3;i++){
+  const m={registro:1,sorteo:2,grupos:3,eliminatoria:4}, cur=m[state.phase]||1;
+  for(let i=1;i<=4;i++){
     const d=document.getElementById('step-'+i), l=document.getElementById('stepLabel-'+i); if(!d)continue;
     if(i<cur){d.classList.add('done');d.classList.remove('active');l.classList.add('done');l.classList.remove('active');}
     else if(i===cur){d.classList.add('active');d.classList.remove('done');l.classList.add('active');l.classList.remove('done');}
@@ -714,6 +875,7 @@ function renderStatus() {
   const st=document.getElementById('statusText'), sb=document.getElementById('statusBadge');
   const n=(state.players||[]).length;
   if(state.phase==='registro'){ st.textContent=`${n} jugadores · ${Math.floor(n/2)} parejas posibles`; sb.className='status-badge badge-registro'; sb.textContent='REGISTRO ABIERTO'; }
+  else if(state.phase==='sorteo'){ st.textContent='Sorteo de parejas y grupos en curso'; sb.className='status-badge badge-sorteo'; sb.textContent='SORTEO'; }
   else if(state.phase==='grupos'){ st.textContent=state.groupsFinished?'Fase de grupos finalizada':'Fase de grupos en curso'; sb.className='status-badge badge-grupos'; sb.textContent='FASE DE GRUPOS'; }
   else if(state.phase==='eliminatoria'){ st.textContent='Fase eliminatoria en curso'; sb.className='status-badge badge-eliminatorias'; sb.textContent='ELIMINATORIAS'; }
 }
@@ -771,25 +933,241 @@ function renderPlayers() {
   }).join('');
 }
 
-// ── GROUP GENERATION ──────────────────────────────
-function confirmGenerateGroups() {
+// ── SORTEO ANIMATION STATE ────────────────────────
+let drawState = { pairsRevealed: 0, groupsRevealed: 0 };
+let _pendingPairs = [];   // computed pairs waiting to be animated
+let _pendingGroups = [];  // computed groups waiting to be animated
+
+// ── STEP 1: CONFIRM → COMPUTE PAIRS → START DRAW ──
+function confirmGeneratePairs() {
   const n=(state.players||[]).length;
   if(n<4){ showToast('Necesitas al menos 4 jugadores','error','ico-warn'); return; }
-  openModal('¿Generar grupos?',`Se crearán parejas y grupos aleatorios con ${n} jugadores (${Math.floor(n/2)} parejas). El registro quedará cerrado.`,doGenerateGroups);
+  openModal(
+    '¿Comenzar el sorteo?',
+    `Se sortearán ${Math.floor(n/2)} parejas con ${n} jugadores. El registro quedará cerrado.`,
+    doStartPairDraw
+  );
 }
-function doGenerateGroups() {
-  const players=shuffle([...(state.players||[])]);
-  const pairs=[];
-  for(let i=0;i<players.length-1;i+=2) pairs.push({id:'par'+i,p1:players[i],p2:players[i+1]});
-  if(players.length%2!==0){ const last=players[players.length-1]; pairs.push({id:'par'+(players.length-1),p1:last,p2:null}); }
-  const sp=shuffle(pairs), groups=[];
-  for(let i=0;i<sp.length;i+=4) groups.push({id:String.fromCharCode(65+groups.length),pairs:sp.slice(i,i+4)});
-  if(groups.length>1&&groups[groups.length-1].pairs.length<2){ const last=groups.pop(); last.pairs.forEach(p=>groups[groups.length-1].pairs.push(p)); }
-  const groupMatches=[];
-  groups.forEach(g=>{ const gp=g.pairs; for(let a=0;a<gp.length;a++) for(let b=a+1;b<gp.length;b++) groupMatches.push({id:'gm_'+g.id+'_'+a+'_'+b,groupId:g.id,pair1Id:gp[a].id,pair2Id:gp[b].id,sets:null,winner:null}); });
-  state.pairs=pairs; state.groups=groups; state.groupMatches=groupMatches; state.groupsFinished=false; state.phase='grupos';
-  saveState(); if(!firebaseMode) renderAll(); showTab('grupos');
-  showToast('Grupos generados. ¡Que empiece el torneo!','success','ico-bolt');
+
+function doStartPairDraw() {
+  // Compute pairs randomly
+  const players = shuffle([...(state.players||[])]);
+  _pendingPairs = [];
+  for(let i=0;i<players.length-1;i+=2)
+    _pendingPairs.push({id:'par'+i, p1:players[i], p2:players[i+1]});
+  if(players.length%2!==0){
+    const last=players[players.length-1];
+    _pendingPairs.push({id:'par'+(players.length-1), p1:last, p2:null});
+  }
+
+  // Move to sorteo phase
+  state.phase = 'sorteo';
+  drawState = { pairsRevealed: 0, groupsRevealed: 0 };
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('sorteo');
+
+  // Reset sorteo UI
+  document.getElementById('pairRevealArea').innerHTML = '';
+  document.getElementById('sorteoActionsArea').style.display = 'none';
+  document.getElementById('sorteo-groups-section').style.display = 'none';
+  document.getElementById('sorteoGroupActions').style.display = 'none';
+  document.getElementById('groupRevealArea').innerHTML = '';
+
+  // Start the animated pair draw
+  animatePairDraw(0);
+}
+
+function animatePairDraw(idx) {
+  if(idx >= _pendingPairs.length) {
+    // All pairs revealed — show "Sorteo de Grupos" button
+    document.getElementById('sorteoActionsArea').style.display = 'flex';
+    // Save computed pairs to state
+    state.pairs = _pendingPairs;
+    saveState();
+    if(!firebaseMode) renderAll();
+    return;
+  }
+
+  const ball = document.getElementById('bomboBall');
+  const flash = document.getElementById('bomboNameFlash');
+
+  // Phase A: picking animation — cycle through random names
+  ball.classList.remove('spinning');
+  ball.classList.add('picking');
+
+  let cycleCount = 0;
+  const totalCycles = 8 + Math.floor(Math.random()*6); // 8–13 flashes
+  const players = state.players || [];
+  const usedIds = _pendingPairs.slice(0,idx).flatMap(p=>[p.p1.id, p.p2?.id]).filter(Boolean);
+  const remaining = players.filter(p=>!usedIds.includes(p.id));
+
+  // Pick player 1 first if this is a fresh slot, else already have p1
+  const pair = _pendingPairs[idx];
+
+  const cycleInterval = setInterval(() => {
+    const randPlayer = remaining[Math.floor(Math.random()*remaining.length)];
+    flash.textContent = randPlayer ? randPlayer.name.toUpperCase() : '?';
+    flash.style.animation = 'none'; void flash.offsetWidth;
+    flash.style.animation = 'nameFlash .15s ease-in-out';
+    cycleCount++;
+    if(cycleCount >= totalCycles) {
+      clearInterval(cycleInterval);
+      // Reveal the pair
+      flash.textContent = pair.p2
+        ? (pair.p1.name + ' & ' + pair.p2.name).toUpperCase()
+        : pair.p1.name.toUpperCase() + ' (libre)';
+      ball.classList.remove('picking');
+      ball.classList.add('spinning');
+
+      // Add pair card to reveal area
+      const area = document.getElementById('pairRevealArea');
+      const card = document.createElement('div');
+      card.className = 'pair-card-reveal complete';
+      card.style.animationDelay = '0ms';
+      card.innerHTML = `
+        <div class="pair-num-badge">${idx+1}</div>
+        <div class="pair-names">
+          <div class="pair-p1">${escHtml(pair.p1.name)}</div>
+          ${pair.p2 ? `<div class="pair-vs">VS</div><div class="pair-p2">${escHtml(pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
+        </div>
+        <svg style="width:16px;height:16px;color:var(--lime);flex-shrink:0"><use href="#ico-check"/></svg>
+      `;
+      area.appendChild(card);
+      // Scroll into view
+      card.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+      // Pause then reveal next pair
+      setTimeout(() => animatePairDraw(idx+1), 600);
+    }
+  }, 120);
+}
+
+// ── STEP 2: GROUP DRAW ─────────────────────────────
+function startGroupDraw() {
+  // Compute groups from already-revealed pairs
+  const sp = shuffle([..._pendingPairs]);
+  _pendingGroups = [];
+  for(let i=0;i<sp.length;i+=4)
+    _pendingGroups.push({id:String.fromCharCode(65+_pendingGroups.length), pairs:sp.slice(i,i+4)});
+  if(_pendingGroups.length>1 && _pendingGroups[_pendingGroups.length-1].pairs.length<2){
+    const last=_pendingGroups.pop();
+    last.pairs.forEach(p=>_pendingGroups[_pendingGroups.length-1].pairs.push(p));
+  }
+
+  // Hide pairs button, show groups section
+  document.getElementById('sorteoActionsArea').style.display = 'none';
+  document.getElementById('sorteo-groups-section').style.display = 'block';
+  document.getElementById('groupRevealArea').innerHTML = '';
+
+  animateGroupDraw(0);
+}
+
+function animateGroupDraw(gIdx) {
+  if(gIdx >= _pendingGroups.length) {
+    // All groups revealed
+    document.getElementById('sorteoGroupActions').style.display = 'flex';
+    return;
+  }
+
+  const g = _pendingGroups[gIdx];
+  const area = document.getElementById('groupRevealArea');
+
+  // Create group card (empty)
+  const card = document.createElement('div');
+  card.className = 'group-reveal-card';
+  card.style.animationDelay = '0ms';
+  card.innerHTML = `
+    <div class="group-reveal-header">
+      <span>GRUPO ${escHtml(g.id)}</span>
+      <span style="font-size:12px;font-family:'Barlow',sans-serif;color:var(--muted);font-weight:600;">${g.pairs.length} parejas</span>
+    </div>
+    <div id="grpPairs-${g.id}"></div>
+  `;
+  area.appendChild(card);
+  card.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+  // Reveal pairs inside group one by one
+  let pIdx = 0;
+  function revealNextPairInGroup() {
+    if(pIdx >= g.pairs.length) {
+      // Done with this group, move to next after pause
+      setTimeout(() => animateGroupDraw(gIdx+1), 700);
+      return;
+    }
+    const pair = g.pairs[pIdx];
+    const container = document.getElementById('grpPairs-'+g.id);
+    const item = document.createElement('div');
+    item.className = 'group-pair-item';
+    item.style.animationDelay = '0ms';
+    item.innerHTML = `<svg><use href="#ico-racket"/></svg>${escHtml(getPairName(pair.id))}`;
+    container.appendChild(item);
+    pIdx++;
+    setTimeout(revealNextPairInGroup, 350);
+  }
+  setTimeout(revealNextPairInGroup, 300);
+}
+
+// ── STEP 3: CONFIRM START GROUP PHASE ─────────────
+function confirmStartGroupPhase() {
+  openModal(
+    '¿Comenzar Fase de Grupos?',
+    'Las parejas y grupos quedan fijados. Comenzará la fase de grupos. Esta acción no se puede deshacer.',
+    doStartGroupPhase
+  );
+}
+
+function doStartGroupPhase() {
+  // Build groups + matches from the drawn groups
+  const groups = _pendingGroups;
+  if(!groups.length){ showToast('Completa el sorteo primero','error','ico-warn'); return; }
+
+  const groupMatches = [];
+  groups.forEach(g=>{
+    const gp=g.pairs;
+    for(let a=0;a<gp.length;a++) for(let b=a+1;b<gp.length;b++)
+      groupMatches.push({id:'gm_'+g.id+'_'+a+'_'+b,groupId:g.id,pair1Id:gp[a].id,pair2Id:gp[b].id,sets:null,winner:null});
+  });
+
+  state.pairs = _pendingPairs;
+  state.groups = groups;
+  state.groupMatches = groupMatches;
+  state.groupsFinished = false;
+  state.phase = 'grupos';
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('grupos');
+  showToast('¡Fase de grupos iniciada!','success','ico-bolt');
+}
+
+// ── RESTORE SORTEO STATE on re-render ─────────────
+function renderSorteo() {
+  if(state.phase !== 'sorteo') return;
+  // If pairs already saved and we're reloading (e.g. Firebase sync on another device),
+  // show the completed pairs and the groups draw option
+  const pairs = state.pairs || [];
+  if(!pairs.length) return;
+
+  _pendingPairs = pairs;
+  const area = document.getElementById('pairRevealArea');
+  if(!area) return;
+  area.innerHTML = '';
+
+  pairs.forEach((pair, idx) => {
+    const card = document.createElement('div');
+    card.className = 'pair-card-reveal complete';
+    card.style.opacity = '1';
+    card.innerHTML = `
+      <div class="pair-num-badge">${idx+1}</div>
+      <div class="pair-names">
+        <div class="pair-p1">${escHtml(pair.p1.name)}</div>
+        ${pair.p2 ? `<div class="pair-vs">VS</div><div class="pair-p2">${escHtml(pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
+      </div>
+      <svg style="width:16px;height:16px;color:var(--lime);flex-shrink:0"><use href="#ico-check"/></svg>
+    `;
+    area.appendChild(card);
+  });
+  document.getElementById('sorteoActionsArea').style.display = 'flex';
 }
 
 // ── STANDINGS ─────────────────────────────────────
@@ -1028,9 +1406,23 @@ function doResetTorneo() {
     players: [], pairs: [], groups: [], groupMatches: [],
     groupsFinished: false, mainBracket: null, consolBracket: null, phase: 'registro'
   };
+  // Clear animation state
+  drawState = { pairsRevealed: 0, groupsRevealed: 0 };
+  _pendingPairs = [];
+  _pendingGroups = [];
+  drawState = { pairsRevealed: 0, groupsRevealed: 0 };
   saveState();
   if (!firebaseMode) renderAll();
   showTab('registro');
+  // Reset sorteo UI elements
+  const pra = document.getElementById('pairRevealArea');
+  if(pra) pra.innerHTML='';
+  const gra = document.getElementById('groupRevealArea');
+  if(gra) gra.innerHTML='';
+  const saa = document.getElementById('sorteoActionsArea');
+  if(saa) saa.style.display='none';
+  const sgs = document.getElementById('sorteo-groups-section');
+  if(sgs) sgs.style.display='none';
   showToast('Torneo reiniciado. ¡A empezar de nuevo!', 'info', 'ico-reset', 4000);
 }
 
