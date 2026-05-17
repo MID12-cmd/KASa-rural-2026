@@ -32,7 +32,7 @@
   document.dispatchEvent(new Event('firebaseReady'));
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <!-- SVG ICON LIBRARY -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -179,21 +179,11 @@
     width: 240px; height: 3px; background: var(--lime); box-shadow: 0 0 20px var(--lime-glow);
   }
   .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; flex-wrap: wrap; gap: 12px; }
-  .header-left  { display: flex; align-items: center; gap: 16px; }
-  .acc-mark {
-    width: 46px; height: 46px; background: var(--acc); border-radius: 8px;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    box-shadow: 0 0 20px var(--acc-glow);
-  }
-  .acc-mark svg { width: 24px; height: 24px; color: #fff; }
-  .logo { font-family: 'Black Han Sans', sans-serif; font-size: clamp(16px, 3.5vw, 36px); color: #fff; letter-spacing: 2px; line-height: 1; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(16px, 3.5vw, 36px); color: #fff; letter-spacing: 2px; line-height: 1; }
   .logo-yuncos { color: var(--lime); }
   .logo-by { font-size: .45em; color: var(--muted); letter-spacing: 1px; font-family: 'Barlow', sans-serif; font-weight: 400; margin-left: 8px; vertical-align: middle; }
   .subtitle { color: var(--muted); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-top: 4px; }
-  .header-right { display: flex; align-items: center; gap: 10px; }
-  .header-right .hico svg { color: var(--lime); opacity: .2; }
-  .header-right .hico:last-child svg { color: var(--acc); opacity: .25; }
-  .hico svg { width: 38px; height: 38px; display: block; }
+
 
   /* TABS */
   .tabs { display: flex; gap: 4px; padding: 16px 0 0; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
@@ -231,7 +221,7 @@
   /* CARDS */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
   .card-title {
-    font-family: 'Black Han Sans', sans-serif; font-size: 15px; color: var(--lime);
+    font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--lime);
     letter-spacing: 1px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
   }
   .card-title svg { width: 15px; height: 15px; }
@@ -282,7 +272,7 @@
     padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: border-color .2s;
   }
   .player-card:hover { border-color: var(--acc); }
-  .player-num { font-family: 'Black Han Sans', sans-serif; font-size: 18px; color: var(--acc); min-width: 26px; text-align: center; }
+  .player-num { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--acc); min-width: 26px; text-align: center; }
   .player-info { flex: 1; min-width: 0; }
   .player-name { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .player-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
@@ -306,7 +296,7 @@
     border-bottom: 1px solid var(--border); padding: 12px 16px;
     display: flex; align-items: center; justify-content: space-between;
   }
-  .group-title { font-family: 'Black Han Sans', sans-serif; font-size: 17px; color: var(--lime); letter-spacing: 2px; }
+  .group-title { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--lime); letter-spacing: 2px; }
   .standings-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .standings-table th {
     background: var(--surface2); padding: 8px 10px; text-align: left;
@@ -317,7 +307,7 @@
   .standings-table tr:last-child td { border-bottom: none; }
   .standings-table tr.advance    { background: rgba(200,241,53,.04); }
   .standings-table tr.consolacion { background: rgba(231,76,60,.04); }
-  .pos-badge { font-family: 'Black Han Sans', sans-serif; font-size: 14px; width: 24px; text-align: center; }
+  .pos-badge { font-family: 'Bebas Neue', sans-serif; font-size: 14px; width: 24px; text-align: center; }
   .pos-1 { color: var(--lime); } .pos-2 { color: var(--acc); }
   .pos-3 { color: var(--muted); } .pos-4 { color: var(--red); }
   .stat-num { text-align: center; font-variant-numeric: tabular-nums; }
@@ -326,7 +316,7 @@
   /* MATCHES */
   .matches-section { margin-top: 24px; }
   .section-title {
-    font-family: 'Black Han Sans', sans-serif; font-size: 18px; color: var(--text);
+    font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--text);
     letter-spacing: 1px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
   }
   .section-title svg { width: 17px; height: 17px; color: var(--lime); flex-shrink: 0; }
@@ -359,7 +349,7 @@
   /* BRACKET */
   .bracket-hero { text-align: center; padding: 30px 0 20px; }
   .bracket-hero-title {
-    font-family: 'Black Han Sans', sans-serif; font-size: clamp(18px, 4vw, 38px);
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(18px, 4vw, 38px);
     color: var(--lime); text-shadow: 0 0 40px var(--lime-glow); letter-spacing: 3px; line-height: 1;
     display: flex; align-items: center; justify-content: center; gap: 14px;
   }
@@ -381,7 +371,7 @@
   .bracket-team:last-child { border-bottom: none; }
   .bracket-team.winner { background: rgba(200,241,53,.08); color: var(--lime); }
   .bracket-team.tbd    { color: var(--muted); font-style: italic; }
-  .bracket-score { font-family: 'Black Han Sans', sans-serif; font-size: 15px; color: var(--lime); min-width: 20px; text-align: right; }
+  .bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--lime); min-width: 20px; text-align: right; }
   .connector { width: 30px; display: flex; flex-direction: column; justify-content: space-around; }
 
   /* TROPHY */
@@ -392,7 +382,7 @@
   }
   .trophy-icon { display: flex; justify-content: center; margin-bottom: 10px; }
   .trophy-icon svg { width: 36px; height: 36px; color: var(--lime); }
-  .trophy-title { font-family: 'Black Han Sans', sans-serif; font-size: 13px; color: var(--lime); letter-spacing: 2px; margin-bottom: 12px; }
+  .trophy-title { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: var(--lime); letter-spacing: 2px; margin-bottom: 12px; }
   .trophy-team { font-weight: 700; font-size: 14px; padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; }
   .trophy-team.winner { background: rgba(200,241,53,.1); color: var(--lime); display: flex; align-items: center; justify-content: center; gap: 6px; }
   .trophy-team.winner svg { width: 13px; height: 13px; }
@@ -429,7 +419,7 @@
   .modal-overlay.open { display: flex; }
   .modal { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--acc); border-radius: 16px; padding: 28px; max-width: 480px; width: 100%; animation: modalIn .2s ease; }
   @keyframes modalIn { from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1} }
-  .modal-title { font-family: 'Black Han Sans', sans-serif; font-size: 22px; color: var(--lime); margin-bottom: 12px; }
+  .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--lime); margin-bottom: 12px; }
   .modal-body  { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
   .modal-footer { display: flex; gap: 10px; justify-content: flex-end; }
 
@@ -973,7 +963,7 @@ function renderElim() {
   renderBracket('main',state.mainBracket); renderBracket('consolacion',state.consolBracket);
   renderElimMatches('main',state.mainBracket); renderElimMatches('consolacion',state.consolBracket);
 }
-const RN=['Dieciseisavos','Octavos de Final','Cuartos de Final','Semifinal','FINAL'];
+
 // Returns the correct round name based on how many matches are in that round
 function getRoundName(matchCount, isFinal) {
   if (isFinal) return 'FINAL';
@@ -1005,7 +995,7 @@ function renderBracket(type, bracket) {
       const f1=rounds[nr-1][0].pair1Id, f2=rounds[nr-1][0].pair2Id, champ=rounds[nr-1][0].winner, isCons=type!=='main';
       html+=`<div style="display:flex;align-items:center;padding-left:16px;"><div class="trophy-match" ${isCons?'style="border-color:var(--acc);box-shadow:0 0 30px var(--acc-glow);"':''}>
         <div class="trophy-icon"><svg style="${isCons?'color:var(--acc)':''}"><use href="${isCons?'#ico-medal':'#ico-trophy'}"/></svg></div>
-        <div class="trophy-title" style="${isCons?'color:var(--acc)':''}">${isCons?'COPA CONSOLACIÓN':'YUNCOS CHAMPION'}</div>
+        <div class="trophy-title" style="${isCons?'color:var(--acc)':''}">${isCons?'COPA CONSOLACIÓN':'VILLA PACHECO CHAMPION'}</div>
         ${champ?`<div class="trophy-team winner"><svg><use href="#ico-crown"/></svg>${getPairName(champ)}</div>`:`<div class="trophy-team ${f1?'':'tbd'}">${f1?getPairName(f1):'Por determinar'}</div><div class="trophy-vs">VS</div><div class="trophy-team ${f2?'':'tbd'}">${f2?getPairName(f2):'Por determinar'}</div>`}
       </div></div>`;
     }
