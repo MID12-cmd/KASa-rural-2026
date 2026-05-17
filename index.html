@@ -525,7 +525,7 @@
   .pair-names { flex: 1; min-width: 0; }
   .pair-p1 { font-weight: 700; font-size: 15px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .pair-p2 { font-weight: 700; font-size: 15px; color: var(--lime); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .pair-vs { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 2px; margin: 2px 0; }
+  .pair-vs { font-size: 10px; font-weight: 700; color: var(--acc); letter-spacing: 2px; margin: 2px 0; }
   .pair-pending-dot {
     width: 10px; height: 10px; border-radius: 50%;
     background: var(--acc); animation: pulse 1s infinite; flex-shrink: 0;
@@ -557,6 +557,55 @@
 
   .sorteo-actions { display: flex; justify-content: center; margin-top: 32px; padding-bottom: 32px; }
   .btn-lg { padding: 14px 32px; font-size: 14px; border-radius: 8px; }
+
+  /* ── POLLS LAYOUT ────────────────────────────────── */
+  .polls-layout {
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .polls-sidebar {
+    width: 220px; flex-shrink: 0;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; position: sticky; top: 16px;
+  }
+  .polls-sidebar-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px;
+    color: var(--muted); padding: 14px 16px 10px; border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+  }
+  .poll-sidebar-item {
+    padding: 12px 16px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,.04);
+    transition: background .15s; display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 600; color: var(--muted);
+  }
+  .poll-sidebar-item:last-child { border-bottom: none; }
+  .poll-sidebar-item:hover { background: var(--surface2); color: var(--text); }
+  .poll-sidebar-item.active { background: rgba(161,0,255,.1); color: var(--lime); border-left: 3px solid var(--acc); }
+  .poll-sidebar-item .poll-emoji { font-size: 16px; flex-shrink: 0; }
+  .poll-sidebar-item .poll-vote-count {
+    margin-left: auto; font-size: 11px; font-family:'Bebas Neue',sans-serif;
+    font-size: 14px; color: var(--acc);
+  }
+
+  .polls-main { flex: 1; min-width: 0; }
+  .poll-panel { display: none; }
+  .poll-panel.active { display: block; }
+
+  .poll-panel-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--lime);
+    letter-spacing: 2px; margin-bottom: 4px; display: flex; align-items: center; gap: 10px;
+  }
+  .poll-panel-desc { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+
+  .poll-vote-form {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px; margin-bottom: 20px; display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;
+  }
+  .poll-vote-form .form-group { margin: 0; }
+
+  @media(max-width:700px){
+    .polls-layout { flex-direction: column; }
+    .polls-sidebar { width: 100%; position: static; }
+  }
   /* ── PREDICTIONS ────────────────────────────────── */
   .pred-hero { text-align: center; padding: 28px 0 20px; }
   .pred-title {
@@ -696,6 +745,10 @@
           <input type="text" id="playerTeam" placeholder="Ej: Technology, Strategy, Operations..." maxlength="40">
         </div>
         <div class="form-group">
+          <label>Apodo <span style="color:var(--muted);font-weight:400;letter-spacing:0;text-transform:none;font-size:10px;">(opcional)</span></label>
+          <input type="text" id="playerNickname" placeholder='Ej: "El Muro", "Rayo"...' maxlength="30">
+        </div>
+        <div class="form-group">
           <label>Nivel de Juego</label>
           <select id="playerLevel">
             <option value="1">Principiante — Aprendiendo</option>
@@ -727,14 +780,24 @@
     </div>
   </div>
 
-  <!-- TAB 1b: SORTEO -->
+  <!-- TAB SORTEO -->
   <div class="tab-pane" id="pane-sorteo">
     <div class="sorteo-hero">
       <div class="sorteo-title"><svg><use href="#ico-bolt"/></svg> SORTEO EN VIVO</div>
       <div class="sorteo-sub">Las parejas y grupos se deciden aquí</div>
     </div>
 
-    <!-- FASE 1: PAREJAS -->
+    <!-- SORTEO SUB-TABS -->
+    <div class="sub-tabs" id="sorteoSubTabs">
+      <button class="sub-tab-btn active" onclick="showSorteoTab('parejas')" id="sorteoTabBtn-parejas">
+        <svg><use href="#ico-users"/></svg>Parejas
+      </button>
+      <button class="sub-tab-btn" onclick="showSorteoTab('grupos')" id="sorteoTabBtn-grupos" id="sorteoTabBtnGrupos">
+        <svg><use href="#ico-chart"/></svg>Grupos
+      </button>
+    </div>
+
+    <!-- SECCIÓN PAREJAS -->
     <div id="sorteo-pairs-section">
       <div class="sorteo-phase-title">
         <span class="sorteo-phase-num">01</span>
@@ -752,14 +815,14 @@
       <div id="pairRevealArea" class="pair-reveal-area"></div>
       <div class="sorteo-actions" id="sorteoActionsArea" style="display:none">
         <button class="btn btn-acc btn-lg" onclick="startGroupDraw()" id="startGroupDrawBtn">
-          <svg><use href="#ico-bolt"/></svg>Sorteo de Grupos
+          <svg><use href="#ico-bolt"/></svg>Pasar al Sorteo de Grupos
         </button>
       </div>
     </div>
 
-    <!-- FASE 2: GRUPOS -->
+    <!-- SECCIÓN GRUPOS -->
     <div id="sorteo-groups-section" style="display:none">
-      <div class="sorteo-phase-title" style="margin-top:32px;">
+      <div class="sorteo-phase-title">
         <span class="sorteo-phase-num">02</span>
         <span>Asignación de Grupos</span>
         <div class="sorteo-phase-line"></div>
@@ -775,40 +838,41 @@
 
   <!-- TAB PREDICCIONES -->
   <div class="tab-pane" id="pane-predicciones">
-    <div id="predNotReady" class="alert alert-info" style="display:none">
+    <div id="predNotReady" class="alert alert-info">
       <svg><use href="#ico-info"/></svg>
-      Las predicciones estarán disponibles una vez finalice el sorteo y comiencen los grupos.
+      Las encuestas estarán disponibles una vez comiencen los grupos.
     </div>
     <div id="predContent" style="display:none">
+
       <div class="pred-hero">
-        <div class="pred-title"><svg><use href="#ico-crown"/></svg> ¿QUIÉN VA A GANAR?</div>
-        <div class="pred-sub">Vota tu pareja favorita · Solo un voto por persona</div>
+        <div class="pred-title"><svg><use href="#ico-crown"/></svg> ENCUESTAS DEL TORNEO</div>
+        <div class="pred-sub">Vota · Ríete · Comparte</div>
       </div>
 
-      <!-- VOTE FORM -->
-      <div class="card" id="predVoteCard">
-        <div class="card-title"><svg><use href="#ico-bolt"/></svg>Emite tu voto</div>
-        <div class="form-row">
+      <!-- VOTER NAME (shared across all polls) -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title"><svg><use href="#ico-users"/></svg>¿Quién eres?</div>
+        <div class="form-row" style="align-items:center;">
           <div class="form-group">
             <label>Tu nombre</label>
-            <input type="text" id="predVoterName" placeholder="¿Cómo te llamas?" maxlength="40">
+            <input type="text" id="predVoterName" placeholder="Escribe tu nombre para votar" maxlength="40">
           </div>
-          <div class="form-group">
-            <label>Pareja ganadora</label>
-            <select id="predPairSelect"></select>
-          </div>
-          <div class="form-group" style="flex:0">
-            <label>&nbsp;</label>
-            <button class="btn btn-acc" onclick="submitPrediction()"><svg><use href="#ico-check"/></svg>Votar</button>
+          <div style="font-size:12px;color:var(--muted);padding-top:20px;flex-shrink:0;">
+            Puedes cambiar tu voto en cualquier encuesta en cualquier momento.
           </div>
         </div>
       </div>
 
-      <!-- RANKING -->
-      <div class="section-title" style="margin-top:24px;">
-        <svg><use href="#ico-chart"/></svg>Ranking de Predicciones
+      <!-- POLLS LAYOUT: sidebar + content -->
+      <div class="polls-layout">
+        <!-- SIDEBAR: poll list -->
+        <div class="polls-sidebar">
+          <div class="polls-sidebar-title">Encuestas</div>
+          <div id="pollsSidebarList"></div>
+        </div>
+        <!-- MAIN: active poll -->
+        <div class="polls-main" id="pollsMain"></div>
       </div>
-      <div id="predRanking"></div>
 
     </div>
   </div>
@@ -929,6 +993,25 @@ function showSubTab(tab) {
     document.getElementById('subTabBtn-'+t).classList.toggle('active', t===tab);
   });
 }
+function showSorteoTab(tab) {
+  // tab: 'parejas' | 'grupos'
+  const pairsSection  = document.getElementById('sorteo-pairs-section');
+  const groupsSection = document.getElementById('sorteo-groups-section');
+  const btnParejas    = document.getElementById('sorteoTabBtn-parejas');
+  const btnGrupos     = document.getElementById('sorteoTabBtnGrupos');
+  if(!pairsSection || !groupsSection) return;
+  if(tab==='parejas'){
+    pairsSection.style.display='';
+    groupsSection.style.display='none';
+    if(btnParejas) btnParejas.classList.add('active');
+    if(btnGrupos) btnGrupos.classList.remove('active');
+  } else {
+    pairsSection.style.display='none';
+    groupsSection.style.display='';
+    if(btnParejas) btnParejas.classList.remove('active');
+    if(btnGrupos) btnGrupos.classList.add('active');
+  }
+}
 function showToast(msg, type='info', icon='ico-info', dur=3000) {
   const c=document.getElementById('toastContainer'), t=document.createElement('div');
   t.className=`toast ${type}`; t.innerHTML=`<svg><use href="#${icon}"/></svg>${escHtml(msg)}`;
@@ -972,13 +1055,15 @@ function addPlayer() {
   const name=document.getElementById('playerName').value.trim();
   const team=document.getElementById('playerTeam').value.trim();
   const level=document.getElementById('playerLevel').value;
+  const nickname=document.getElementById('playerNickname').value.trim();
   if(!name){ showToast('Introduce el nombre','error','ico-warn'); return; }
   if(!team){ showToast('Introduce el equipo','error','ico-warn'); return; }
   if(!state.players) state.players=[];
-  state.players.push({ id:'p'+Date.now()+Math.random().toString(36).slice(2,5), name, team, level:parseInt(level) });
+  state.players.push({ id:'p'+Date.now()+Math.random().toString(36).slice(2,5), name, team, level:parseInt(level), nickname });
   saveState();
   document.getElementById('playerName').value='';
   document.getElementById('playerTeam').value='';
+  document.getElementById('playerNickname').value='';
   document.getElementById('playerLevel').value='2';
   showToast(`${name} añadido al torneo`,'success','ico-check');
   if(!firebaseMode) renderAll();
@@ -1010,7 +1095,7 @@ function renderPlayers() {
     return `<div class="player-card">
       <div class="player-num">${i+1}</div>
       <div class="player-info">
-        <div class="player-name">${escHtml(p.name)}</div>
+        <div class="player-name">${escHtml(p.name)}${p.nickname?` <span style="color:var(--muted);font-size:12px;font-weight:400;">"${escHtml(p.nickname)}"</span>`:''}</div>
         <div class="player-meta">${escHtml(p.team)}</div>
         <div class="mt-8"><span class="level-badge ${d.cls}"><svg><use href="#${d.icon}"/></svg>${d.label}</span></div>
       </div>
@@ -1101,7 +1186,7 @@ function animatePairDraw(idx) {
       clearInterval(cycleInterval);
       // Reveal the pair
       flash.textContent = pair.p2
-        ? (pair.p1.name + ' & ' + pair.p2.name).toUpperCase()
+        ? (getPlayerDisplay(pair.p1) + ' & ' + getPlayerDisplay(pair.p2)).toUpperCase()
         : pair.p1.name.toUpperCase() + ' (libre)';
       ball.classList.remove('picking');
       ball.classList.add('spinning');
@@ -1115,7 +1200,7 @@ function animatePairDraw(idx) {
         <div class="pair-num-badge">${idx+1}</div>
         <div class="pair-names">
           <div class="pair-p1">${escHtml(pair.p1.name)}</div>
-          ${pair.p2 ? `<div class="pair-vs">&</div><div class="pair-p2">${escHtml(pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
+          ${pair.p2 ? `<div class="pair-vs">&amp;</div><div class="pair-p2">${escHtml(pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
         </div>
         <svg style="width:16px;height:16px;color:var(--lime);flex-shrink:0"><use href="#ico-check"/></svg>
       `;
@@ -1143,8 +1228,8 @@ function startGroupDraw() {
 
   // Hide pairs button, show groups section
   document.getElementById('sorteoActionsArea').style.display = 'none';
-  document.getElementById('sorteo-groups-section').style.display = 'block';
   document.getElementById('groupRevealArea').innerHTML = '';
+  showSorteoTab('grupos');
 
   animateGroupDraw(0);
 }
@@ -1247,19 +1332,42 @@ function renderSorteo() {
       <div class="pair-num-badge">${idx+1}</div>
       <div class="pair-names">
         <div class="pair-p1">${escHtml(pair.p1.name)}</div>
-        ${pair.p2 ? `<div class="pair-vs">VS</div><div class="pair-p2">${escHtml(pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
+        ${pair.p2 ? `<div class="pair-vs">&amp;</div><div class="pair-p2">${escHtml(pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
       </div>
       <svg style="width:16px;height:16px;color:var(--lime);flex-shrink:0"><use href="#ico-check"/></svg>
     `;
     area.appendChild(card);
   });
   document.getElementById('sorteoActionsArea').style.display = 'flex';
+  // If groups are already drawn too, restore that section
+  const groups = state.groups || [];
+  if (groups.length > 0) {
+    _pendingGroups = groups;
+    showSorteoTab('grupos');
+    const gra = document.getElementById('groupRevealArea');
+    if (gra) {
+      gra.innerHTML = groups.map(g => `
+        <div class="group-reveal-card" style="opacity:1">
+          <div class="group-reveal-header">
+            <span>GRUPO ${escHtml(g.id)}</span>
+            <span style="font-size:12px;font-family:'Barlow',sans-serif;color:var(--muted);font-weight:600;">${g.pairs.length} parejas</span>
+          </div>
+          <div>${g.pairs.map(p=>`<div class="group-pair-item" style="opacity:1"><svg><use href="#ico-racket"/></svg>${escHtml(getPairName(p.id))}</div>`).join('')}</div>
+        </div>
+      `).join('');
+      document.getElementById('sorteoGroupActions').style.display = 'flex';
+    }
+  }
 }
 
 // ── STANDINGS ─────────────────────────────────────
+function getPlayerDisplay(player) {
+  if(!player) return '?';
+  return player.nickname ? `${escHtml(player.name)} "${escHtml(player.nickname)}"` : escHtml(player.name);
+}
 function getPairName(id) {
   const p=(state.pairs||[]).find(x=>x.id===id); if(!p) return '???';
-  return p.p2 ? escHtml(p.p1.name)+' / '+escHtml(p.p2.name) : escHtml(p.p1.name)+' (libre)';
+  return p.p2 ? getPlayerDisplay(p.p1)+' & '+getPlayerDisplay(p.p2) : getPlayerDisplay(p.p1)+' (libre)';
 }
 function computeStandings(gid) {
   const g=(state.groups||[]).find(x=>x.id===gid); if(!g) return [];
@@ -1479,117 +1587,242 @@ function renderElimMatches(type, bracket) {
   el.innerHTML=html||'<div class="text-muted" style="padding:20px;text-align:center;">Los cruces se generarán cuando avancen los equipos</div>';
 }
 
-// ── PREDICCIONES ──────────────────────────────────
+// ── POLLS SYSTEM ──────────────────────────────────
+
+// Poll definitions — fixed list, options generated dynamically or from players
+const POLLS = [
+  {
+    id: 'winner',
+    emoji: '🏆',
+    title: '¿Quién va a ganar?',
+    desc: 'Vota la pareja que crees que se lleva el torneo. Se revelará el resultado al final.',
+    type: 'pairs',    // options come from state.pairs
+  },
+  {
+    id: 'paquete',
+    emoji: '💀',
+    title: 'El Paquete',
+    desc: 'El que más fallos comete, el que más raquetazos al aire da, el que convierte cada partido en espectáculo involuntario.',
+    type: 'players',
+  },
+  {
+    id: 'flipado',
+    emoji: '🤩',
+    title: 'El Flipado',
+    desc: 'Ese que ya ha reservado pista en el club, que tiene dos raquetas de 400€ y que te explica la "posición correcta" antes de cada saque.',
+    type: 'players',
+  },
+  {
+    id: 'cervezas',
+    emoji: '🍺',
+    title: 'El que Trae las Cervezas',
+    desc: 'MVP fuera de la pista. Sin él, esto no sería un torneo sino un sufrimiento colectivo.',
+    type: 'players',
+  },
+  {
+    id: 'enfadado',
+    emoji: '😤',
+    title: 'El que Más se Enfada',
+    desc: 'El que insulta a su pareja, a la pelota, al sol, a la red y a la decisión de participar en esto.',
+    type: 'players',
+  },
+  {
+    id: 'excusas',
+    emoji: '🤕',
+    title: 'El Rey de las Excusas',
+    desc: 'Siempre hay un dedo raro, una rodilla frágil, o que le dio el sol. El campeón indiscutible de las justificaciones.',
+    type: 'players',
+  },
+  {
+    id: 'comentarista',
+    emoji: '🎙️',
+    title: 'El Comentarista',
+    desc: 'Narra su propio partido en voz alta. "¡Qué golpe!", "¡Se la he puesto!", "¡Madre mía, qué volea!".',
+    type: 'players',
+  },
+  {
+    id: 'tecnico',
+    emoji: '📐',
+    title: 'El Más Técnico',
+    desc: 'Habla de "viboras", "bandeja", "posición de dejada" y "juego de muñeca". El resto solo ve pelotas.',
+    type: 'players',
+  },
+  {
+    id: 'calentamiento',
+    emoji: '🧘',
+    title: 'El del Calentamiento de 20 Minutos',
+    desc: 'Se estira, hace sentadillas, da saltos. Luego pierde el primer partido 0-6.',
+    type: 'players',
+  },
+  {
+    id: 'selfie',
+    emoji: '🤳',
+    title: 'El del Selfie',
+    desc: 'Más fotos que puntos. Su Instagram vale más que su ranking.',
+    type: 'players',
+  },
+  {
+    id: 'consejo',
+    emoji: '🧠',
+    title: 'El que Siempre da Consejos',
+    desc: 'Entre punto y punto te explica qué has hecho mal, cómo deberías moverte y qué raqueta deberías comprar.',
+    type: 'players',
+  },
+  {
+    id: 'desaparecido',
+    emoji: '👻',
+    title: 'El Desaparecido',
+    desc: 'Cuando hay que recoger bolas, montar la red o llevar el agua... no está. Pero llega justo para jugar.',
+    type: 'players',
+  },
+];
+
+let activePollId = 'winner';
+
+function getVoterName() {
+  return (document.getElementById('predVoterName') || {}).value?.trim() || '';
+}
+
 function renderPredictions() {
   const notReady = document.getElementById('predNotReady');
   const content  = document.getElementById('predContent');
   if (!notReady || !content) return;
 
-  // Only show when grupos phase or later
   const active = state.phase === 'grupos' || state.phase === 'eliminatoria';
   notReady.style.display = active ? 'none' : '';
   content.style.display  = active ? ''     : 'none';
   if (!active) return;
 
-  const pairs = state.pairs || [];
   const preds = state.predictions || {};
 
-  // Populate pair select
-  const sel = document.getElementById('predPairSelect');
-  if (sel) {
-    sel.innerHTML = pairs.map(p =>
-      `<option value="${escHtml(p.id)}">${escHtml(getPairName(p.id))}</option>`
-    ).join('');
+  // Build sidebar
+  const sidebarEl = document.getElementById('pollsSidebarList');
+  if (sidebarEl) {
+    sidebarEl.innerHTML = POLLS.map(poll => {
+      const pollVotes = preds[poll.id] ? Object.keys(preds[poll.id]).length : 0;
+      return `<div class="poll-sidebar-item ${poll.id===activePollId?'active':''}" onclick="selectPoll('${poll.id}')">
+        <span class="poll-emoji">${poll.emoji}</span>
+        <span style="flex:1">${poll.title}</span>
+        <span class="poll-vote-count">${pollVotes||''}</span>
+      </div>`;
+    }).join('');
   }
 
-  // Build ranking: count votes per pair
-  const counts = {};
-  pairs.forEach(p => { counts[p.id] = 0; });
-  Object.values(preds).forEach(pairId => {
-    if (counts[pairId] !== undefined) counts[pairId]++;
-  });
+  // Build main area
+  const mainEl = document.getElementById('pollsMain');
+  if (!mainEl) return;
+  mainEl.innerHTML = '';
 
-  // Sort pairs by votes desc
-  const sorted = pairs.slice().sort((a, b) => counts[b.id] - counts[a.id]);
-  const maxVotes = sorted.length ? counts[sorted[0].id] : 0;
-  const totalVotes = Object.values(counts).reduce((a,b)=>a+b,0);
+  POLLS.forEach(poll => {
+    const panel = document.createElement('div');
+    panel.className = `poll-panel${poll.id===activePollId?' active':''}`;
+    panel.id = `poll-panel-${poll.id}`;
 
-  // Find the actual tournament winner (if eliminatoria is done)
-  let tournamentWinner = null;
-  if (state.mainBracket) {
-    const finalRound = state.mainBracket.rounds[state.mainBracket.rounds.length - 1];
-    if (finalRound && finalRound[0] && finalRound[0].winner) {
-      tournamentWinner = finalRound[0].winner;
+    const pollVotes = preds[poll.id] || {};
+    const options = getPollOptions(poll);
+
+    // Count votes
+    const counts = {};
+    options.forEach(o => { counts[o.id] = 0; });
+    Object.values(pollVotes).forEach(optId => { if(counts[optId]!==undefined) counts[optId]++; });
+    const sorted = options.slice().sort((a,b)=>counts[b.id]-counts[a.id]);
+    const maxVotes = sorted.length ? counts[sorted[0].id] : 0;
+    const totalVotes = Object.values(counts).reduce((a,b)=>a+b,0);
+
+    // Find special winner mark for winner poll
+    let tournamentWinner = null;
+    if (poll.id==='winner' && state.mainBracket) {
+      const fr=state.mainBracket.rounds[state.mainBracket.rounds.length-1];
+      if(fr && fr[0] && fr[0].winner) tournamentWinner=fr[0].winner;
     }
-  }
 
-  // Collect voter names per pair
-  const voterNames = {};
-  pairs.forEach(p => { voterNames[p.id] = []; });
-  Object.entries(preds).forEach(([voter, pairId]) => {
-    if (voterNames[pairId] !== undefined) voterNames[pairId].push(voter);
+    // Voter names per option
+    const voterMap = {};
+    options.forEach(o=>{ voterMap[o.id]=[]; });
+    Object.entries(pollVotes).forEach(([voter,optId])=>{ if(voterMap[optId]!==undefined) voterMap[optId].push(voter); });
+
+    panel.innerHTML = `
+      <div class="poll-panel-title">${poll.emoji} ${poll.title}</div>
+      <div class="poll-panel-desc">${poll.desc}</div>
+      <div class="poll-vote-form">
+        <div class="form-group" style="flex:1;min-width:180px">
+          <label>Tu voto</label>
+          <select id="pollSelect-${poll.id}">
+            ${options.map(o=>`<option value="${escHtml(o.id)}">${escHtml(o.label)}</option>`).join('')}
+          </select>
+        </div>
+        <button class="btn btn-acc" onclick="submitPollVote('${poll.id}')">
+          <svg><use href="#ico-check"/></svg>Votar
+        </button>
+      </div>
+      <div class="section-title" style="margin-top:4px;font-size:16px;">
+        <svg><use href="#ico-chart"/></svg>Ranking
+      </div>
+      <div id="pollRanking-${poll.id}">
+        ${totalVotes===0
+          ? `<div class="pred-rank-item" style="opacity:1;justify-content:center;"><span class="pred-zero">Aún no hay votos. ¡Sé el primero!</span></div>`
+          : sorted.map((opt,i)=>{
+              const votes=counts[opt.id];
+              const pct=maxVotes>0?Math.round((votes/maxVotes)*100):0;
+              const posClass=['p1','p2','p3'][i]||'pn';
+              const voters=voterMap[opt.id];
+              const voterStr=voters.length?voters.map(v=>escHtml(v)).join(', '):'Nadie aún';
+              const isWin=poll.id==='winner'&&tournamentWinner&&opt.id===tournamentWinner;
+              return `<div class="pred-rank-item" style="animation-delay:${i*50}ms;${isWin?'border-color:rgba(245,200,66,.4);background:rgba(245,200,66,.03);':''}">
+                <div class="pred-rank-pos ${posClass}">${i+1}°</div>
+                <div class="pred-rank-info">
+                  <div class="pred-rank-name">${escHtml(opt.label)}</div>
+                  <div class="pred-rank-voters">${escHtml(voterStr)}</div>
+                </div>
+                <div class="pred-rank-bar-wrap"><div class="pred-rank-bar" style="width:${pct}%"></div></div>
+                <div class="pred-rank-count">${votes}</div>
+                ${isWin?'<div class="pred-winner-badge">CAMPEÓN</div>':''}
+              </div>`;
+            }).join('')
+        }
+      </div>
+    `;
+    mainEl.appendChild(panel);
   });
-
-  const posClasses = ['p1','p2','p3'];
-  const posLabels  = ['1°','2°','3°'];
-
-  const rankEl = document.getElementById('predRanking');
-  if (!rankEl) return;
-
-  if (totalVotes === 0) {
-    rankEl.innerHTML = `<div class="pred-rank-item" style="opacity:1;justify-content:center;">
-      <span class="pred-zero">Aún no hay votos. ¡Sé el primero en predecir!</span>
-    </div>`;
-    return;
-  }
-
-  const isWinner = (pairId) => tournamentWinner && pairId === tournamentWinner;
-
-  rankEl.innerHTML = sorted.map((pair, i) => {
-    const votes = counts[pair.id];
-    const barPct = maxVotes > 0 ? Math.round((votes / maxVotes) * 100) : 0;
-    const posClass = posClasses[i] || 'pn';
-    const posLabel = posLabels[i] || `${i+1}°`;
-    const voters = voterNames[pair.id];
-    const voterStr = voters.length
-      ? voters.map(v => escHtml(v)).join(', ')
-      : 'Nadie aún';
-    const win = isWinner(pair.id);
-    return `<div class="pred-rank-item" style="animation-delay:${i*60}ms;${win?'border-color:rgba(245,200,66,.4);background:rgba(245,200,66,.03);':''}">
-      <div class="pred-rank-pos ${posClass}">${posLabel}</div>
-      <div class="pred-rank-info">
-        <div class="pred-rank-name">${escHtml(getPairName(pair.id))}</div>
-        <div class="pred-rank-voters">${escHtml(voterStr)}</div>
-      </div>
-      <div class="pred-rank-bar-wrap">
-        <div class="pred-rank-bar" style="width:${barPct}%"></div>
-      </div>
-      <div class="pred-rank-count">${votes}</div>
-      ${win ? '<div class="pred-winner-badge">GANADOR</div>' : ''}
-    </div>`;
-  }).join('');
 }
 
-function submitPrediction() {
-  const voter  = document.getElementById('predVoterName').value.trim();
-  const pairId = document.getElementById('predPairSelect').value;
-  if (!voter) { showToast('Introduce tu nombre para votar', 'error', 'ico-warn'); return; }
-  if (!pairId) { showToast('Selecciona una pareja', 'error', 'ico-warn'); return; }
+function getPollOptions(poll) {
+  if (poll.type === 'pairs') {
+    return (state.pairs||[]).map(p => ({ id: p.id, label: getPairName(p.id) }));
+  }
+  if (poll.type === 'players') {
+    return (state.players||[]).map(p => ({
+      id: p.id,
+      label: p.nickname ? `${p.name} "${p.nickname}"` : p.name
+    }));
+  }
+  return [];
+}
+
+function selectPoll(pollId) {
+  activePollId = pollId;
+  renderPredictions();
+}
+
+function submitPollVote(pollId) {
+  const voter = getVoterName();
+  if (!voter) { showToast('Escribe tu nombre antes de votar', 'error', 'ico-warn'); return; }
+  const sel = document.getElementById('pollSelect-'+pollId);
+  if (!sel || !sel.value) { showToast('Selecciona una opción', 'error', 'ico-warn'); return; }
 
   if (!state.predictions) state.predictions = {};
+  if (!state.predictions[pollId]) state.predictions[pollId] = {};
 
-  // Allow changing vote — just overwrite
-  const isChange = state.predictions[voter] !== undefined;
-  state.predictions[voter] = pairId;
+  const isChange = state.predictions[pollId][voter] !== undefined;
+  state.predictions[pollId][voter] = sel.value;
 
   saveState();
   if (!firebaseMode) renderPredictions();
-  document.getElementById('predVoterName').value = '';
-  showToast(
-    isChange ? `Voto actualizado a ${getPairName(pairId)}` : `¡Voto registrado! Apuestas por ${getPairName(pairId)}`,
-    'success', 'ico-check'
-  );
+  showToast(isChange ? '¡Voto actualizado!' : '¡Voto registrado!', 'success', 'ico-check');
 }
+
+// Keep old submitPrediction as alias (not used in new UI but kept for safety)
+function submitPrediction() { submitPollVote('winner'); }
 
 // ── RESET TORNEO ──────────────────────────────────
 function confirmResetTorneo() {
