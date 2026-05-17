@@ -863,15 +863,28 @@ function renderMatchCard(m, type) {
 function getVal(id){ const el=document.getElementById(id); return el?el.value.trim():''; }
 
 function saveMatch(mId, type) {
-  const p1s1=parseInt(getVal(mId+'_p1s1')),p1s2=parseInt(getVal(mId+'_p1s2')),p1s3=parseInt(getVal(mId+'_p1s3'));
-  const p2s1=parseInt(getVal(mId+'_p2s1')),p2s2=parseInt(getVal(mId+'_p2s2')),p2s3=parseInt(getVal(mId+'_p2s3'));
-  if(isNaN(p1s1)||isNaN(p2s1)||isNaN(p1s2)||isNaN(p2s2)){ showToast('Introduce al menos 2 sets','error','ico-warn'); return; }
-  let p1S=0,p2S=0; const ss={p1:[],p2:[]};
-  const rounds=[[p1s1,p2s1],[p1s2,p2s2]];
-  if(!isNaN(p1s3)&&!isNaN(p2s3)&&getVal(mId+'_p1s3')!==''&&getVal(mId+'_p2s3')!=='') rounds.push([p1s3,p2s3]);
-  for(const[a,b]of rounds){ss.p1.push(a);ss.p2.push(b);if(a>b)p1S++;else p2S++;}
-  const all=getAllElimMatchesRef(type), m=all.find(x=>x.id===mId); if(!m) return;
-  m.sets=ss; m.winner=p1S>p2S?m.pair1Id:m.pair2Id;
+  // Collect only sets where BOTH sides have been filled in
+  const rawSets = [
+    [getVal(mId+'_p1s1'), getVal(mId+'_p2s1')],
+    [getVal(mId+'_p1s2'), getVal(mId+'_p2s2')],
+    [getVal(mId+'_p1s3'), getVal(mId+'_p2s3')],
+  ];
+  const ss = {p1:[], p2:[]};
+  for (const [a, b] of rawSets) {
+    if (a !== '' && b !== '') {
+      const na = parseInt(a), nb = parseInt(b);
+      if (!isNaN(na) && !isNaN(nb)) { ss.p1.push(na); ss.p2.push(nb); }
+    }
+  }
+  if (ss.p1.length === 0) { showToast('Introduce al menos un set', 'error', 'ico-warn'); return; }
+  // Winner = who has more TOTAL GAMES across all sets played
+  // This handles partial sets cut short by time correctly
+  const p1Total = ss.p1.reduce((a,b)=>a+b, 0);
+  const p2Total = ss.p2.reduce((a,b)=>a+b, 0);
+  if (p1Total === p2Total) { showToast('Empate de juegos — revisa el marcador', 'error', 'ico-warn'); return; }
+  const all = getAllElimMatchesRef(type), m = all.find(x=>x.id===mId); if(!m) return;
+  m.sets = ss;
+  m.winner = p1Total > p2Total ? m.pair1Id : m.pair2Id;
   if(type==='main'||type==='consolacion') propagateWinner(type,mId,m.winner);
   saveState(); if(!firebaseMode) renderAll(); showToast('Resultado guardado','success','ico-check');
 }
