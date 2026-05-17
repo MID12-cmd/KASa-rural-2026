@@ -516,11 +516,6 @@
       <div class="step-dot" id="step-3"><svg><use href="#ico-swords"/></svg></div>
       <div class="step-label" id="stepLabel-3">Eliminatoria</div>
     </div>
-    <div class="step-line" id="stepLine-3"></div>
-    <div class="step-container">
-      <div class="step-dot" id="step-4"><svg><use href="#ico-trophy"/></svg></div>
-      <div class="step-label" id="stepLabel-4">Final</div>
-    </div>
   </div>
 
   <!-- TABS -->
@@ -716,7 +711,7 @@ function renderAll() { renderProgress(); renderStatus(); renderPlayers(); render
 
 function renderProgress() {
   const m={registro:1,grupos:2,eliminatoria:3}, cur=m[state.phase]||1;
-  for(let i=1;i<=4;i++){
+  for(let i=1;i<=3;i++){
     const d=document.getElementById('step-'+i), l=document.getElementById('stepLabel-'+i); if(!d)continue;
     if(i<cur){d.classList.add('done');d.classList.remove('active');l.classList.add('done');l.classList.remove('active');}
     else if(i===cur){d.classList.add('active');d.classList.remove('done');l.classList.add('active');l.classList.remove('done');}
