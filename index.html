@@ -10,28 +10,15 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-  // ──────────────────────────────────────────────
-  // 🔧 CONFIGURA TU FIREBASE AQUÍ
-  // ──────────────────────────────────────────────
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCM3q1gXxpYC8dAHGvkW0Y7ABNWp5eWkDI",
-  authDomain: "torneo-kasa-rural-2026.firebaseapp.com",
-  databaseURL: "https://torneo-kasa-rural-2026-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "torneo-kasa-rural-2026",
-  storageBucket: "torneo-kasa-rural-2026.firebasestorage.app",
-  messagingSenderId: "364295397643",
-  appId: "1:364295397643:web:dc57a38c9db14684fc820e"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-  // ──────────────────────────────────────────────
+  const firebaseConfig = {
+    apiKey: "AIzaSyCM3q1gXxpYC8dAHGvkW0Y7ABNWp5eWkDI",
+    authDomain: "torneo-kasa-rural-2026.firebaseapp.com",
+    databaseURL: "https://torneo-kasa-rural-2026-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "torneo-kasa-rural-2026",
+    storageBucket: "torneo-kasa-rural-2026.firebasestorage.app",
+    messagingSenderId: "364295397643",
+    appId: "1:364295397643:web:dc57a38c9db14684fc820e"
+  };
 
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
