@@ -196,7 +196,8 @@
   .hico svg { width: 38px; height: 38px; display: block; }
 
   /* TABS */
-  .tabs { display: flex; gap: 4px; padding: 16px 0 0; border-bottom: 1px solid var(--border); overflow-x: auto; }
+  .tabs { display: flex; gap: 4px; padding: 16px 0 0; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+  .tabs::-webkit-scrollbar { display: none; }
   .tab-btn {
     background: transparent; border: 1px solid transparent; color: var(--muted);
     padding: 10px 20px; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700;
@@ -442,7 +443,8 @@
   .toast.info    { border-color: rgba(58,159,213,.35);  color: var(--blue); }
 
   /* PROGRESS */
-  .progress-track { display: flex; align-items: center; margin: 20px 0; overflow-x: auto; padding-bottom: 4px; }
+  .progress-track { display: flex; align-items: center; margin: 20px 0; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .progress-track::-webkit-scrollbar { display: none; }
   .step-dot {
     width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
     font-size: 12px; font-weight: 700; border: 2px solid var(--border); background: var(--surface);
