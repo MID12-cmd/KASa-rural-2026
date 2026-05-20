@@ -131,6 +131,28 @@
       <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
       <path d="M3 3v5h5"/>
     </symbol>
+    <!-- SPECTATOR ICONS -->
+    <symbol id="ico-tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="4" width="20" height="14" rx="2"/>
+      <line x1="8" y1="22" x2="16" y2="22"/>
+      <line x1="12" y1="18" x2="12" y2="22"/>
+    </symbol>
+    <symbol id="ico-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </symbol>
+    <symbol id="ico-signal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="1" y1="6" x2="1" y2="18"/>
+      <line x1="6" y1="3" x2="6" y2="21"/>
+      <line x1="11" y1="8" x2="11" y2="16"/>
+      <line x1="16" y1="5" x2="16" y2="19"/>
+      <line x1="21" y1="2" x2="21" y2="22"/>
+    </symbol>
+    <symbol id="ico-eliminate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <circle cx="12" cy="12" r="9" stroke-width="1.5" opacity=".4"/>
+      <line x1="7" y1="7" x2="17" y2="17"/>
+      <line x1="17" y1="7" x2="7" y2="17"/>
+    </symbol>
     <!-- POLL ICONS -->
     <symbol id="ico-poll-winner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <path d="M8 21h8M12 17v4M7 4H4a1 1 0 0 0-1 1v2a4 4 0 0 0 4 4M17 4h3a1 1 0 0 1 1 1v2a4 4 0 0 1-4 4"/>
@@ -796,6 +818,404 @@
   }
   .pred-zero { color: var(--muted); font-size: 13px; opacity: .7; }
 
+
+  /* ── SPECTATOR MODE ─────────────────────────────── */
+  .spec-body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* LIVE badge */
+  .spec-live-badge {
+    position: fixed;
+    top: 16px; right: 20px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(8,8,16,.85);
+    border: 1px solid rgba(200,241,53,.3);
+    border-radius: 20px;
+    padding: 6px 14px;
+    backdrop-filter: blur(8px);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+  .spec-live-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 1.2s infinite;
+    flex-shrink: 0;
+  }
+  .spec-live-time { color: var(--muted); font-size: 10px; letter-spacing: 1px; margin-left: 4px; }
+
+  /* SPEC HEADER */
+  .spec-header {
+    background: linear-gradient(135deg, #080810 0%, #12001f 60%, #080810 100%);
+    border-bottom: 2px solid var(--acc);
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  .spec-header::after {
+    content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 3px; background: var(--lime); box-shadow: 0 0 20px var(--lime-glow);
+  }
+  .spec-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(20px, 3vw, 36px);
+    color: #fff;
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+  .spec-logo-acc { color: var(--lime); }
+  .spec-subtitle { color: var(--muted); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-top: 4px; }
+  .spec-phase-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 3px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    background: rgba(161,0,255,.15);
+    border: 1px solid rgba(161,0,255,.3);
+    color: #c87aff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .spec-phase-badge svg { width: 18px; height: 18px; }
+
+  /* SPEC CONTAINERS */
+  .spec-container { max-width: 1600px; margin: 0 auto; padding: 32px; position: relative; z-index: 1; }
+
+  /* REGISTRO VIEW */
+  .spec-registro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .spec-player-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: pairReveal .5s cubic-bezier(.34,1.56,.64,1);
+  }
+  .spec-player-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--acc);
+    min-width: 40px;
+    text-align: center;
+    line-height: 1;
+  }
+  .spec-player-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1; }
+  .spec-player-nick { font-size: 13px; color: var(--lime); margin-top: 2px; }
+  .spec-player-team { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .spec-player-level { display: flex; align-items: center; gap: 4px; margin-top: 6px; }
+  .spec-player-level svg { width: 12px; height: 12px; }
+  .spec-count-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .spec-count-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--lime);
+    line-height: 1;
+  }
+  .spec-count-label { font-size: 13px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  /* GRUPOS VIEW */
+  .spec-grupos-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .spec-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--text);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .spec-section-title svg { width: 22px; height: 22px; color: var(--lime); }
+  .spec-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .spec-group-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .spec-group-header {
+    background: linear-gradient(90deg, rgba(161,0,255,.15), transparent);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .spec-group-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--lime); letter-spacing: 3px; }
+  .spec-standings-table { width: 100%; border-collapse: collapse; }
+  .spec-standings-table th {
+    background: var(--surface2); padding: 10px 14px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted); border-bottom: 1px solid var(--border); text-align: left;
+  }
+  .spec-standings-table td { padding: 13px 14px; border-bottom: 1px solid rgba(255,255,255,.04); font-size: 14px; }
+  .spec-standings-table tr:last-child td { border-bottom: none; }
+  .spec-standings-table tr.advance { background: rgba(200,241,53,.05); }
+  .spec-standings-table tr.consolacion { background: rgba(231,76,60,.04); }
+  .spec-pos { font-family: 'Bebas Neue', sans-serif; font-size: 20px; width: 30px; text-align: center; }
+  .spec-pos.p1 { color: var(--lime); }
+  .spec-pos.p2 { color: var(--acc); }
+  .spec-pos.p3, .spec-pos.p4 { color: var(--muted); }
+
+  /* Match results in grupos spectator */
+  .spec-match-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    font-size: 13px;
+  }
+  .spec-match-row:last-child { border-bottom: none; }
+  .spec-match-team { flex: 1; font-weight: 600; }
+  .spec-match-team.winner { color: var(--lime); }
+  .spec-match-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--lime);
+    min-width: 28px;
+    text-align: center;
+  }
+  .spec-match-vs {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 2px;
+    padding: 0 4px;
+  }
+  .spec-match-pending { color: var(--muted); font-style: italic; font-size: 12px; padding: 10px 14px; }
+
+  /* BRACKET SPECTATOR */
+  .spec-bracket-section { margin-top: 24px; }
+  .spec-bracket-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(24px, 3.5vw, 42px);
+    color: var(--lime);
+    text-shadow: 0 0 40px var(--lime-glow);
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .spec-bracket-sub { text-align: center; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+
+  .spec-bracket { display: flex; gap: 0; align-items: center; min-width: max-content; padding: 0 20px; overflow-x: auto; }
+  .spec-bracket-round { display: flex; flex-direction: column; justify-content: space-around; }
+  .spec-round-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; padding: 0 0 14px; }
+  .spec-match-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    width: 220px;
+    margin: 8px 0;
+    overflow: hidden;
+    transition: border-color .3s;
+  }
+  .spec-match-card.has-winner { border-color: rgba(200,241,53,.2); }
+  .spec-bracket-team {
+    padding: 10px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    transition: background .3s;
+    gap: 8px;
+  }
+  .spec-bracket-team:last-child { border-bottom: none; }
+  .spec-bracket-team.winner { background: rgba(200,241,53,.08); color: var(--lime); }
+  .spec-bracket-team.eliminated {
+    background: rgba(255,255,255,.02);
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(107,107,138,.5);
+  }
+  .spec-bracket-team.tbd { color: var(--muted); font-style: italic; font-size: 13px; }
+  .spec-elim-icon { width: 14px; height: 14px; color: var(--red); opacity: .7; flex-shrink: 0; }
+  .spec-bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--lime); min-width: 28px; text-align: right; }
+  .spec-connector { width: 32px; display: flex; flex-direction: column; justify-content: space-around; }
+
+  .spec-trophy-card {
+    background: linear-gradient(135deg, rgba(200,241,53,.1), rgba(161,0,255,.08));
+    border: 2px solid var(--lime);
+    border-radius: 14px;
+    width: 240px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(200,241,53,.1);
+  }
+  .spec-trophy-icon { display: flex; justify-content: center; margin-bottom: 12px; }
+  .spec-trophy-icon svg { width: 44px; height: 44px; color: var(--lime); }
+  .spec-trophy-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--lime); letter-spacing: 3px; margin-bottom: 14px; }
+  .spec-trophy-winner { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--lime); display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .spec-trophy-winner svg { width: 18px; height: 18px; }
+  .spec-trophy-tbd { color: var(--muted); font-style: italic; font-size: 13px; }
+  .spec-trophy-vs { font-size: 12px; color: var(--muted); margin: 6px 0; font-weight: 700; letter-spacing: 2px; }
+  .spec-trophy-finalist { font-size: 14px; font-weight: 600; padding: 6px 10px; background: rgba(161,0,255,.08); border-radius: 6px; margin-bottom: 4px; }
+
+  /* PREDICCIONES SPECTATOR */
+  .spec-pred-layout { margin-top: 24px; }
+  .spec-pred-poll-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    animation: fadeSlide .6s ease;
+  }
+  @keyframes fadeSlide { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  .spec-pred-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--lime);
+    letter-spacing: 4px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .spec-pred-title svg { width: 36px; height: 36px; color: var(--acc); }
+  .spec-pred-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; max-width: 800px; }
+  .spec-pred-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .spec-pred-progress-track {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .spec-pred-progress-fill {
+    height: 100%;
+    background: var(--lime);
+    border-radius: 2px;
+    transition: width .1s linear;
+  }
+
+  .spec-poll-rank-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 18px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: border-color .3s;
+  }
+  .spec-poll-rank-item.rank-1 { border-color: rgba(245,200,66,.3); background: rgba(245,200,66,.04); }
+  .spec-poll-rank-item.rank-2 { border-color: rgba(176,184,200,.2); }
+  .spec-poll-rank-item.rank-3 { border-color: rgba(205,127,50,.2); }
+  .spec-poll-pos {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    min-width: 44px;
+    text-align: center;
+    line-height: 1;
+  }
+  .spec-poll-pos.p1 { color: #f5c842; text-shadow: 0 0 16px rgba(245,200,66,.5); }
+  .spec-poll-pos.p2 { color: #b0b8c8; }
+  .spec-poll-pos.p3 { color: #cd7f32; }
+  .spec-poll-pos.pn { color: var(--muted); }
+  .spec-poll-info { flex: 1; min-width: 0; }
+  .spec-poll-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1.1; }
+  .spec-poll-voters { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .spec-poll-bar-wrap { width: 200px; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+  .spec-poll-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--acc), var(--lime)); transition: width .8s ease; }
+  .spec-poll-count { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--lime); min-width: 44px; text-align: right; line-height: 1; }
+
+  .spec-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: transparent;
+    border: 1px solid rgba(200,241,53,.3);
+    color: var(--lime);
+    border-radius: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .spec-btn svg { width: 14px; height: 14px; }
+  .spec-btn:hover { background: rgba(200,241,53,.08); border-color: var(--lime); }
+
+  @media(max-width:900px){
+    .spec-grupos-layout { grid-template-columns: 1fr; }
+    .spec-match-card { width: 180px; }
+    .spec-container { padding: 16px; }
+  }
+
+
+  .spec-btn-main {
+    background: transparent;
+    border: 1px solid rgba(200,241,53,.25);
+    color: var(--lime);
+    font-size: 11px;
+    padding: 7px 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all .2s;
+  }
+  .spec-btn-main svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .spec-btn-main:hover { background: rgba(200,241,53,.08); border-color: var(--lime); }
   /* UTIL */
   .text-center{text-align:center} .text-muted{color:var(--muted)} .text-lime{color:var(--lime)}
   .text-green{color:var(--green)} .text-red{color:var(--red)}
@@ -877,6 +1297,9 @@
       <span class="status-badge badge-registro" id="statusBadge">REGISTRO ABIERTO</span>
       <button class="btn btn-reset" onclick="confirmResetTorneo()" title="Borrar todo y empezar de cero">
         <svg><use href="#ico-reset"/></svg>Reiniciar Torneo
+      </button>
+      <button class="btn spec-btn-main" onclick="openSpectator('registro')" title="Modo espectador">
+        <svg><use href="#ico-tv"/></svg>Modo Pantalla
       </button>
     </div>
     <div class="card" id="registroFormCard">
@@ -993,6 +1416,9 @@
       <div class="pred-hero">
         <div class="pred-title"><svg><use href="#ico-crown"/></svg> ENCUESTAS DEL TORNEO</div>
         <div class="pred-sub">Vota · Ríete · Comparte</div>
+        <div style="margin-top:12px;">
+          <button class="btn spec-btn-main" onclick="openSpectator('predicciones')"><svg><use href="#ico-tv"/></svg>Modo Pantalla — Rankings en bucle</button>
+        </div>
       </div>
 
       <!-- VOTER NAME (shared across all polls) -->
@@ -1033,6 +1459,7 @@
       <div class="flex justify-between items-center" style="margin-bottom:16px;flex-wrap:wrap;gap:8px;">
         <div class="section-title" style="margin-bottom:0"><svg><use href="#ico-chart"/></svg>Clasificación en Vivo</div>
         <div class="flex gap-8 flex-wrap">
+          <button class="btn spec-btn-main" onclick="openSpectator('grupos')"><svg><use href="#ico-tv"/></svg>Modo Pantalla</button>
           <button class="btn btn-outline" onclick="refreshGroups()"><svg><use href="#ico-refresh"/></svg>Actualizar</button>
           <button class="btn btn-red" onclick="confirmFinishGroups()" id="finishGroupsBtn"><svg><use href="#ico-flag"/></svg>Finalizar Fase de Grupos</button>
         </div>
@@ -1056,9 +1483,12 @@
       La fase de grupos aún no ha finalizado. Completa todos los partidos y marca "Finalizar Fase de Grupos".
     </div>
     <div id="elimContent" style="display:none">
-      <div class="sub-tabs">
-        <button class="sub-tab-btn active" onclick="showSubTab('main')"       id="subTabBtn-main"><svg><use href="#ico-trophy"/></svg>Cuadro Principal</button>
-        <button class="sub-tab-btn"        onclick="showSubTab('consolacion')" id="subTabBtn-consolacion"><svg><use href="#ico-medal"/></svg>Consolación</button>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+        <div class="sub-tabs" style="margin-bottom:0;">
+          <button class="sub-tab-btn active" onclick="showSubTab('main')"       id="subTabBtn-main"><svg><use href="#ico-trophy"/></svg>Cuadro Principal</button>
+          <button class="sub-tab-btn"        onclick="showSubTab('consolacion')" id="subTabBtn-consolacion"><svg><use href="#ico-medal"/></svg>Consolación</button>
+        </div>
+        <button class="btn spec-btn-main" onclick="openSpectator('eliminatoria')"><svg><use href="#ico-tv"/></svg>Modo Pantalla</button>
       </div>
 
       <div id="subPane-main">
@@ -1173,7 +1603,7 @@ function openModal(title, body, onConfirm) {
 function closeModal() { document.getElementById('confirmModal').classList.remove('open'); }
 
 // ── RENDER ALL ────────────────────────────────────
-function renderAll() { renderProgress(); renderStatus(); renderPlayers(); renderSorteo(); renderPredictions(); renderGroups(); renderElim(); }
+function renderAll() { renderProgress(); renderStatus(); renderPlayers(); renderSorteo(); renderPredictions(); renderGroups(); renderElim(); refreshSpectatorIfOpen(); }
 
 function renderProgress() {
   const m={registro:1,sorteo:2,grupos:3,eliminatoria:4}, cur=m[state.phase]||1;
@@ -1292,12 +1722,14 @@ function doStartPairDraw() {
   document.getElementById('groupRevealArea').innerHTML = '';
 
   // Start the animated pair draw
+  _sorteoAnimating = true;
   animatePairDraw(0);
 }
 
 function animatePairDraw(idx) {
   if(idx >= _pendingPairs.length) {
-    // All pairs revealed — show "Sorteo de Grupos" button
+    // All pairs revealed — animation complete
+    _sorteoAnimating = false;
     document.getElementById('sorteoActionsArea').style.display = 'flex';
     // Save computed pairs to state
     state.pairs = _pendingPairs;
@@ -1378,12 +1810,14 @@ function startGroupDraw() {
   document.getElementById('groupRevealArea').innerHTML = '';
   showSorteoTab('grupos');
 
+  _sorteoAnimating = true;
   animateGroupDraw(0);
 }
 
 function animateGroupDraw(gIdx) {
   if(gIdx >= _pendingGroups.length) {
-    // All groups revealed
+    // All groups revealed — animation complete
+    _sorteoAnimating = false;
     document.getElementById('sorteoGroupActions').style.display = 'flex';
     return;
   }
@@ -1459,8 +1893,12 @@ function doStartGroupPhase() {
 }
 
 // ── RESTORE SORTEO STATE on re-render ─────────────
+let _sorteoAnimating = false; // true while pair/group animation is in progress
+
 function renderSorteo() {
   if(state.phase !== 'sorteo') return;
+  // If an animation is currently running, don't touch the UI
+  if(_sorteoAnimating) return;
   // If pairs already saved and we're reloading (e.g. Firebase sync on another device),
   // show the completed pairs and the groups draw option
   const pairs = state.pairs || [];
@@ -2065,6 +2503,7 @@ function doResetTorneo() {
   drawState = { pairsRevealed: 0, groupsRevealed: 0 };
   _pendingPairs = [];
   _pendingGroups = [];
+  _sorteoAnimating = false;
   drawState = { pairsRevealed: 0, groupsRevealed: 0 };
   saveState();
   if (!firebaseMode) renderAll();
@@ -2083,22 +2522,411 @@ function doResetTorneo() {
 
 // ── UTILS ─────────────────────────────────────────
 function shuffle(arr){
-  const a=[...arr];
-  // Use crypto.getRandomValues when available for true randomness
-  const rnd = (max) => {
-    if(window.crypto && window.crypto.getRandomValues){
-      const buf = new Uint32Array(1);
-      window.crypto.getRandomValues(buf);
-      return buf[0] % max;
+  const a = [...arr];
+  // Unbiased Fisher-Yates using rejection sampling with crypto.getRandomValues
+  // buf[0] % max has modulo bias when 2^32 is not divisible by max.
+  // We reject values >= floor(2^32 / max) * max to eliminate bias.
+  const cryptoRnd = (max) => {
+    if (!window.crypto || !window.crypto.getRandomValues) {
+      return Math.floor(Math.random() * max);
     }
-    return Math.floor(Math.random() * max);
+    const buf = new Uint32Array(1);
+    const limit = Math.floor(0x100000000 / max) * max; // largest multiple of max <= 2^32
+    let v;
+    do {
+      window.crypto.getRandomValues(buf);
+      v = buf[0];
+    } while (v >= limit); // reject biased values — loop runs <2 times on average
+    return v % max;
   };
-  for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];}
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = cryptoRnd(i + 1);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
   return a;
 }
 function escHtml(s){ if(!s)return''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 if(!window._firebaseReady) document.addEventListener('DOMContentLoaded',()=>{ loadFromLocal(); renderAll(); });
 </script>
+
+<!-- ═══════════════════════════════════════════════════
+     SPECTATOR MODE OVERLAY
+     Opens in new tab via openSpectator(mode)
+     ═══════════════════════════════════════════════════ -->
+<div id="spectatorOverlay" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;overflow-y:auto;">
+
+  <!-- LIVE BADGE -->
+  <div class="spec-live-badge">
+    <div class="spec-live-dot"></div>
+    EN VIVO
+    <span class="spec-live-time" id="specLiveTime"></span>
+    <button onclick="closeSpectator()" style="background:none;border:none;color:var(--muted);cursor:pointer;margin-left:8px;padding:0;display:flex;align-items:center;">
+      <svg style="width:14px;height:14px;"><use href="#ico-x"/></svg>
+    </button>
+  </div>
+
+  <!-- SPEC HEADER -->
+  <div class="spec-header">
+    <div>
+      <div class="spec-logo">ROAD TO THE <span class="spec-logo-acc">VILLA PACHECO</span> FINAL</div>
+      <div class="spec-subtitle">Torneo de Pádel &nbsp;·&nbsp; Casa Rural Palomeque 2026 &nbsp;·&nbsp; by Accenture</div>
+    </div>
+    <div class="spec-phase-badge" id="specPhaseBadge">
+      <svg><use href="#ico-signal"/></svg>
+      <span id="specPhaseLabel">EN DIRECTO</span>
+    </div>
+  </div>
+
+  <!-- SPEC CONTENT -->
+  <div class="spec-container">
+    <div id="specContent"></div>
+  </div>
+</div>
+
+<script>
+// ── SPECTATOR SYSTEM ───────────────────────────────────────────────
+let _specMode = null;
+let _specLiveInterval = null;
+let _specPollInterval = null;
+let _specPollIndex = 0;
+let _specPollTimer = 0;
+const SPEC_POLL_DURATION = 10000; // 10s per poll
+
+function openSpectator(mode) {
+  _specMode = mode;
+  _specPollIndex = 0;
+  document.getElementById('spectatorOverlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  renderSpectator();
+  // Update live time every second
+  _specLiveInterval = setInterval(() => {
+    const el = document.getElementById('specLiveTime');
+    if(el){ const n=new Date(); el.textContent=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0')+':'+n.getSeconds().toString().padStart(2,'0'); }
+    if(_specMode==='predicciones') tickPollRotation();
+  }, 1000);
+}
+
+function closeSpectator() {
+  document.getElementById('spectatorOverlay').style.display = 'none';
+  document.body.style.overflow = '';
+  clearInterval(_specLiveInterval);
+  clearInterval(_specPollInterval);
+  _specMode = null;
+}
+
+// Called by the Firebase onValue listener to refresh spectator if open
+function refreshSpectatorIfOpen() {
+  if(_specMode) renderSpectator();
+}
+
+function renderSpectator() {
+  const content = document.getElementById('specContent');
+  const phaseLbl = document.getElementById('specPhaseLabel');
+  if(!content) return;
+
+  const phaseNames = { registro:'REGISTRO', sorteo:'SORTEO', grupos:'FASE DE GRUPOS', eliminatoria:'ELIMINATORIAS', predicciones:'PREDICCIONES' };
+  if(phaseLbl) phaseLbl.textContent = phaseNames[_specMode] || 'EN DIRECTO';
+
+  switch(_specMode) {
+    case 'registro':      content.innerHTML = buildSpecRegistro(); break;
+    case 'grupos':        content.innerHTML = buildSpecGrupos();   break;
+    case 'eliminatoria':  content.innerHTML = buildSpecElim();     break;
+    case 'predicciones':  buildSpecPred(content);                  break;
+    default:              content.innerHTML = '';
+  }
+}
+
+// ── REGISTRO SPECTATOR ────────────────────────────
+function buildSpecRegistro() {
+  const players = state.players || [];
+  const levelData = {
+    1: { label:'Principiante', color:'var(--green)' },
+    2: { label:'Intermedio',   color:'var(--blue)'  },
+    3: { label:'Avanzado',     color:'#c87aff'      },
+  };
+  return `
+    <div class="spec-count-bar">
+      <div class="spec-count-num">${players.length}</div>
+      <div>
+        <div class="spec-count-label">Jugadores registrados</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px;">${Math.floor(players.length/2)} parejas posibles</div>
+      </div>
+    </div>
+    <div class="spec-registro-grid">
+      ${players.map((p,i) => `
+        <div class="spec-player-card" style="animation-delay:${i*30}ms">
+          <div class="spec-player-num">${i+1}</div>
+          <div style="flex:1;min-width:0">
+            <div class="spec-player-name">${escHtml(p.name)}</div>
+            ${p.nickname ? `<div class="spec-player-nick">"${escHtml(p.nickname)}"</div>` : ''}
+            <div class="spec-player-team">${escHtml(p.team)}</div>
+            <div class="spec-player-level" style="color:${(levelData[p.level]||levelData[2]).color}">
+              <svg style="width:11px;height:11px;"><use href="#ico-racket"/></svg>
+              <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">${(levelData[p.level]||levelData[2]).label}</span>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    ${players.length === 0 ? '<div style="text-align:center;padding:60px;color:var(--muted);font-size:16px;letter-spacing:2px;text-transform:uppercase;">Esperando jugadores...</div>' : ''}
+  `;
+}
+
+// ── GRUPOS SPECTATOR ──────────────────────────────
+function buildSpecGrupos() {
+  const groups = state.groups || [];
+  const gm = state.groupMatches || [];
+  if(!groups.length) return '<div style="text-align:center;padding:60px;color:var(--muted);">Los grupos aún no se han generado.</div>';
+
+  const standingsHTML = groups.map(g => {
+    const s = computeStandings(g.id);
+    const posClass = ['p1','p2','p3','p4'];
+    return `
+      <div class="spec-group-card">
+        <div class="spec-group-header">
+          <div class="spec-group-name">GRUPO ${escHtml(g.id)}</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:600;">${g.pairs.length} parejas</div>
+        </div>
+        <table class="spec-standings-table">
+          <thead><tr>
+            <th style="width:36px;">#</th><th>Pareja</th>
+            <th style="text-align:center">PJ</th><th style="text-align:center">PG</th>
+            <th style="text-align:center">PP</th><th style="text-align:center">+/-</th>
+          </tr></thead>
+          <tbody>
+            ${s.map((x,i) => {
+              const diff = x.gamesWon-x.gamesLost;
+              const ds = diff>0?`<span style="color:var(--green)">+${diff}</span>`:diff<0?`<span style="color:var(--red)">${diff}</span>`:'0';
+              return `<tr class="${i<2?'advance':'consolacion'}">
+                <td><span class="spec-pos ${posClass[i]||'pn'}">${i+1}</span></td>
+                <td style="font-weight:600;">${getPairName(x.pairId)}</td>
+                <td style="text-align:center">${x.won+x.lost}</td>
+                <td style="text-align:center;color:var(--green)">${x.won}</td>
+                <td style="text-align:center;color:var(--red)">${x.lost}</td>
+                <td style="text-align:center">${ds}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }).join('');
+
+  const matchesHTML = groups.map(g => {
+    const matches = gm.filter(m => m.groupId === g.id);
+    const completed = matches.filter(m => m.winner);
+    if(!completed.length) return '';
+    return `
+      <div class="spec-group-card" style="margin-bottom:16px;">
+        <div class="spec-group-header">
+          <div class="spec-group-name">GRUPO ${escHtml(g.id)} — Resultados</div>
+          <div style="font-size:12px;color:var(--muted)">${completed.length}/${matches.length} jugados</div>
+        </div>
+        ${completed.map(m => {
+          const w1 = m.winner === m.pair1Id, w2 = m.winner === m.pair2Id;
+          const sc1 = m.sets ? m.sets.p1.join('-') : '';
+          const sc2 = m.sets ? m.sets.p2.join('-') : '';
+          return `<div class="spec-match-row">
+            <div class="spec-match-team ${w1?'winner':''}">${getPairName(m.pair1Id)}</div>
+            <div class="spec-match-score">${sc1}</div>
+            <div class="spec-match-vs">·</div>
+            <div class="spec-match-score">${sc2}</div>
+            <div class="spec-match-team ${w2?'winner':''}" style="text-align:right">${getPairName(m.pair2Id)}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="spec-grupos-layout">
+      <div>
+        <div class="spec-section-title"><svg><use href="#ico-chart"/></svg>Clasificación</div>
+        ${standingsHTML}
+      </div>
+      <div>
+        <div class="spec-section-title"><svg><use href="#ico-ball"/></svg>Resultados</div>
+        ${matchesHTML || '<div style="color:var(--muted);font-size:13px;padding:20px 0;">Aún no hay partidos completados.</div>'}
+      </div>
+    </div>
+  `;
+}
+
+// ── ELIMINATORIA SPECTATOR ────────────────────────
+function buildSpecElim() {
+  const main = state.mainBracket;
+  const consol = state.consolBracket;
+  if(!main && !consol) return '<div style="text-align:center;padding:60px;color:var(--muted);">La fase eliminatoria aún no ha comenzado.</div>';
+
+  return `
+    <div class="spec-bracket-section">
+      <div class="spec-bracket-title">ROAD TO THE VILLA PACHECO FINAL</div>
+      <div class="spec-bracket-sub">Cuadro Principal · Los Mejores de Cada Grupo</div>
+      <div style="overflow-x:auto;padding:10px 0;">${buildSpecBracket(main, 'main')}</div>
+    </div>
+    <div class="spec-bracket-section" style="margin-top:48px;">
+      <div class="spec-bracket-title" style="color:var(--acc);">COPA CONSOLACIÓN</div>
+      <div class="spec-bracket-sub">Los que regresan · Nadie se rinde</div>
+      <div style="overflow-x:auto;padding:10px 0;">${buildSpecBracket(consol, 'consol')}</div>
+    </div>
+  `;
+}
+
+function buildSpecBracket(bracket, type) {
+  if(!bracket) return '<div style="color:var(--muted);padding:20px;text-align:center;">Sin datos</div>';
+  const rounds = bracket.rounds, nr = rounds.length;
+  let html = '<div class="spec-bracket">';
+  rounds.forEach((round, ri) => {
+    const isFinal = ri === nr-1;
+    const lbl = getRoundName(round.length, isFinal);
+    const h = Math.pow(2, nr-1-ri)*90 + (Math.pow(2, nr-1-ri)-1)*16;
+    html += `<div class="spec-bracket-round" style="height:${h+50}px;">
+      <div class="spec-round-label">${lbl}</div>
+      <div style="display:flex;flex-direction:column;justify-content:space-around;flex:1;">`;
+
+    round.forEach(m => {
+      const hasWinner = !!m.winner;
+      const p1n = m.pair1Id ? getPairName(m.pair1Id) : null;
+      const p2n = m.pair2Id ? getPairName(m.pair2Id) : null;
+      const pw1 = m.winner && m.winner === m.pair1Id;
+      const pw2 = m.winner && m.winner === m.pair2Id;
+      const elim1 = hasWinner && !pw1 && m.pair1Id;
+      const elim2 = hasWinner && !pw2 && m.pair2Id;
+      const sc1 = m.sets ? m.sets.p1.join(' ') : '';
+      const sc2 = m.sets ? m.sets.p2.join(' ') : '';
+
+      const teamClass1 = pw1 ? 'winner' : elim1 ? 'eliminated' : !p1n ? 'tbd' : '';
+      const teamClass2 = pw2 ? 'winner' : elim2 ? 'eliminated' : !p2n ? 'tbd' : '';
+
+      html += `<div class="spec-match-card ${hasWinner?'has-winner':''}">
+        <div class="spec-bracket-team ${teamClass1}">
+          <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p1n || '<em style=\"color:var(--muted)\">Por determinar</em>'}</span>
+          ${elim1 ? '<svg class="spec-elim-icon"><use href="#ico-eliminate"/></svg>' : ''}
+          <span class="spec-bracket-score">${sc1}</span>
+        </div>
+        <div class="spec-bracket-team ${teamClass2}">
+          <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p2n || '<em style=\"color:var(--muted)\">Por determinar</em>'}</span>
+          ${elim2 ? '<svg class="spec-elim-icon"><use href="#ico-eliminate"/></svg>' : ''}
+          <span class="spec-bracket-score">${sc2}</span>
+        </div>
+      </div>`;
+    });
+
+    html += '</div></div>';
+
+    if(ri < nr-1) {
+      html += `<div class="spec-connector" style="height:${h+50}px;"></div>`;
+    } else {
+      const f1 = rounds[nr-1][0].pair1Id;
+      const f2 = rounds[nr-1][0].pair2Id;
+      const champ = rounds[nr-1][0].winner;
+      const isCons = type !== 'main';
+      html += `<div style="display:flex;align-items:center;padding-left:20px;">
+        <div class="spec-trophy-card" ${isCons?'style="border-color:var(--acc);box-shadow:0 0 40px var(--acc-glow);"':''}>
+          <div class="spec-trophy-icon"><svg style="${isCons?'color:var(--acc)':''}"><use href="${isCons?'#ico-medal':'#ico-trophy'}"/></svg></div>
+          <div class="spec-trophy-title" style="${isCons?'color:var(--acc)':''}">${isCons?'COPA CONSOLACIÓN':'VILLA PACHECO CHAMPION'}</div>
+          ${champ
+            ? `<div class="spec-trophy-winner" style="${isCons?'color:var(--acc)':''}"><svg><use href="#ico-crown"/></svg>${getPairName(champ)}</div>`
+            : `<div class="spec-trophy-finalist">${f1?getPairName(f1):'Por determinar'}</div>
+               <div class="spec-trophy-vs">VS</div>
+               <div class="spec-trophy-finalist">${f2?getPairName(f2):'Por determinar'}</div>`
+          }
+        </div>
+      </div>`;
+    }
+  });
+  html += '</div>';
+  return html;
+}
+
+// ── PREDICCIONES SPECTATOR ────────────────────────
+let _specPollMs = 0;
+const SPEC_TICK_MS = 1000;
+
+function tickPollRotation() {
+  _specPollMs += SPEC_TICK_MS;
+  const pct = (_specPollMs / SPEC_POLL_DURATION) * 100;
+  const fill = document.getElementById('specPollProgressFill');
+  if(fill) fill.style.width = Math.min(pct,100)+'%';
+  if(_specPollMs >= SPEC_POLL_DURATION) {
+    _specPollMs = 0;
+    _specPollIndex = (_specPollIndex + 1) % POLLS.length;
+    buildSpecPred(document.getElementById('specContent'));
+  }
+}
+
+function buildSpecPred(container) {
+  if(!container) return;
+  const preds = state.predictions || {};
+  const poll = POLLS[_specPollIndex];
+  const pollVotes = preds[poll.id] || {};
+  const options = getPollOptions(poll);
+
+  const counts = {};
+  options.forEach(o => { counts[o.id] = 0; });
+  Object.values(pollVotes).forEach(id => { if(counts[id]!==undefined) counts[id]++; });
+  const sorted = options.slice().sort((a,b) => counts[b.id]-counts[a.id]);
+  const maxVotes = sorted.length ? counts[sorted[0].id] : 0;
+  const totalVotes = Object.values(counts).reduce((a,b)=>a+b,0);
+
+  const voterMap = {};
+  options.forEach(o=>{ voterMap[o.id]=[]; });
+  Object.entries(pollVotes).forEach(([v,id])=>{ if(voterMap[id]!==undefined) voterMap[id].push(v); });
+
+  let tournamentWinner = null;
+  if(poll.id==='winner' && state.mainBracket){
+    const fr=state.mainBracket.rounds[state.mainBracket.rounds.length-1];
+    if(fr&&fr[0]&&fr[0].winner) tournamentWinner=fr[0].winner;
+  }
+
+  const posClasses = ['p1','p2','p3'];
+
+  container.innerHTML = `
+    <div class="spec-pred-layout">
+      <div class="spec-pred-poll-card">
+        <div class="spec-pred-progress">
+          <span>${_specPollIndex+1} / ${POLLS.length}</span>
+          <div class="spec-pred-progress-track">
+            <div class="spec-pred-progress-fill" id="specPollProgressFill" style="width:${(_specPollMs/SPEC_POLL_DURATION)*100}%"></div>
+          </div>
+          <span style="color:var(--lime);">${POLLS[(_specPollIndex+1)%POLLS.length].title}</span>
+        </div>
+        <div class="spec-pred-title">
+          <svg><use href="#${poll.icon}"/></svg>${poll.title}
+        </div>
+        <div class="spec-pred-desc">${poll.desc}</div>
+        <div>
+          ${totalVotes === 0
+            ? `<div style="color:var(--muted);text-align:center;padding:40px;font-size:14px;letter-spacing:2px;text-transform:uppercase;">Sin votos aún</div>`
+            : sorted.map((opt,i) => {
+                const votes = counts[opt.id];
+                const pct = maxVotes>0 ? Math.round((votes/maxVotes)*100) : 0;
+                const pc = posClasses[i]||'pn';
+                const voters = voterMap[opt.id];
+                const voterStr = voters.length ? voters.join(', ') : 'Sin votos';
+                const isWin = poll.id==='winner' && tournamentWinner && opt.id===tournamentWinner;
+                return `<div class="spec-poll-rank-item ${i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':''}" style="${isWin?'border-color:rgba(245,200,66,.5);background:rgba(245,200,66,.05);':''}">
+                  <div class="spec-poll-pos ${pc}">${i+1}°</div>
+                  <div class="spec-poll-info">
+                    <div class="spec-poll-name">${escHtml(opt.label)}</div>
+                    <div class="spec-poll-voters">${escHtml(voterStr)}</div>
+                  </div>
+                  <div class="spec-poll-bar-wrap"><div class="spec-poll-bar" style="width:${pct}%"></div></div>
+                  <div class="spec-poll-count">${votes}</div>
+                  ${isWin?'<div class="pred-winner-badge">CAMPEÓN</div>':''}
+                </div>`;
+              }).join('')
+          }
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Hook into Firebase listener to refresh spectator
+const _origOnValue = window._onValue;
+</script>
+
 </body>
 </html>
