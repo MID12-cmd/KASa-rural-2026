@@ -8,7 +8,7 @@
 <!-- Firebase -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, set, get, onValue, update } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  import { getDatabase, ref, set, get, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyCM3q1gXxpYC8dAHGvkW0Y7ABNWp5eWkDI",
@@ -28,6 +28,7 @@
   window._get = get;
   window._onValue = onValue;
   window._update = update;
+  window._remove = remove;
   window._firebaseReady = true;
   document.dispatchEvent(new Event('firebaseReady'));
 </script>
@@ -1540,7 +1541,16 @@ document.addEventListener('firebaseReady', () => {
     firebaseMode = true;
     window._onValue(dbRef, snap => {
       const d = snap.val();
-      if (d) state = { ...state, ...d };
+      if (d) {
+        state = { ...state, ...d };
+      } else {
+        // Node was deleted (e.g. after reset) — reset local state too
+        state = {
+          players: [], pairs: [], groups: [], groupMatches: [],
+          groupsFinished: false, mainBracket: null, consolBracket: null,
+          predictions: {}, phase: 'registro'
+        };
+      }
       renderAll();
     });
     showToast('Firebase conectado — tiempo real activo', 'success', 'ico-check');
@@ -1603,7 +1613,7 @@ function openModal(title, body, onConfirm) {
 function closeModal() { document.getElementById('confirmModal').classList.remove('open'); }
 
 // ── RENDER ALL ────────────────────────────────────
-function renderAll() { renderProgress(); renderStatus(); renderPlayers(); renderSorteo(); renderPredictions(); renderGroups(); renderElim(); refreshSpectatorIfOpen(); }
+function renderAll() { renderProgress(); renderStatus(); renderPlayers(); renderSorteo(); renderPredictions(); renderGroups(); renderElim(); }
 
 function renderProgress() {
   const m={registro:1,sorteo:2,grupos:3,eliminatoria:4}, cur=m[state.phase]||1;
@@ -2495,18 +2505,27 @@ function confirmResetTorneo() {
   );
 }
 function doResetTorneo() {
+  // Reset local state immediately
   state = {
     players: [], pairs: [], groups: [], groupMatches: [],
-    groupsFinished: false, mainBracket: null, consolBracket: null, phase: 'registro'
+    groupsFinished: false, mainBracket: null, consolBracket: null,
+    predictions: {}, phase: 'registro'
   };
   // Clear animation state
-  drawState = { pairsRevealed: 0, groupsRevealed: 0 };
   _pendingPairs = [];
   _pendingGroups = [];
   _sorteoAnimating = false;
   drawState = { pairsRevealed: 0, groupsRevealed: 0 };
-  saveState();
-  if (!firebaseMode) renderAll();
+  // Always clear localStorage regardless of Firebase mode
+  try { localStorage.removeItem('yuncosTorneo'); } catch(e) {}
+  // In Firebase mode: DELETE the node entirely (not overwrite)
+  // This triggers the onValue listener on all devices with d=null → clean reset everywhere
+  if (firebaseMode && dbRef && window._remove) {
+    window._remove(dbRef).catch(e => { console.error('Firebase remove error:', e); saveState(); });
+  } else {
+    saveToLocal();
+  }
+  renderAll();
   showTab('registro');
   // Reset sorteo UI elements
   const pra = document.getElementById('pairRevealArea');
@@ -2546,6 +2565,57 @@ function shuffle(arr){
   return a;
 }
 function escHtml(s){ if(!s)return''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ── SPECTATOR MODE BOOT ───────────────────────────
+// Detect ?spectator=mode in URL — if present, show spectator UI only
+// Set _specMode immediately so Firebase listener uses it from first fire
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const specParam = params.get('spectator');
+  if (!specParam) return; // normal app mode
+
+  // Set _specMode NOW, before Firebase fires
+  _specMode = specParam;
+
+  // Override renderAll immediately so Firebase onValue calls renderSpectator
+  // (we redefine it here; the original definition below will be shadowed)
+  window.renderAll = function() { if(_specMode) renderSpectator(); };
+
+  // Hide main app, show spectator overlay immediately
+  document.addEventListener('DOMContentLoaded', () => {
+    // Hide everything except the spectator overlay
+    document.querySelector('header') && (document.querySelector('header').style.display = 'none');
+    const container = document.querySelector('.container');
+    if (container) container.style.display = 'none';
+
+    // Show spectator overlay full screen
+    const overlay = document.getElementById('spectatorOverlay');
+    if (overlay) {
+      overlay.style.display = 'block';
+      // Remove the close button X in spectator tab — user closes the tab directly
+      const closeBtn = overlay.querySelector('button[onclick="closeSpectator()"]');
+      if (closeBtn) closeBtn.style.display = 'none';
+    }
+
+    _specMode = specParam;
+    _specPollIndex = 0;
+    _specPollMs = 0;
+
+    // Start live clock
+    _specLiveInterval = setInterval(() => {
+      const el = document.getElementById('specLiveTime');
+      if (el) {
+        const n = new Date();
+        el.textContent = n.getHours().toString().padStart(2,'0') + ':' +
+                         n.getMinutes().toString().padStart(2,'0') + ':' +
+                         n.getSeconds().toString().padStart(2,'0');
+      }
+      if (_specMode === 'predicciones') tickPollRotation();
+    }, 1000);
+  });
+
+  // renderAll already patched above at IIFE time, before Firebase fires.
+})();
 
 if(!window._firebaseReady) document.addEventListener('DOMContentLoaded',()=>{ loadFromLocal(); renderAll(); });
 </script>
@@ -2594,25 +2664,14 @@ let _specPollTimer = 0;
 const SPEC_POLL_DURATION = 10000; // 10s per poll
 
 function openSpectator(mode) {
-  _specMode = mode;
-  _specPollIndex = 0;
-  document.getElementById('spectatorOverlay').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-  renderSpectator();
-  // Update live time every second
-  _specLiveInterval = setInterval(() => {
-    const el = document.getElementById('specLiveTime');
-    if(el){ const n=new Date(); el.textContent=n.getHours().toString().padStart(2,'0')+':'+n.getMinutes().toString().padStart(2,'0')+':'+n.getSeconds().toString().padStart(2,'0'); }
-    if(_specMode==='predicciones') tickPollRotation();
-  }, 1000);
+  // Open in a real new browser tab using ?spectator=mode in the URL
+  const url = window.location.href.split('?')[0] + '?spectator=' + mode;
+  window.open(url, '_blank');
 }
 
 function closeSpectator() {
-  document.getElementById('spectatorOverlay').style.display = 'none';
-  document.body.style.overflow = '';
-  clearInterval(_specLiveInterval);
-  clearInterval(_specPollInterval);
-  _specMode = null;
+  // In new-tab mode: just close the tab
+  window.close();
 }
 
 // Called by the Firebase onValue listener to refresh spectator if open
