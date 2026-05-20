@@ -1516,32 +1516,22 @@
       <div class="rule-card rule-card-special">
         <div class="rule-icon" style="background:rgba(46,204,113,.1);color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
         <div class="rule-title" style="color:var(--green);">Garantía Anti-Divorcios</div>
-        <div class="rule-desc">Las parejas se forman por <strong>sorteo aleatorio</strong> usando criptografía real. Nadie elige a su compañero: la suerte manda. Los grupos también son <strong>completamente aleatorios</strong> y el orden de los partidos se intercala entre grupos para que nadie espere demasiado.<br><br>Además, el algoritmo <strong>crypto.getRandomValues()</strong> ha sido programado con una línea de código secreta que impide que te toque jugar con tu compañero de proyecto o compañero de llorería, previniendo así bajas laborales y herencias perdidas antes de la Copa Consolación.</div>
+        <div class="rule-desc">El algoritmo <strong>getRandomValues()</strong> está programado con una línea de código secreta que impide que te toque jugar con tu compañero de proyecto o compañero de llorería, previniendo así bajas laborales. Las <strong>parejas, grupos, cruces y orden de juego</strong> se generan de forma aleatoria.</div>
       </div>
       <div class="rule-card">
         <div class="rule-icon"><svg><use href="#ico-ball"/></svg></div>
         <div class="rule-title">Sistema de puntuación y Punto de Oro</div>
-        <div class="rule-desc">Cada partido se juega a <strong>1 set</strong> sin límite de juegos. Gana la pareja que primero llegue a <strong>9 juegos</strong>, o la que más juegos tenga cuando se acaben los <strong>20 minutos</strong> de tiempo asignado.<br><br>Todos los juegos que lleguen a <strong>40-40</strong> se decidirán con un único <strong>Punto de Oro</strong> (sin ventajas). Recibe el saque el miembro de la pareja rival que elija el jugador que saca. ¡Presión máxima!</div>
-      </div>
-      <div class="rule-card rule-card-special">
-        <div class="rule-icon" style="background:rgba(200,241,53,.1);color:var(--lime);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></div>
-        <div class="rule-title" style="color:var(--lime);">La Bola de Oro del Partido</div>
-        <div class="rule-desc">Si un partido acaba los <strong>20 minutos con empate exacto</strong> (ej: 4-4), no se acaba ahí. Se juega un <strong>único punto a cara o cruz</strong> en ese mismo instante. El que gane ese punto, gana el partido.</div>
+        <div class="rule-desc">El ganador del partido es la pareja que llegue primero a <strong>9 juegos</strong> o el que vaya ganando una vez pasados <strong>20 minutos</strong> de juego. En caso de empate en un juego o terminados los 20 minutos con empate, se jugará <strong>bola de oro</strong>. Recibe el saque el miembro de la pareja rival que elija el jugador que saca.</div>
       </div>
       <div class="rule-card">
         <div class="rule-icon"><svg><use href="#ico-chart"/></svg></div>
-        <div class="rule-title">Fase de grupos</div>
-        <div class="rule-desc">Dentro de cada grupo se juegan todos contra todos. El orden de clasificación se determina por <strong>partidos ganados</strong> y en caso de empate por <strong>diferencia de juegos</strong>. Los <strong>2 primeros</strong> pasan al cuadro principal y los <strong>2 últimos</strong> a la Copa Consolación.</div>
-      </div>
-      <div class="rule-card">
-        <div class="rule-icon"><svg><use href="#ico-swords"/></svg></div>
-        <div class="rule-title">Fase eliminatoria</div>
-        <div class="rule-desc">Los cruces son <strong>completamente aleatorios</strong>. Hay dos cuadros: el <strong>Cuadro Principal</strong> para los mejores de cada grupo y la <strong>Copa Consolación</strong> para los que no pasaron. Todos juegan hasta el final.</div>
+        <div class="rule-title">Orden de clasificación</div>
+        <div class="rule-desc">Dentro de cada grupo se juegan todos contra todos. El orden de clasificación se determina por <strong>partidos ganados</strong> y en caso de empate por <strong>diferencia de juegos</strong>. Los <strong>2 primeros</strong> pasan al cuadro principal y los <strong>restantes</strong> a la Copa Consolación.</div>
       </div>
       <div class="rule-card">
         <div class="rule-icon"><svg><use href="#ico-trophy"/></svg></div>
-        <div class="rule-title">La Final</div>
-        <div class="rule-desc">Los ganadores de cada semifinal se enfrentan en la <strong>Gran Final</strong> por el título de <strong>Villa Pacheco Champion</strong>. Paralelamente se juega la final de la Copa Consolación. Nadie se va a casa sin haber jugado su final.</div>
+        <div class="rule-title">Las Finales</div>
+        <div class="rule-desc">Los ganadores de cada semifinal de su cuadro se enfrentan en la <strong>Gran Final</strong> por el título de <strong>Villa Pacheco Champion</strong>. Las finales se jugarán a <strong>11 juegos</strong>, con el mismo sistema de puntuación y con un tiempo límite de <strong>40 minutos</strong>. El administrador cambia el temporizador manualmente.</div>
       </div>
       <div class="rule-card">
         <div class="rule-icon"><svg><use href="#ico-crown"/></svg></div>
@@ -1746,6 +1736,12 @@
           </button>
           <button class="btn btn-outline" onclick="timerReset()">
             <svg><use href="#ico-refresh"/></svg>Reiniciar
+          </button>
+          <button class="btn btn-outline" id="timerSet40Btn" onclick="timerSetDuration(2400000)" title="Cambiar a 40 minutos (para finales)" style="border-color:rgba(245,200,66,.4);color:#f5c842;">
+            <svg><use href="#ico-trophy"/></svg>40 min (Final)
+          </button>
+          <button class="btn btn-outline" id="timerSet20Btn" onclick="timerSetDuration(1200000)" title="Volver a 20 minutos" style="display:none;border-color:rgba(58,159,213,.4);color:var(--blue);">
+            <svg><use href="#ico-refresh"/></svg>20 min
           </button>
         </div>
       </div>
@@ -2214,7 +2210,7 @@ function doStartGroupPhase() {
   state.matchOrder = matchOrder;
   state.groupsFinished = false;
   state.phase = 'grupos';
-  state.timer = { running: false, remainingMs: 1200000, lastStarted: null };
+  state.timer = { running: false, remainingMs: 1200000, lastStarted: null, configuredMs: 1200000 };
   saveState();
   if(!firebaseMode) renderAll();
   showTab('grupos');
@@ -2423,7 +2419,7 @@ function doFinishGroups() {
   (state.groups||[]).forEach(g=>{ computeStandings(g.id).forEach((s,i)=>{ if(i<2)mp.push(s.pairId);else cp.push(s.pairId); }); });
   state.mainBracket=generateBracket(shuffle(mp),'main');
   state.consolBracket=generateBracket(shuffle(cp),'consol');
-  state.timer = { running: false, remainingMs: 1200000, lastStarted: null };
+  state.timer = { running: false, remainingMs: 1200000, lastStarted: null, configuredMs: 1200000 };
   saveState(); if(!firebaseMode) renderAll(); showTab('eliminatoria');
   showToast('¡Eliminatorias generadas!','success','ico-trophy',4000);
 }
@@ -2866,7 +2862,7 @@ function submitPrediction() { submitPollVote('winner'); }
 let _timerRAF = null; // requestAnimationFrame handle
 
 function timerStart() {
-  if(!state.timer) state.timer = { running:false, remainingMs:1200000, lastStarted:null };
+  if(!state.timer) state.timer = { running:false, remainingMs:1200000, lastStarted:null, configuredMs:1200000 };
   if(state.timer.running) return;
   state.timer.running = true;
   state.timer.lastStarted = Date.now();
@@ -2889,15 +2885,32 @@ function timerPause() {
 }
 
 function timerReset() {
-  state.timer = { running: false, remainingMs: 1200000, lastStarted: null };
+  // Reset to current configured duration (default 20min, or 40min if set for finals)
+  const dur = state.timer && state.timer.configuredMs ? state.timer.configuredMs : 1200000;
+  state.timer = { running: false, remainingMs: dur, lastStarted: null, configuredMs: dur };
   saveState();
   renderTimerUI();
   stopTimerLoop();
 }
 
+function timerSetDuration(ms) {
+  // Change timer duration (only when not running)
+  if(state.timer && state.timer.running) {
+    showToast('Pausa el temporizador antes de cambiar la duración', 'error', 'ico-warn');
+    return;
+  }
+  state.timer = { running: false, remainingMs: ms, lastStarted: null, configuredMs: ms };
+  saveState();
+  renderTimerUI();
+  stopTimerLoop();
+  const mins = Math.round(ms / 60000);
+  showToast(`Temporizador configurado a ${mins} minutos`, 'info', 'ico-flag');
+}
+
 // Returns current remaining ms (accounts for running time since lastStarted)
 function timerGetRemaining() {
   if(!state.timer) return 1200000;
+  // Use configuredMs as the base if available
   if(!state.timer.running) return state.timer.remainingMs;
   const elapsed = Date.now() - (state.timer.lastStarted || Date.now());
   return Math.max(0, state.timer.remainingMs - elapsed);
@@ -2935,6 +2948,14 @@ function renderTimerUI() {
     }
     if(startBtn) startBtn.style.display = status==='running' ? 'none' : '';
     if(pauseBtn) pauseBtn.style.display = status==='running' ? '' : 'none';
+    // Show/hide 40/20 min toggle buttons (only in elim widget)
+    if(suffix === 'Elim') {
+      const btn40 = document.getElementById('timerSet40Btn');
+      const btn20 = document.getElementById('timerSet20Btn');
+      const is40 = state.timer && state.timer.configuredMs === 2400000;
+      if(btn40) btn40.style.display = (is40 || status==='running') ? 'none' : '';
+      if(btn20) btn20.style.display = (is40 && status!=='running') ? '' : 'none';
+    }
 
     // Update next match text
     const nextEl = document.getElementById('timerNextText'+suffix);
