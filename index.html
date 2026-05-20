@@ -1259,6 +1259,8 @@
     line-height: 1.7;
   }
   .rule-desc strong { color: var(--text); font-size: 17px; }
+  .rule-card-special { border-style: dashed; border-color: rgba(255,255,255,.1); }
+  .rule-card-special:hover { border-style: dashed; }
 
   /* ── TIMER ───────────────────────────────────────── */
   .timer-widget {
@@ -1556,10 +1558,35 @@
         <div class="rule-title">Modo Espectador</div>
         <div class="rule-desc">En cada fase hay un botón <strong>"Modo Espectador"</strong> que abre una pantalla optimizada para proyectar en TV o seguir desde el móvil. Se actualiza en tiempo real. Ideal para seguir el torneo desde la piscina.</div>
       </div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(231,76,60,.15);color:var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2.5"/></svg></div>
+        <div class="rule-title" style="color:var(--red);">Penalti de Sergio Ramos</div>
+        <div class="rule-desc">Si un jugador tarda más de <strong>45 segundos</strong> en recuperar una bola que ha mandado a <strong>NARNIA</strong> o se queda atando los cordones cuando va ganando, se le penalizará con <strong>-1 juego</strong> en el marcador de ese partido.</div>
+      </div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(161,0,255,.15);color:#c87aff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3" stroke-dasharray="3 2"/><path d="M6 21v-2a6 6 0 0 1 12 0v2" stroke-dasharray="3 2"/><line x1="2" y1="2" x2="22" y2="22" stroke-width="1.5"/></svg></div>
+        <div class="rule-title" style="color:#c87aff;">El Fantasma</div>
+        <div class="rule-desc">Si suena el pitido virtual del temporizador y un jugador no está en pista porque <strong>"estaba en el baño"</strong>, <strong>"haciendo una RFP"</strong> o <strong>"haciendo un commit"</strong>, cuando aparezca jugará usando la pala con la <strong>mano no dominante</strong>.</div>
+      </div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(245,200,66,.12);color:#f5c842;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/><path d="M9 2.5 Q12 1 15 2.5" stroke-width="1.5"/></svg></div>
+        <div class="rule-title" style="color:#f5c842;">Punto de Oro</div>
+        <div class="rule-desc">Todos los juegos que lleguen a <strong>40-40</strong> se decidirán con un único <strong>Punto de Oro</strong> (sin ventajas). Recibe el saque el miembro de la pareja rival que elija el jugador que saca. ¡Presión máxima!</div>
+      </div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(200,241,53,.1);color:var(--lime);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></div>
+        <div class="rule-title" style="color:var(--lime);">La Bola de Oro del Partido</div>
+        <div class="rule-desc">Si un partido acaba los <strong>20 minutos con empate exacto</strong> (ej: 4-4), no se acaba ahí. Se juega un <strong>único punto a cara o cruz</strong> en ese mismo instante. El que gane ese punto, gana el partido.</div>
+      </div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(46,204,113,.1);color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <div class="rule-title" style="color:var(--green);">Garantía Anti-Divorcios</div>
+        <div class="rule-desc">El algoritmo <strong>crypto.getRandomValues()</strong> ha sido programado con una línea de código secreta que impide que te toque jugar con tu compañero de proyecto o compañero de llorería, previniendo así bajas laborales y herencias perdidas antes de la Copa Consolación.</div>
+      </div>
     </div>
     <div style="display:flex;justify-content:center;margin-top:32px;padding-bottom:16px;">
       <button class="btn btn-acc btn-lg" onclick="goToSorteoParejas()">
-        <svg><use href="#ico-bolt"/></svg>Comenzar Sorteo de Parejas
+        <svg><use href="#ico-bolt"/></svg>Ir al Sorteo de Parejas
       </button>
     </div>
   </div>
@@ -1575,6 +1602,11 @@
         <span class="sorteo-phase-num">01</span>
         <span>Formación de Parejas</span>
         <div class="sorteo-phase-line"></div>
+      </div>
+      <div class="sorteo-actions" id="sorteoStartPairsBtn" style="display:flex;margin-bottom:0;">
+        <button class="btn btn-acc btn-lg" onclick="startSorteoParejas()">
+          <svg><use href="#ico-bolt"/></svg>Iniciar Sorteo de Parejas
+        </button>
       </div>
       <div class="sorteo-bombo">
         <div class="bombo-ball-container" id="bomboBallContainer">
@@ -1604,6 +1636,11 @@
         <span class="sorteo-phase-num">02</span>
         <span>Asignación de Grupos</span>
         <div class="sorteo-phase-line"></div>
+      </div>
+      <div class="sorteo-actions" id="sorteoStartGroupsBtn" style="display:none;margin-bottom:16px;">
+        <button class="btn btn-acc btn-lg" onclick="startSorteoGrupos()">
+          <svg><use href="#ico-bolt"/></svg>Iniciar Sorteo de Grupos
+        </button>
       </div>
       <div id="groupRevealArea" class="group-reveal-area"></div>
       <div class="sorteo-actions" id="sorteoGroupActions" style="display:none">
@@ -1962,10 +1999,26 @@ function goToReglas() {
   showTab('reglas');
 }
 function goToSorteoParejas() {
+  // Navigate to the tab without starting the draw
+  state.phase = 'sorteo-parejas';
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('sorteo-parejas');
+  // Show start button, hide reveal area
+  const startBtn = document.getElementById('sorteoStartPairsBtn');
+  if(startBtn) startBtn.style.display = 'flex';
+  document.getElementById('pairRevealArea').innerHTML = '';
+  document.getElementById('sorteoActionsArea').style.display = 'none';
+}
+function startSorteoParejas() {
   openModal(
-    '¿Comenzar el Sorteo de Parejas?',
+    '¿Iniciar el Sorteo de Parejas?',
     `Se sortearán ${Math.floor((state.players||[]).length/2)} parejas. El registro quedará cerrado.`,
-    doStartPairDraw
+    () => {
+      const startBtn = document.getElementById('sorteoStartPairsBtn');
+      if(startBtn) startBtn.style.display = 'none';
+      doStartPairDraw();
+    }
   );
 }
 function goToSorteoGrupos() {
@@ -1973,7 +2026,22 @@ function goToSorteoGrupos() {
   state.phase = 'sorteo-grupos';
   saveState();
   if(!firebaseMode) renderAll();
-  startGroupDraw();
+  // Show start button, don't auto-start
+  const startBtn = document.getElementById('sorteoStartGroupsBtn');
+  if(startBtn) startBtn.style.display = 'flex';
+  document.getElementById('groupRevealArea').innerHTML = '';
+  document.getElementById('sorteoGroupActions').style.display = 'none';
+}
+function startSorteoGrupos() {
+  openModal(
+    '¿Iniciar el Sorteo de Grupos?',
+    'Se asignarán las parejas a grupos de forma aleatoria.',
+    () => {
+      const startBtn = document.getElementById('sorteoStartGroupsBtn');
+      if(startBtn) startBtn.style.display = 'none';
+      startGroupDraw();
+    }
+  );
 }
 
 // ── STEP 1: CONFIRM → COMPUTE PAIRS → START DRAW ──
