@@ -2082,7 +2082,7 @@ function animatePairDraw(idx) {
 
   const cycleInterval = setInterval(() => {
     const randPlayer = remaining[Math.floor(Math.random()*remaining.length)];
-    flash.textContent = randPlayer ? randPlayer.name.toUpperCase() : '?';
+    flash.textContent = randPlayer ? (randPlayer.nickname || randPlayer.name).toUpperCase() : '?';
     flash.style.animation = 'none'; void flash.offsetWidth;
     flash.style.animation = 'nameFlash .15s ease-in-out';
     cycleCount++;
@@ -2091,7 +2091,7 @@ function animatePairDraw(idx) {
       // Reveal the pair
       flash.textContent = pair.p2
         ? (getPlayerDisplay(pair.p1) + ' & ' + getPlayerDisplay(pair.p2)).toUpperCase()
-        : pair.p1.name.toUpperCase() + ' (libre)';
+        : (pair.p1.nickname || pair.p1.name).toUpperCase() + ' (libre)';
       ball.classList.remove('picking');
       ball.classList.add('spinning');
 
@@ -2103,8 +2103,8 @@ function animatePairDraw(idx) {
       card.innerHTML = `
         <div class="pair-num-badge">${idx+1}</div>
         <div class="pair-names">
-          <div class="pair-p1">${escHtml(pair.p1.name)}</div>
-          ${pair.p2 ? `<div class="pair-vs">&amp;</div><div class="pair-p2">${escHtml(pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
+          <div class="pair-p1">${escHtml(pair.p1.nickname||pair.p1.name)}</div>
+          ${pair.p2 ? `<div class="pair-vs">&amp;</div><div class="pair-p2">${escHtml(pair.p2.nickname||pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
         </div>
         <svg style="width:16px;height:16px;color:var(--lime);flex-shrink:0"><use href="#ico-check"/></svg>
       `;
@@ -2272,8 +2272,8 @@ function renderSorteo() {
     card.innerHTML = `
       <div class="pair-num-badge">${idx+1}</div>
       <div class="pair-names">
-        <div class="pair-p1">${escHtml(pair.p1.name)}</div>
-        ${pair.p2 ? `<div class="pair-vs">&amp;</div><div class="pair-p2">${escHtml(pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
+        <div class="pair-p1">${escHtml(pair.p1.nickname||pair.p1.name)}</div>
+        ${pair.p2 ? `<div class="pair-vs">&amp;</div><div class="pair-p2">${escHtml(pair.p2.nickname||pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
       </div>
       <svg style="width:16px;height:16px;color:var(--lime);flex-shrink:0"><use href="#ico-check"/></svg>
     `;
