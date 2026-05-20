@@ -1271,10 +1271,10 @@ function doStartPairDraw() {
   const players = shuffle([...(state.players||[])]);
   _pendingPairs = [];
   for(let i=0;i<players.length-1;i+=2)
-    _pendingPairs.push({id:'par'+i, p1:players[i], p2:players[i+1]});
+    _pendingPairs.push({id:'par_'+Date.now()+'_'+Math.random().toString(36).slice(2,6), p1:players[i], p2:players[i+1]});
   if(players.length%2!==0){
     const last=players[players.length-1];
-    _pendingPairs.push({id:'par'+(players.length-1), p1:last, p2:null});
+    _pendingPairs.push({id:'par_'+Date.now()+'_'+Math.random().toString(36).slice(2,6), p1:last, p2:null});
   }
 
   // Move to sorteo phase
@@ -1365,8 +1365,9 @@ function startGroupDraw() {
   // Compute groups from already-revealed pairs
   const sp = shuffle([..._pendingPairs]);
   _pendingGroups = [];
+  const _groupSalt = Date.now();
   for(let i=0;i<sp.length;i+=4)
-    _pendingGroups.push({id:String.fromCharCode(65+_pendingGroups.length), pairs:sp.slice(i,i+4)});
+    _pendingGroups.push({id:String.fromCharCode(65+_pendingGroups.length), pairs:sp.slice(i,i+4), _salt:_groupSalt});
   if(_pendingGroups.length>1 && _pendingGroups[_pendingGroups.length-1].pairs.length<2){
     const last=_pendingGroups.pop();
     last.pairs.forEach(p=>_pendingGroups[_pendingGroups.length-1].pairs.push(p));
@@ -2081,7 +2082,20 @@ function doResetTorneo() {
 }
 
 // ── UTILS ─────────────────────────────────────────
-function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function shuffle(arr){
+  const a=[...arr];
+  // Use crypto.getRandomValues when available for true randomness
+  const rnd = (max) => {
+    if(window.crypto && window.crypto.getRandomValues){
+      const buf = new Uint32Array(1);
+      window.crypto.getRandomValues(buf);
+      return buf[0] % max;
+    }
+    return Math.floor(Math.random() * max);
+  };
+  for(let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
 function escHtml(s){ if(!s)return''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 if(!window._firebaseReady) document.addEventListener('DOMContentLoaded',()=>{ loadFromLocal(); renderAll(); });
