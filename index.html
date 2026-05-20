@@ -832,7 +832,7 @@
   /* LIVE badge */
   .spec-live-badge {
     position: fixed;
-    top: 16px; right: 20px;
+    top: 14px; left: 20px;
     z-index: 999;
     display: flex;
     align-items: center;
@@ -861,10 +861,12 @@
   .spec-header {
     background: linear-gradient(135deg, #080810 0%, #12001f 60%, #080810 100%);
     border-bottom: 2px solid var(--acc);
-    padding: 20px 32px;
+    padding: 20px 32px 20px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    text-align: center;
     position: relative;
   }
   .spec-header::after {
@@ -873,27 +875,29 @@
   }
   .spec-logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(20px, 3vw, 36px);
+    font-size: clamp(22px, 3.5vw, 42px);
     color: #fff;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     line-height: 1;
+    text-align: center;
   }
   .spec-logo-acc { color: var(--lime); }
-  .spec-subtitle { color: var(--muted); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-top: 4px; }
+  .spec-subtitle { color: var(--muted); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-top: 6px; text-align: center; }
   .spec-phase-badge {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px;
+    font-size: 13px;
     letter-spacing: 3px;
-    padding: 8px 20px;
-    border-radius: 8px;
+    padding: 5px 16px;
+    border-radius: 20px;
     background: rgba(161,0,255,.15);
     border: 1px solid rgba(161,0,255,.3);
     color: #c87aff;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 10px;
   }
-  .spec-phase-badge svg { width: 18px; height: 18px; }
+  .spec-phase-badge svg { width: 14px; height: 14px; }
 
   /* SPEC CONTAINERS */
   .spec-container { max-width: 1600px; margin: 0 auto; padding: 32px; position: relative; z-index: 1; }
@@ -1217,6 +1221,134 @@
   }
   .spec-btn-main svg { width: 13px; height: 13px; flex-shrink: 0; }
   .spec-btn-main:hover { background: rgba(200,241,53,.08); border-color: var(--lime); }
+
+  /* ── RULES ──────────────────────────────────────── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .rule-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: border-color .2s;
+  }
+  .rule-card:hover { border-color: var(--acc); }
+  .rule-icon {
+    width: 36px; height: 36px;
+    background: rgba(161,0,255,.12);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px;
+    color: var(--acc);
+  }
+  .rule-icon svg { width: 18px; height: 18px; }
+  .rule-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 17px;
+    color: var(--lime);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .rule-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+  .rule-desc strong { color: var(--text); }
+
+  /* ── TIMER ───────────────────────────────────────── */
+  .timer-widget {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .timer-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: 4px;
+    min-width: 120px;
+    text-align: center;
+    transition: color .3s;
+  }
+  .timer-display.running  { color: var(--lime); text-shadow: 0 0 20px var(--lime-glow); }
+  .timer-display.paused   { color: var(--muted); }
+  .timer-display.finished { color: var(--red); text-shadow: 0 0 20px rgba(231,76,60,.3); animation: timerPulse 1s infinite; }
+  .timer-display.idle     { color: var(--muted); }
+  @keyframes timerPulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  .timer-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+    text-align: center;
+  }
+  .timer-controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .timer-info { flex: 1; min-width: 160px; }
+  .timer-next-match {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+  .timer-next-match strong { color: var(--text); }
+
+  /* SPECTATOR TIMER */
+  .spec-timer-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--acc);
+    border-radius: 12px;
+    padding: 20px 28px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .spec-timer-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: 6px;
+    min-width: 180px;
+    text-align: center;
+    transition: color .3s;
+  }
+  .spec-timer-display.running  { color: var(--lime); text-shadow: 0 0 30px var(--lime-glow); }
+  .spec-timer-display.paused   { color: var(--muted); }
+  .spec-timer-display.finished { color: var(--red); animation: timerPulse 1s infinite; }
+  .spec-timer-display.idle     { color: var(--muted); }
+  .spec-timer-info { flex: 1; }
+  .spec-timer-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .spec-timer-next {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--text);
+    letter-spacing: 1px;
+    line-height: 1.3;
+  }
+  .spec-timer-next span { color: var(--lime); }
+
   /* UTIL */
   .text-center{text-align:center} .text-muted{color:var(--muted)} .text-lime{color:var(--lime)}
   .text-green{color:var(--green)} .text-red{color:var(--red)}
@@ -1266,28 +1398,40 @@
     </div>
     <div class="step-line" id="stepLine-1"></div>
     <div class="step-container">
-      <div class="step-dot" id="step-2"><svg><use href="#ico-bolt"/></svg></div>
-      <div class="step-label" id="stepLabel-2">Sorteo</div>
+      <div class="step-dot" id="step-2"><svg><use href="#ico-info"/></svg></div>
+      <div class="step-label" id="stepLabel-2">Reglas</div>
     </div>
     <div class="step-line" id="stepLine-2"></div>
     <div class="step-container">
-      <div class="step-dot" id="step-3"><svg><use href="#ico-chart"/></svg></div>
-      <div class="step-label" id="stepLabel-3">Grupos</div>
+      <div class="step-dot" id="step-3"><svg><use href="#ico-users"/></svg></div>
+      <div class="step-label" id="stepLabel-3">Parejas</div>
     </div>
     <div class="step-line" id="stepLine-3"></div>
     <div class="step-container">
-      <div class="step-dot" id="step-4"><svg><use href="#ico-swords"/></svg></div>
-      <div class="step-label" id="stepLabel-4">Eliminatoria</div>
+      <div class="step-dot" id="step-4"><svg><use href="#ico-chart"/></svg></div>
+      <div class="step-label" id="stepLabel-4">Grupos</div>
+    </div>
+    <div class="step-line" id="stepLine-4"></div>
+    <div class="step-container">
+      <div class="step-dot" id="step-5"><svg><use href="#ico-ball"/></svg></div>
+      <div class="step-label" id="stepLabel-5">Fase Grupos</div>
+    </div>
+    <div class="step-line" id="stepLine-5"></div>
+    <div class="step-container">
+      <div class="step-dot" id="step-6"><svg><use href="#ico-swords"/></svg></div>
+      <div class="step-label" id="stepLabel-6">Eliminatoria</div>
     </div>
   </div>
 
   <!-- TABS -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="showTab('registro')"     id="tabBtn-registro"><svg><use href="#ico-users"/></svg>Registro</button>
-    <button class="tab-btn"        onclick="showTab('sorteo')"       id="tabBtn-sorteo"><svg><use href="#ico-bolt"/></svg>Sorteo</button>
-    <button class="tab-btn"        onclick="showTab('predicciones')" id="tabBtn-predicciones"><svg><use href="#ico-crown"/></svg>Predicciones</button>
-    <button class="tab-btn"        onclick="showTab('grupos')"       id="tabBtn-grupos"><svg><use href="#ico-chart"/></svg>Fase de Grupos</button>
-    <button class="tab-btn"        onclick="showTab('eliminatoria')" id="tabBtn-eliminatoria"><svg><use href="#ico-swords"/></svg>Eliminatorias</button>
+    <button class="tab-btn active" onclick="showTab('registro')"      id="tabBtn-registro"><svg><use href="#ico-users"/></svg>Registro</button>
+    <button class="tab-btn"        onclick="showTab('reglas')"        id="tabBtn-reglas"><svg><use href="#ico-info"/></svg>Reglas</button>
+    <button class="tab-btn"        onclick="showTab('sorteo-parejas')" id="tabBtn-sorteo-parejas"><svg><use href="#ico-users"/></svg>Sorteo Parejas</button>
+    <button class="tab-btn"        onclick="showTab('sorteo-grupos')"  id="tabBtn-sorteo-grupos"><svg><use href="#ico-chart"/></svg>Sorteo Grupos</button>
+    <button class="tab-btn"        onclick="showTab('grupos')"        id="tabBtn-grupos"><svg><use href="#ico-ball"/></svg>Fase de Grupos</button>
+    <button class="tab-btn"        onclick="showTab('eliminatoria')"  id="tabBtn-eliminatoria"><svg><use href="#ico-swords"/></svg>Eliminatorias</button>
+    <button class="tab-btn"        onclick="showTab('predicciones')"  id="tabBtn-predicciones"><svg><use href="#ico-crown"/></svg>Encuestas</button>
   </div>
 
   <!-- TAB 1: REGISTRO -->
@@ -1300,7 +1444,7 @@
         <svg><use href="#ico-reset"/></svg>Reiniciar Torneo
       </button>
       <button class="btn spec-btn-main" onclick="openSpectator('registro')" title="Modo espectador">
-        <svg><use href="#ico-tv"/></svg>Modo Pantalla
+        <svg><use href="#ico-tv"/></svg>Modo Espectador
       </button>
     </div>
     <div class="card" id="registroFormCard">
@@ -1339,7 +1483,7 @@
       </div>
       <div class="flex gap-8 flex-wrap">
         <button class="btn btn-outline" onclick="clearAllPlayers()" id="clearPlayersBtn"><svg><use href="#ico-trash"/></svg>Limpiar todo</button>
-        <button class="btn btn-acc"     onclick="confirmGeneratePairs()" id="generateGroupsBtn"><svg><use href="#ico-bolt"/></svg>Sorteo de Parejas</button>
+        <button class="btn btn-acc"     onclick="goToReglas()" id="generateGroupsBtn"><svg><use href="#ico-bolt"/></svg>Siguiente: Reglas</button>
       </div>
     </div>
     <div class="player-grid" id="playerGrid">
@@ -1350,31 +1494,74 @@
     </div>
   </div>
 
-  <!-- TAB SORTEO -->
-  <div class="tab-pane" id="pane-sorteo">
+  <!-- TAB REGLAS -->
+  <div class="tab-pane" id="pane-reglas">
+    <div class="sorteo-hero" style="padding-bottom:10px;">
+      <div class="sorteo-title"><svg><use href="#ico-info"/></svg> REGLAS DEL TORNEO</div>
+      <div class="sorteo-sub">Lee esto antes de empezar a jugar</div>
+    </div>
+    <div class="rules-grid" id="rulesGrid">
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-ball"/></svg></div>
+        <div class="rule-title">Sistema de puntuación</div>
+        <div class="rule-desc">Cada partido se juega a <strong>1 set</strong> sin límite de juegos. Gana la pareja que primero llegue a <strong>9 juegos</strong>, o la que más juegos tenga cuando se acaben los <strong>20 minutos</strong> de tiempo asignado.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-users"/></svg></div>
+        <div class="rule-title">Formación de parejas</div>
+        <div class="rule-desc">Las parejas se forman por <strong>sorteo aleatorio</strong> usando criptografía real (crypto.getRandomValues). Nadie elige a su compañero: la suerte manda.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-chart"/></svg></div>
+        <div class="rule-title">Fase de grupos</div>
+        <div class="rule-desc">Los grupos también son <strong>aleatorios</strong>. Dentro de cada grupo se juegan todos contra todos. Los <strong>2 primeros</strong> de cada grupo pasan al cuadro principal, los <strong>2 últimos</strong> van a la Copa Consolación.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-chart"/></svg></div>
+        <div class="rule-title">Clasificación en grupos</div>
+        <div class="rule-desc">El orden se determina por: <strong>1°</strong> partidos ganados. En caso de empate, <strong>2°</strong> diferencia de juegos (ganados menos perdidos). El orden de los partidos dentro de cada fase también es aleatorio.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-swords"/></svg></div>
+        <div class="rule-title">Fase eliminatoria</div>
+        <div class="rule-desc">Los cruces de eliminatorias son <strong>completamente aleatorios</strong>. Hay dos cuadros: el <strong>Cuadro Principal</strong> para los mejores de cada grupo, y la <strong>Copa Consolación</strong> para los que no pasaron. Todos juegan hasta el final.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-crown"/></svg></div>
+        <div class="rule-title">Encuestas y predicciones</div>
+        <div class="rule-desc">Antes de que empiece la acción, vota en las <strong>encuestas del torneo</strong>: ¿quién va a ganar?, ¿quién es el paquete?, ¿quién trae las cervezas?... 23 categorías para reírse. Los rankings se actualizan en tiempo real.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-tv"/></svg></div>
+        <div class="rule-title">Modo Espectador</div>
+        <div class="rule-desc">En cada fase hay un botón <strong>"Modo Espectador"</strong> que abre una pantalla optimizada para proyectar en TV. Se actualiza en tiempo real sin necesidad de recargar. Ideal para seguir el torneo desde la piscina.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-flag"/></svg></div>
+        <div class="rule-title">Temporizador de partidos</div>
+        <div class="rule-desc">Cada partido tiene un <strong>temporizador de 20 minutos</strong> visible en todos los dispositivos. El administrador lo arranca, pausa y reinicia. Cuando suena el pitido virtual, se anota el marcador y se pasa al siguiente.</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:32px;padding-bottom:16px;">
+      <button class="btn btn-acc btn-lg" onclick="goToSorteoParejas()">
+        <svg><use href="#ico-bolt"/></svg>Comenzar Sorteo de Parejas
+      </button>
+    </div>
+  </div>
+
+  <!-- TAB SORTEO PAREJAS -->
+  <div class="tab-pane" id="pane-sorteo-parejas">
     <div class="sorteo-hero">
-      <div class="sorteo-title"><svg><use href="#ico-bolt"/></svg> SORTEO EN VIVO</div>
-      <div class="sorteo-sub">Las parejas y grupos se deciden aquí</div>
+      <div class="sorteo-title"><svg><use href="#ico-bolt"/></svg> SORTEO DE PAREJAS</div>
+      <div class="sorteo-sub">Sorteo aleatorio · Los compañeros se deciden aquí</div>
     </div>
-
-    <!-- SORTEO SUB-TABS -->
-    <div class="sub-tabs" id="sorteoSubTabs">
-      <button class="sub-tab-btn active" onclick="showSorteoTab('parejas')" id="sorteoTabBtn-parejas">
-        <svg><use href="#ico-users"/></svg>Parejas
-      </button>
-      <button class="sub-tab-btn" onclick="showSorteoTab('grupos')" id="sorteoTabBtn-grupos" id="sorteoTabBtnGrupos">
-        <svg><use href="#ico-chart"/></svg>Grupos
-      </button>
-    </div>
-
-    <!-- SECCIÓN PAREJAS -->
     <div id="sorteo-pairs-section">
       <div class="sorteo-phase-title">
         <span class="sorteo-phase-num">01</span>
         <span>Formación de Parejas</span>
         <div class="sorteo-phase-line"></div>
       </div>
-      <div class="sorteo-bombo" id="sorteo-bombo-pairs">
+      <div class="sorteo-bombo">
         <div class="bombo-ball-container" id="bomboBallContainer">
           <div class="bombo-ball spinning" id="bomboBall">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M7 4.5 C7 8 9 10 9 12 C9 14 7 16 7 19.5"/><path d="M17 4.5 C17 8 15 10 15 12 C15 14 17 16 17 19.5"/></svg>
@@ -1384,14 +1571,20 @@
       </div>
       <div id="pairRevealArea" class="pair-reveal-area"></div>
       <div class="sorteo-actions" id="sorteoActionsArea" style="display:none">
-        <button class="btn btn-acc btn-lg" onclick="startGroupDraw()" id="startGroupDrawBtn">
-          <svg><use href="#ico-bolt"/></svg>Pasar al Sorteo de Grupos
+        <button class="btn btn-acc btn-lg" onclick="goToSorteoGrupos()">
+          <svg><use href="#ico-chart"/></svg>Pasar al Sorteo de Grupos
         </button>
       </div>
     </div>
+  </div>
 
-    <!-- SECCIÓN GRUPOS -->
-    <div id="sorteo-groups-section" style="display:none">
+  <!-- TAB SORTEO GRUPOS -->
+  <div class="tab-pane" id="pane-sorteo-grupos">
+    <div class="sorteo-hero">
+      <div class="sorteo-title"><svg><use href="#ico-chart"/></svg> SORTEO DE GRUPOS</div>
+      <div class="sorteo-sub">Sorteo aleatorio · Los grupos se forman aquí</div>
+    </div>
+    <div id="sorteo-groups-section">
       <div class="sorteo-phase-title">
         <span class="sorteo-phase-num">02</span>
         <span>Asignación de Grupos</span>
@@ -1407,6 +1600,7 @@
   </div>
 
   <!-- TAB PREDICCIONES -->
+  <!-- TAB PREDICCIONES -->
   <div class="tab-pane" id="pane-predicciones">
     <div id="predNotReady" class="alert alert-info">
       <svg><use href="#ico-info"/></svg>
@@ -1418,7 +1612,7 @@
         <div class="pred-title"><svg><use href="#ico-crown"/></svg> ENCUESTAS DEL TORNEO</div>
         <div class="pred-sub">Vota · Ríete · Comparte</div>
         <div style="margin-top:12px;">
-          <button class="btn spec-btn-main" onclick="openSpectator('predicciones')"><svg><use href="#ico-tv"/></svg>Modo Pantalla — Rankings en bucle</button>
+          <button class="btn spec-btn-main" onclick="openSpectator('predicciones')"><svg><use href="#ico-tv"/></svg>Modo Espectador — Rankings en bucle</button>
         </div>
       </div>
 
@@ -1457,10 +1651,33 @@
       Los grupos aún no han comenzado. Completa el sorteo y pulsa "Comenzar Fase de Grupos".
     </div>
     <div id="groupsContent" style="display:none">
+      <!-- TIMER WIDGET GRUPOS -->
+      <div class="timer-widget">
+        <div>
+          <div class="timer-display idle" id="timerDisplayGrupos">20:00</div>
+          <div class="timer-label">Tiempo restante</div>
+        </div>
+        <div class="timer-info">
+          <div class="timer-next-match">
+            <strong>Próximo partido:</strong> <span id="timerNextTextGrupos">—</span>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-green" id="timerStartBtnGrupos" onclick="timerStart()">
+            <svg><use href="#ico-bolt"/></svg>Iniciar
+          </button>
+          <button class="btn btn-outline" id="timerPauseBtnGrupos" onclick="timerPause()" style="display:none">
+            <svg><use href="#ico-flag"/></svg>Pausar
+          </button>
+          <button class="btn btn-outline" onclick="timerReset()">
+            <svg><use href="#ico-refresh"/></svg>Reiniciar
+          </button>
+        </div>
+      </div>
       <div class="flex justify-between items-center" style="margin-bottom:16px;flex-wrap:wrap;gap:8px;">
         <div class="section-title" style="margin-bottom:0"><svg><use href="#ico-chart"/></svg>Clasificación en Vivo</div>
         <div class="flex gap-8 flex-wrap">
-          <button class="btn spec-btn-main" onclick="openSpectator('grupos')"><svg><use href="#ico-tv"/></svg>Modo Pantalla</button>
+          <button class="btn spec-btn-main" onclick="openSpectator('grupos')"><svg><use href="#ico-tv"/></svg>Modo Espectador</button>
           <button class="btn btn-outline" onclick="refreshGroups()"><svg><use href="#ico-refresh"/></svg>Actualizar</button>
           <button class="btn btn-red" onclick="confirmFinishGroups()" id="finishGroupsBtn"><svg><use href="#ico-flag"/></svg>Finalizar Fase de Grupos</button>
         </div>
@@ -1484,12 +1701,35 @@
       La fase de grupos aún no ha finalizado. Completa todos los partidos y marca "Finalizar Fase de Grupos".
     </div>
     <div id="elimContent" style="display:none">
+      <!-- TIMER WIDGET ELIM -->
+      <div class="timer-widget">
+        <div>
+          <div class="timer-display idle" id="timerDisplayElim">20:00</div>
+          <div class="timer-label">Tiempo restante</div>
+        </div>
+        <div class="timer-info">
+          <div class="timer-next-match">
+            <strong>Próximo partido:</strong> <span id="timerNextTextElim">—</span>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-green" id="timerStartBtnElim" onclick="timerStart()">
+            <svg><use href="#ico-bolt"/></svg>Iniciar
+          </button>
+          <button class="btn btn-outline" id="timerPauseBtnElim" onclick="timerPause()" style="display:none">
+            <svg><use href="#ico-flag"/></svg>Pausar
+          </button>
+          <button class="btn btn-outline" onclick="timerReset()">
+            <svg><use href="#ico-refresh"/></svg>Reiniciar
+          </button>
+        </div>
+      </div>
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
         <div class="sub-tabs" style="margin-bottom:0;">
           <button class="sub-tab-btn active" onclick="showSubTab('main')"       id="subTabBtn-main"><svg><use href="#ico-trophy"/></svg>Cuadro Principal</button>
           <button class="sub-tab-btn"        onclick="showSubTab('consolacion')" id="subTabBtn-consolacion"><svg><use href="#ico-medal"/></svg>Consolación</button>
         </div>
-        <button class="btn spec-btn-main" onclick="openSpectator('eliminatoria')"><svg><use href="#ico-tv"/></svg>Modo Pantalla</button>
+        <button class="btn spec-btn-main" onclick="openSpectator('eliminatoria')"><svg><use href="#ico-tv"/></svg>Modo Espectador</button>
       </div>
 
       <div id="subPane-main">
@@ -1529,8 +1769,9 @@
 let state = {
   players: [], pairs: [], groups: [], groupMatches: [],
   groupsFinished: false, mainBracket: null, consolBracket: null,
-  predictions: {},   // { voterName: pairId }
-  phase: 'registro'  // registro | sorteo | grupos | eliminatoria
+  predictions: {}, matchOrder: [],
+  phase: 'registro',
+  timer: { running: false, remainingMs: 1200000, lastStarted: null }
 };
 let firebaseMode = false, dbRef = null;
 
@@ -1613,26 +1854,30 @@ function openModal(title, body, onConfirm) {
 function closeModal() { document.getElementById('confirmModal').classList.remove('open'); }
 
 // ── RENDER ALL ────────────────────────────────────
-function renderAll() { renderProgress(); renderStatus(); renderPlayers(); renderSorteo(); renderPredictions(); renderGroups(); renderElim(); }
+function renderAll() { renderProgress(); renderStatus(); renderPlayers(); renderSorteo(); renderPredictions(); renderGroups(); renderElim(); renderTimerUI(); }
 
 function renderProgress() {
-  const m={registro:1,sorteo:2,grupos:3,eliminatoria:4}, cur=m[state.phase]||1;
-  for(let i=1;i<=4;i++){
+  const m={'registro':1,'reglas':2,'sorteo-parejas':3,'sorteo-grupos':4,'grupos':5,'eliminatoria':6};
+  const cur = m[state.phase] || 1;
+  for(let i=1;i<=6;i++){
     const d=document.getElementById('step-'+i), l=document.getElementById('stepLabel-'+i); if(!d)continue;
     if(i<cur){d.classList.add('done');d.classList.remove('active');l.classList.add('done');l.classList.remove('active');}
     else if(i===cur){d.classList.add('active');d.classList.remove('done');l.classList.add('active');l.classList.remove('done');}
     else{d.classList.remove('active','done');l.classList.remove('active','done');}
   }
-  for(let i=1;i<=3;i++){ const ln=document.getElementById('stepLine-'+i); if(ln) ln.classList.toggle('done',i<cur); }
+  for(let i=1;i<=5;i++){ const ln=document.getElementById('stepLine-'+i); if(ln) ln.classList.toggle('done',i<cur); }
 }
 
 function renderStatus() {
   const st=document.getElementById('statusText'), sb=document.getElementById('statusBadge');
   const n=(state.players||[]).length;
-  if(state.phase==='registro'){ st.textContent=`${n} jugadores · ${Math.floor(n/2)} parejas posibles`; sb.className='status-badge badge-registro'; sb.textContent='REGISTRO ABIERTO'; }
-  else if(state.phase==='sorteo'){ st.textContent='Sorteo de parejas y grupos en curso'; sb.className='status-badge badge-sorteo'; sb.textContent='SORTEO'; }
-  else if(state.phase==='grupos'){ st.textContent=state.groupsFinished?'Fase de grupos finalizada':'Fase de grupos en curso'; sb.className='status-badge badge-grupos'; sb.textContent='FASE DE GRUPOS'; }
-  else if(state.phase==='eliminatoria'){ st.textContent='Fase eliminatoria en curso'; sb.className='status-badge badge-eliminatorias'; sb.textContent='ELIMINATORIAS'; }
+  const p=state.phase;
+  if(p==='registro'){ st.textContent=`${n} jugadores · ${Math.floor(n/2)} parejas posibles`; sb.className='status-badge badge-registro'; sb.textContent='REGISTRO ABIERTO'; }
+  else if(p==='reglas'){ st.textContent='Leyendo las reglas del torneo'; sb.className='status-badge badge-sorteo'; sb.textContent='REGLAS'; }
+  else if(p==='sorteo-parejas'){ st.textContent='Sorteo de parejas en curso'; sb.className='status-badge badge-sorteo'; sb.textContent='SORTEO PAREJAS'; }
+  else if(p==='sorteo-grupos'){ st.textContent='Sorteo de grupos en curso'; sb.className='status-badge badge-sorteo'; sb.textContent='SORTEO GRUPOS'; }
+  else if(p==='grupos'){ st.textContent=state.groupsFinished?'Fase de grupos finalizada':'Fase de grupos en curso'; sb.className='status-badge badge-grupos'; sb.textContent='FASE DE GRUPOS'; }
+  else if(p==='eliminatoria'){ st.textContent='Fase eliminatoria en curso'; sb.className='status-badge badge-eliminatorias'; sb.textContent='ELIMINATORIAS'; }
 }
 
 // ── PLAYERS ───────────────────────────────────────
@@ -1695,16 +1940,31 @@ let drawState = { pairsRevealed: 0, groupsRevealed: 0 };
 let _pendingPairs = [];   // computed pairs waiting to be animated
 let _pendingGroups = [];  // computed groups waiting to be animated
 
-// ── STEP 1: CONFIRM → COMPUTE PAIRS → START DRAW ──
-function confirmGeneratePairs() {
-  const n=(state.players||[]).length;
-  if(n<4){ showToast('Necesitas al menos 4 jugadores','error','ico-warn'); return; }
+// ── NAVIGATION ────────────────────────────────────
+function goToReglas() {
+  if((state.players||[]).length < 4){ showToast('Necesitas al menos 4 jugadores','error','ico-warn'); return; }
+  state.phase = 'reglas';
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('reglas');
+}
+function goToSorteoParejas() {
   openModal(
-    '¿Comenzar el sorteo?',
-    `Se sortearán ${Math.floor(n/2)} parejas con ${n} jugadores. El registro quedará cerrado.`,
+    '¿Comenzar el Sorteo de Parejas?',
+    `Se sortearán ${Math.floor((state.players||[]).length/2)} parejas. El registro quedará cerrado.`,
     doStartPairDraw
   );
 }
+function goToSorteoGrupos() {
+  showTab('sorteo-grupos');
+  state.phase = 'sorteo-grupos';
+  saveState();
+  if(!firebaseMode) renderAll();
+  startGroupDraw();
+}
+
+// ── STEP 1: CONFIRM → COMPUTE PAIRS → START DRAW ──
+function confirmGeneratePairs() { goToReglas(); } // kept for backward compat
 
 function doStartPairDraw() {
   // Compute pairs randomly
@@ -1717,18 +1977,16 @@ function doStartPairDraw() {
     _pendingPairs.push({id:'par_'+Date.now()+'_'+Math.random().toString(36).slice(2,6), p1:last, p2:null});
   }
 
-  // Move to sorteo phase
-  state.phase = 'sorteo';
+  // Move to sorteo-parejas phase
+  state.phase = 'sorteo-parejas';
   drawState = { pairsRevealed: 0, groupsRevealed: 0 };
   saveState();
   if(!firebaseMode) renderAll();
-  showTab('sorteo');
+  showTab('sorteo-parejas');
 
   // Reset sorteo UI
   document.getElementById('pairRevealArea').innerHTML = '';
   document.getElementById('sorteoActionsArea').style.display = 'none';
-  document.getElementById('sorteo-groups-section').style.display = 'none';
-  document.getElementById('sorteoGroupActions').style.display = 'none';
   document.getElementById('groupRevealArea').innerHTML = '';
 
   // Start the animated pair draw
@@ -1815,10 +2073,10 @@ function startGroupDraw() {
     last.pairs.forEach(p=>_pendingGroups[_pendingGroups.length-1].pairs.push(p));
   }
 
-  // Hide pairs button, show groups section
-  document.getElementById('sorteoActionsArea').style.display = 'none';
+  // Show grupos draw tab
   document.getElementById('groupRevealArea').innerHTML = '';
-  showSorteoTab('grupos');
+  state.phase = 'sorteo-grupos';
+  saveState();
 
   _sorteoAnimating = true;
   animateGroupDraw(0);
@@ -1880,7 +2138,6 @@ function confirmStartGroupPhase() {
 }
 
 function doStartGroupPhase() {
-  // Build groups + matches from the drawn groups
   const groups = _pendingGroups;
   if(!groups.length){ showToast('Completa el sorteo primero','error','ico-warn'); return; }
 
@@ -1891,22 +2148,53 @@ function doStartGroupPhase() {
       groupMatches.push({id:'gm_'+g.id+'_'+a+'_'+b,groupId:g.id,pair1Id:gp[a].id,pair2Id:gp[b].id,sets:null,winner:null});
   });
 
+  // Interleave matches across groups: [G1m1, G2m1, G3m1, G1m2, G2m2, ...]
+  // This ensures alternation between groups, no repeats within same group back-to-back
+  const matchOrder = buildInterleavedOrder(groupMatches, groups);
+
   state.pairs = _pendingPairs;
   state.groups = groups;
   state.groupMatches = groupMatches;
+  state.matchOrder = matchOrder;
   state.groupsFinished = false;
   state.phase = 'grupos';
+  state.timer = { running: false, remainingMs: 1200000, lastStarted: null };
   saveState();
   if(!firebaseMode) renderAll();
   showTab('grupos');
   showToast('¡Fase de grupos iniciada!','success','ico-bolt');
 }
 
+function buildInterleavedOrder(matches, groups) {
+  // Group matches by groupId
+  const byGroup = {};
+  groups.forEach(g => { byGroup[g.id] = []; });
+  matches.forEach(m => { if(byGroup[m.groupId]) byGroup[m.groupId].push(m.id); });
+  // Shuffle within each group
+  Object.keys(byGroup).forEach(gid => { byGroup[gid] = shuffle(byGroup[gid]); });
+  // Interleave: round-robin across groups
+  const groupIds = shuffle(groups.map(g=>g.id));
+  const result = [];
+  let remaining = true;
+  let round = 0;
+  while(remaining) {
+    remaining = false;
+    groupIds.forEach(gid => {
+      if(byGroup[gid][round] !== undefined) {
+        result.push(byGroup[gid][round]);
+        remaining = true;
+      }
+    });
+    round++;
+  }
+  return result;
+}
+
 // ── RESTORE SORTEO STATE on re-render ─────────────
 let _sorteoAnimating = false; // true while pair/group animation is in progress
 
 function renderSorteo() {
-  if(state.phase !== 'sorteo') return;
+  if(state.phase !== 'sorteo-parejas' && state.phase !== 'sorteo-grupos') return;
   // If an animation is currently running, don't touch the UI
   if(_sorteoAnimating) return;
   // If pairs already saved and we're reloading (e.g. Firebase sync on another device),
@@ -1938,7 +2226,6 @@ function renderSorteo() {
   const groups = state.groups || [];
   if (groups.length > 0) {
     _pendingGroups = groups;
-    showSorteoTab('grupos');
     const gra = document.getElementById('groupRevealArea');
     if (gra) {
       gra.innerHTML = groups.map(g => `
@@ -1974,8 +2261,8 @@ function computeStandings(gid) {
 
 function renderMatchCard(m, type) {
   const done=!!m.winner, w1=m.winner===m.pair1Id, w2=m.winner===m.pair2Id;
-  let p1s1='',p1s2='',p1s3='',p2s1='',p2s2='',p2s3='';
-  if(m.sets){p1s1=m.sets.p1[0]??'';p1s2=m.sets.p1[1]??'';p1s3=m.sets.p1[2]??'';p2s1=m.sets.p2[0]??'';p2s2=m.sets.p2[1]??'';p2s3=m.sets.p2[2]??'';}
+  let p1s1='', p2s1='';
+  if(m.sets){ p1s1=m.sets.p1[0]??''; p2s1=m.sets.p2[0]??''; }
   return `<div class="match-card ${done?'completed':''}" id="mc-${m.id}">
     <div class="match-header">
       <span class="match-label"><svg><use href="#ico-court"/></svg>${type==='group'?'Partido de grupo':'Eliminatoria'}</span>
@@ -1984,18 +2271,14 @@ function renderMatchCard(m, type) {
     <div class="score-row">
       <span class="pair-label ${w1?'text-lime':''}">${getPairName(m.pair1Id)}${w1?' ✓':''}</span>
       <div class="sets-input">
-        <input class="set-input" id="${m.id}_p1s1" type="number" min="0" max="7" value="${p1s1}" placeholder="-" ${done?'readonly':''}>
-        <input class="set-input" id="${m.id}_p1s2" type="number" min="0" max="7" value="${p1s2}" placeholder="-" ${done?'readonly':''}>
-        <input class="set-input" id="${m.id}_p1s3" type="number" min="0" max="7" value="${p1s3}" placeholder="-" ${done?'readonly':''}>
+        <input class="set-input" id="${m.id}_p1s1" type="number" min="0" value="${p1s1}" placeholder="-" ${done?'readonly':''}>
       </div>
     </div>
     <div class="vs-divider"></div>
     <div class="score-row">
       <span class="pair-label ${w2?'text-lime':''}">${getPairName(m.pair2Id)}${w2?' ✓':''}</span>
       <div class="sets-input">
-        <input class="set-input" id="${m.id}_p2s1" type="number" min="0" max="7" value="${p2s1}" placeholder="-" ${done?'readonly':''}>
-        <input class="set-input" id="${m.id}_p2s2" type="number" min="0" max="7" value="${p2s2}" placeholder="-" ${done?'readonly':''}>
-        <input class="set-input" id="${m.id}_p2s3" type="number" min="0" max="7" value="${p2s3}" placeholder="-" ${done?'readonly':''}>
+        <input class="set-input" id="${m.id}_p2s1" type="number" min="0" value="${p2s1}" placeholder="-" ${done?'readonly':''}>
       </div>
     </div>
     <div class="match-footer">
@@ -2010,28 +2293,15 @@ function renderMatchCard(m, type) {
 function getVal(id){ const el=document.getElementById(id); return el?el.value.trim():''; }
 
 function saveMatch(mId, type) {
-  // Collect only sets where BOTH sides have been filled in
-  const rawSets = [
-    [getVal(mId+'_p1s1'), getVal(mId+'_p2s1')],
-    [getVal(mId+'_p1s2'), getVal(mId+'_p2s2')],
-    [getVal(mId+'_p1s3'), getVal(mId+'_p2s3')],
-  ];
-  const ss = {p1:[], p2:[]};
-  for (const [a, b] of rawSets) {
-    if (a !== '' && b !== '') {
-      const na = parseInt(a), nb = parseInt(b);
-      if (!isNaN(na) && !isNaN(nb)) { ss.p1.push(na); ss.p2.push(nb); }
-    }
-  }
-  if (ss.p1.length === 0) { showToast('Introduce al menos un set', 'error', 'ico-warn'); return; }
-  // Winner = who has more TOTAL GAMES across all sets played
-  // This handles partial sets cut short by time correctly
-  const p1Total = ss.p1.reduce((a,b)=>a+b, 0);
-  const p2Total = ss.p2.reduce((a,b)=>a+b, 0);
-  if (p1Total === p2Total) { showToast('Empate de juegos — revisa el marcador', 'error', 'ico-warn'); return; }
+  const a1 = getVal(mId+'_p1s1'), a2 = getVal(mId+'_p2s1');
+  if (a1 === '' || a2 === '') { showToast('Introduce el marcador', 'error', 'ico-warn'); return; }
+  const p1 = parseInt(a1), p2 = parseInt(a2);
+  if (isNaN(p1) || isNaN(p2)) { showToast('Marcador inválido', 'error', 'ico-warn'); return; }
+  if (p1 === p2) { showToast('Empate — revisa el marcador', 'error', 'ico-warn'); return; }
+  const ss = { p1:[p1], p2:[p2] };
   const all = getAllElimMatchesRef(type), m = all.find(x=>x.id===mId); if(!m) return;
   m.sets = ss;
-  m.winner = p1Total > p2Total ? m.pair1Id : m.pair2Id;
+  m.winner = p1 > p2 ? m.pair1Id : m.pair2Id;
   if(type==='main'||type==='consolacion') propagateWinner(type,mId,m.winner);
   saveState(); if(!firebaseMode) renderAll(); showToast('Resultado guardado','success','ico-check');
 }
@@ -2065,10 +2335,23 @@ function renderGroups() {
     }).join('')}</tbody></table></div>`;
   }).join('');
   const gm=state.groupMatches||[];
-  document.getElementById('groupMatches').innerHTML=gs.map(g=>`
-    <div class="card-title" style="margin-top:16px;font-size:13px;color:var(--muted);"><svg><use href="#ico-court"/></svg>GRUPO ${g.id}</div>
-    ${gm.filter(m=>m.groupId===g.id).map(m=>renderMatchCard(m,'group')).join('')}
-  `).join('');
+  const matchOrder = state.matchOrder||[];
+  // Build ordered match list: interleaved order if available, else default
+  let orderedMatches;
+  if(matchOrder.length > 0){
+    const matchById = {};
+    gm.forEach(m=>{ matchById[m.id]=m; });
+    orderedMatches = matchOrder.map(id=>matchById[id]).filter(Boolean);
+    // Add any matches not in order (safety)
+    gm.forEach(m=>{ if(!matchOrder.includes(m.id)) orderedMatches.push(m); });
+  } else {
+    orderedMatches = gm;
+  }
+  const matchesHTML = orderedMatches.map(m=>{
+    const g = gs.find(g=>g.id===m.groupId);
+    return `<div class="card-title" style="margin-top:16px;font-size:13px;color:var(--muted);"><svg><use href="#ico-court"/></svg>GRUPO ${g?g.id:'?'}</div>${renderMatchCard(m,'group')}`;
+  }).join('');
+  document.getElementById('groupMatches').innerHTML = matchesHTML || '<div class="text-muted" style="padding:20px;text-align:center;">No hay partidos generados.</div>';
 }
 
 // ── FINISH GROUPS ─────────────────────────────────
@@ -2079,6 +2362,7 @@ function doFinishGroups() {
   (state.groups||[]).forEach(g=>{ computeStandings(g.id).forEach((s,i)=>{ if(i<2)mp.push(s.pairId);else cp.push(s.pairId); }); });
   state.mainBracket=generateBracket(shuffle(mp),'main');
   state.consolBracket=generateBracket(shuffle(cp),'consol');
+  state.timer = { running: false, remainingMs: 1200000, lastStarted: null };
   saveState(); if(!firebaseMode) renderAll(); showTab('eliminatoria');
   showToast('¡Eliminatorias generadas!','success','ico-trophy',4000);
 }
@@ -2360,7 +2644,7 @@ function renderPredictions() {
   const content  = document.getElementById('predContent');
   if (!notReady || !content) return;
 
-  const active = state.phase === 'grupos' || state.phase === 'eliminatoria';
+  const active = ['grupos','eliminatoria'].includes(state.phase);
   notReady.style.display = active ? 'none' : '';
   content.style.display  = active ? ''     : 'none';
   if (!active) return;
@@ -2496,6 +2780,162 @@ function submitPollVote(pollId) {
 // Keep old submitPrediction as alias (not used in new UI but kept for safety)
 function submitPrediction() { submitPollVote('winner'); }
 
+
+// ── TIMER SYSTEM ──────────────────────────────────
+// Timer state lives in state.timer = { running, remainingMs, lastStarted }
+// Only writes to Firebase on Start/Pause/Reset (not every second)
+// Each client calculates display time locally from lastStarted + remainingMs
+
+let _timerRAF = null; // requestAnimationFrame handle
+
+function timerStart() {
+  if(!state.timer) state.timer = { running:false, remainingMs:1200000, lastStarted:null };
+  if(state.timer.running) return;
+  state.timer.running = true;
+  state.timer.lastStarted = Date.now();
+  saveState();
+  if(!firebaseMode) { renderTimerUI(); startTimerLoop(); }
+}
+
+function timerPause() {
+  if(!state.timer || !state.timer.running) return;
+  // Calculate remaining time up to now
+  const elapsed = Date.now() - state.timer.lastStarted;
+  state.timer.remainingMs = Math.max(0, state.timer.remainingMs - elapsed);
+  state.timer.running = false;
+  state.timer.lastStarted = null;
+  saveState();
+  if(!firebaseMode) { renderTimerUI(); stopTimerLoop(); }
+}
+
+function timerReset() {
+  state.timer = { running: false, remainingMs: 1200000, lastStarted: null };
+  saveState();
+  if(!firebaseMode) { renderTimerUI(); stopTimerLoop(); }
+}
+
+// Returns current remaining ms (accounts for running time since lastStarted)
+function timerGetRemaining() {
+  if(!state.timer) return 1200000;
+  if(!state.timer.running) return state.timer.remainingMs;
+  const elapsed = Date.now() - (state.timer.lastStarted || Date.now());
+  return Math.max(0, state.timer.remainingMs - elapsed);
+}
+
+function timerFormatMs(ms) {
+  const totalSecs = Math.ceil(ms / 1000);
+  const mins = Math.floor(totalSecs / 60);
+  const secs = totalSecs % 60;
+  return mins.toString().padStart(2,'0') + ':' + secs.toString().padStart(2,'0');
+}
+
+function timerGetStatus() {
+  if(!state.timer) return 'idle';
+  const rem = timerGetRemaining();
+  if(rem <= 0) return 'finished';
+  if(state.timer.running) return 'running';
+  if(state.timer.remainingMs < 1200000) return 'paused';
+  return 'idle';
+}
+
+function renderTimerUI() {
+  const rem = timerGetRemaining();
+  const status = timerGetStatus();
+  const fmt = timerFormatMs(rem);
+
+  // Update all timer displays (grupos + elim)
+  ['Grupos','Elim'].forEach(suffix => {
+    const disp = document.getElementById('timerDisplay'+suffix);
+    const startBtn = document.getElementById('timerStartBtn'+suffix);
+    const pauseBtn = document.getElementById('timerPauseBtn'+suffix);
+    if(disp) {
+      disp.textContent = fmt;
+      disp.className = 'timer-display ' + status;
+    }
+    if(startBtn) startBtn.style.display = status==='running' ? 'none' : '';
+    if(pauseBtn) pauseBtn.style.display = status==='running' ? '' : 'none';
+
+    // Update next match text
+    const nextEl = document.getElementById('timerNextText'+suffix);
+    if(nextEl) {
+      const next = getNextPendingMatch();
+      nextEl.innerHTML = next ? `<strong>${next}</strong>` : '<em style="color:var(--muted)">—</em>';
+    }
+  });
+
+  // Update spectator timer if open
+  const specDisp = document.getElementById('specTimerDisplay');
+  if(specDisp) {
+    specDisp.textContent = fmt;
+    specDisp.className = 'spec-timer-display ' + status;
+    const specNext = document.getElementById('specTimerNext');
+    if(specNext) {
+      const next = getNextPendingMatch();
+      specNext.innerHTML = next
+        ? `<span>Próximo: </span>${next}`
+        : '<span style="color:var(--muted)">Sin partidos pendientes</span>';
+    }
+  }
+}
+
+function getNextPendingMatch() {
+  // Returns a display string for the next unplayed match in order
+  if(state.phase === 'grupos') {
+    const order = state.matchOrder || [];
+    const matches = state.groupMatches || [];
+    const matchById = {};
+    matches.forEach(m=>{ matchById[m.id]=m; });
+    const list = order.length > 0
+      ? order.map(id=>matchById[id]).filter(Boolean)
+      : matches;
+    const next = list.find(m=>!m.winner);
+    if(!next) return null;
+    const g = (state.groups||[]).find(g=>g.id===next.groupId);
+    return `[Grupo ${g?g.id:'?'}] ${getPairName(next.pair1Id)} &amp; ${getPairName(next.pair2Id)}`;
+  }
+  if(state.phase === 'eliminatoria') {
+    // Check main bracket first, then consolacion
+    for(const bracket of [state.mainBracket, state.consolBracket]) {
+      if(!bracket) continue;
+      for(const round of bracket.rounds) {
+        const next = round.find(m=>m.pair1Id&&m.pair2Id&&!m.winner);
+        if(next) return `${getPairName(next.pair1Id)} vs ${getPairName(next.pair2Id)}`;
+      }
+    }
+  }
+  return null;
+}
+
+function startTimerLoop() {
+  stopTimerLoop();
+  function tick() {
+    renderTimerUI();
+    if(timerGetStatus() === 'running') {
+      _timerRAF = requestAnimationFrame(tick);
+    } else if(timerGetRemaining() <= 0) {
+      // Timer finished — auto-pause in state
+      state.timer.running = false;
+      state.timer.remainingMs = 0;
+      renderTimerUI();
+    }
+  }
+  _timerRAF = requestAnimationFrame(tick);
+}
+
+function stopTimerLoop() {
+  if(_timerRAF) { cancelAnimationFrame(_timerRAF); _timerRAF = null; }
+}
+
+// Call this whenever state is loaded from Firebase
+function syncTimerFromState() {
+  if(state.timer && state.timer.running) {
+    startTimerLoop();
+  } else {
+    stopTimerLoop();
+    renderTimerUI();
+  }
+}
+
 // ── RESET TORNEO ──────────────────────────────────
 function confirmResetTorneo() {
   openModal(
@@ -2534,8 +2974,8 @@ function doResetTorneo() {
   if(gra) gra.innerHTML='';
   const saa = document.getElementById('sorteoActionsArea');
   if(saa) saa.style.display='none';
-  const sgs = document.getElementById('sorteo-groups-section');
-  if(sgs) sgs.style.display='none';
+  const sga = document.getElementById('sorteoGroupActions');
+  if(sga) sga.style.display='none';
   showToast('Torneo reiniciado. ¡A empezar de nuevo!', 'info', 'ico-reset', 4000);
 }
 
@@ -2611,6 +3051,8 @@ function escHtml(s){ if(!s)return''; return String(s).replace(/&/g,'&amp;').repl
                          n.getSeconds().toString().padStart(2,'0');
       }
       if (_specMode === 'predicciones') tickPollRotation();
+      // Refresh timer display in spectator every second
+      if (_specMode === 'grupos' || _specMode === 'eliminatoria') renderTimerUI();
     }, 1000);
   });
 
@@ -2638,10 +3080,8 @@ if(!window._firebaseReady) document.addEventListener('DOMContentLoaded',()=>{ lo
 
   <!-- SPEC HEADER -->
   <div class="spec-header">
-    <div>
-      <div class="spec-logo">ROAD TO THE <span class="spec-logo-acc">VILLA PACHECO</span> FINAL</div>
-      <div class="spec-subtitle">Torneo de Pádel &nbsp;·&nbsp; Casa Rural Palomeque 2026 &nbsp;·&nbsp; by Accenture</div>
-    </div>
+    <div class="spec-logo">ROAD TO THE <span class="spec-logo-acc">VILLA PACHECO</span> FINAL</div>
+    <div class="spec-subtitle">Torneo de Pádel &nbsp;·&nbsp; Casa Rural Palomeque 2026 &nbsp;·&nbsp; by Accenture</div>
     <div class="spec-phase-badge" id="specPhaseBadge">
       <svg><use href="#ico-signal"/></svg>
       <span id="specPhaseLabel">EN DIRECTO</span>
@@ -2661,7 +3101,7 @@ let _specLiveInterval = null;
 let _specPollInterval = null;
 let _specPollIndex = 0;
 let _specPollTimer = 0;
-const SPEC_POLL_DURATION = 10000; // 10s per poll
+const SPEC_POLL_DURATION = 15000; // 15s per poll
 
 function openSpectator(mode) {
   // Open in a real new browser tab using ?spectator=mode in the URL
@@ -2684,7 +3124,7 @@ function renderSpectator() {
   const phaseLbl = document.getElementById('specPhaseLabel');
   if(!content) return;
 
-  const phaseNames = { registro:'REGISTRO', sorteo:'SORTEO', grupos:'FASE DE GRUPOS', eliminatoria:'ELIMINATORIAS', predicciones:'PREDICCIONES' };
+  const phaseNames = { registro:'REGISTRO', reglas:'REGLAS', 'sorteo-parejas':'SORTEO PAREJAS', 'sorteo-grupos':'SORTEO GRUPOS', grupos:'FASE DE GRUPOS', eliminatoria:'ELIMINATORIAS', predicciones:'ENCUESTAS' };
   if(phaseLbl) phaseLbl.textContent = phaseNames[_specMode] || 'EN DIRECTO';
 
   switch(_specMode) {
@@ -2738,6 +3178,7 @@ function buildSpecGrupos() {
   const gm = state.groupMatches || [];
   if(!groups.length) return '<div style="text-align:center;padding:60px;color:var(--muted);">Los grupos aún no se han generado.</div>';
 
+  const timerBanner = buildSpecTimerBanner();
   const standingsHTML = groups.map(g => {
     const s = computeStandings(g.id);
     const posClass = ['p1','p2','p3','p4'];
@@ -2798,7 +3239,7 @@ function buildSpecGrupos() {
     `;
   }).join('');
 
-  return `
+  return timerBanner + `
     <div class="spec-grupos-layout">
       <div>
         <div class="spec-section-title"><svg><use href="#ico-chart"/></svg>Clasificación</div>
@@ -2818,7 +3259,7 @@ function buildSpecElim() {
   const consol = state.consolBracket;
   if(!main && !consol) return '<div style="text-align:center;padding:60px;color:var(--muted);">La fase eliminatoria aún no ha comenzado.</div>';
 
-  return `
+  return buildSpecTimerBanner() + `
     <div class="spec-bracket-section">
       <div class="spec-bracket-title">ROAD TO THE VILLA PACHECO FINAL</div>
       <div class="spec-bracket-sub">Cuadro Principal · Los Mejores de Cada Grupo</div>
@@ -2897,6 +3338,26 @@ function buildSpecBracket(bracket, type) {
   });
   html += '</div>';
   return html;
+}
+
+// ── TIMER BANNER FOR SPECTATOR ───────────────────
+function buildSpecTimerBanner() {
+  const rem = timerGetRemaining();
+  const status = timerGetStatus();
+  const fmt = timerFormatMs(rem);
+  const next = getNextPendingMatch();
+  return `<div class="spec-timer-banner">
+    <div>
+      <div class="spec-timer-display ${status}" id="specTimerDisplay">${fmt}</div>
+      <div class="spec-timer-title">Tiempo restante</div>
+    </div>
+    <div class="spec-timer-info">
+      <div class="spec-timer-title">Próximo partido</div>
+      <div class="spec-timer-next" id="specTimerNext">
+        ${next ? next : '<span style="color:var(--muted)">Sin partidos pendientes</span>'}
+      </div>
+    </div>
+  </div>`;
 }
 
 // ── PREDICCIONES SPECTATOR ────────────────────────
