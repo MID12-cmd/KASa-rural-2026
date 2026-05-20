@@ -2372,16 +2372,19 @@ function generateBracket(ids, prefix) {
   const rounds=[]; let cur=[];
   for(let i=0;i<seeded.length;i+=2){
     const mId=prefix+'_r0_m'+(i/2); let w=null;
-    if(!seeded[i]) w=seeded[i+1]; if(!seeded[i+1]) w=seeded[i];
+    // Auto-bye: only when one slot is truly empty (null seeded)
+    if(!seeded[i]) w=seeded[i+1]; else if(!seeded[i+1]) w=seeded[i];
     cur.push({id:mId,round:0,slot:i/2,pair1Id:seeded[i],pair2Id:seeded[i+1],sets:null,winner:w});
   }
   rounds.push(cur); let ri=1;
   while(cur.length>1){
     const nxt=[];
+    const isNextFinal = cur.length === 2; // next round will be the final
     for(let i=0;i<cur.length;i+=2){
       const mId=prefix+'_r'+ri+'_m'+(i/2);
       const p1=cur[i].winner||null, p2=(cur[i+1]&&cur[i+1].winner)?cur[i+1].winner:null;
-      let w=null; if(p1&&!cur[i+1]) w=p1;
+      // Never auto-assign winner if this will be the final match
+      let w=null; if(p1&&!cur[i+1]&&!isNextFinal) w=p1;
       nxt.push({id:mId,round:ri,slot:i/2,pair1Id:p1,pair2Id:p2,sets:null,winner:w,prevMatch1:cur[i].id,prevMatch2:cur[i+1]?.id});
     }
     rounds.push(nxt); cur=nxt; ri++;
@@ -2390,9 +2393,22 @@ function generateBracket(ids, prefix) {
 }
 function propagateWinner(type, mId, wId) {
   const b=type==='main'?state.mainBracket:state.consolBracket; if(!b) return;
-  for(const r of b.rounds) for(const m of r){
-    if(m.prevMatch1===mId){m.pair1Id=wId;if(!m.pair2Id)m.winner=wId;}
-    if(m.prevMatch2===mId){m.pair2Id=wId;if(!m.pair1Id)m.winner=wId;}
+  const totalRounds = b.rounds.length;
+  for(let ri=0; ri<b.rounds.length; ri++){
+    const r = b.rounds[ri];
+    const isFinalRound = ri === totalRounds - 1;
+    for(const m of r){
+      if(m.prevMatch1===mId){
+        m.pair1Id=wId;
+        // Only auto-win if opponent slot is null AND this is NOT the final
+        // (final must always be played explicitly)
+        if(!m.pair2Id && !isFinalRound) m.winner=wId;
+      }
+      if(m.prevMatch2===mId){
+        m.pair2Id=wId;
+        if(!m.pair1Id && !isFinalRound) m.winner=wId;
+      }
+    }
   }
 }
 function clearDownstream(type, mId) {
@@ -2415,14 +2431,16 @@ function renderElim() {
   renderElimMatches('main',state.mainBracket); renderElimMatches('consolacion',state.consolBracket);
 }
 
-// Returns the correct round name based on how many matches are in that round
-function getRoundName(matchCount, isFinal) {
-  if (isFinal) return 'FINAL';
-  if (matchCount >= 8) return 'Dieciseisavos';
-  if (matchCount >= 4) return 'Octavos de Final';
-  if (matchCount >= 2) return 'Cuartos de Final';
-  if (matchCount === 1) return 'Semifinal';
-  return 'Ronda';
+// Returns the correct round name based on rounds remaining until the final
+// roundsLeft = totalRounds - 1 - roundIndex  (0 = final, 1 = semi, 2 = quarters...)
+function getRoundName(roundIndex, totalRounds) {
+  const roundsLeft = totalRounds - 1 - roundIndex; // 0 = final
+  if (roundsLeft === 0) return 'FINAL';
+  if (roundsLeft === 1) return 'Semifinal';
+  if (roundsLeft === 2) return 'Cuartos de Final';
+  if (roundsLeft === 3) return 'Octavos de Final';
+  if (roundsLeft === 4) return 'Dieciseisavos';
+  return 'Ronda ' + (roundIndex + 1);
 }
 function renderBracket(type, bracket) {
   const vizEl=document.getElementById(type==='main'?'mainBracketViz':'consolBracketViz');
@@ -2430,8 +2448,7 @@ function renderBracket(type, bracket) {
   const rounds=bracket.rounds, nr=rounds.length;
   let html='<div class="bracket">';
   rounds.forEach((round,ri)=>{
-    const isFinal = ri===nr-1;
-    const lbl = getRoundName(round.length, isFinal);
+    const lbl = getRoundName(ri, nr);
     const h=Math.pow(2,nr-1-ri)*80+(Math.pow(2,nr-1-ri)-1)*12;
     html+=`<div class="bracket-round" style="height:${h+40}px;"><div class="round-label">${lbl||('R'+(ri+1))}</div><div style="display:flex;flex-direction:column;justify-content:space-around;flex:1;">`;
     round.forEach(m=>{
@@ -2458,8 +2475,7 @@ function renderElimMatches(type, bracket) {
   if(!bracket||!el) return;
   let html='';
   bracket.rounds.forEach((round,ri)=>{
-    const isFinal = ri===bracket.rounds.length-1;
-    const lbl = getRoundName(round.length, isFinal);
+    const lbl = getRoundName(ri, bracket.rounds.length);
     html+=`<div class="section-title" style="margin-top:20px;font-size:16px;">${lbl}</div>`;
     round.forEach(m=>{ if(!m.pair1Id||!m.pair2Id) return; html+=renderMatchCard(m,type); });
   });
@@ -2794,24 +2810,28 @@ function timerStart() {
   state.timer.running = true;
   state.timer.lastStarted = Date.now();
   saveState();
-  if(!firebaseMode) { renderTimerUI(); startTimerLoop(); }
+  // Always start local loop regardless of Firebase mode —
+  // Firebase only fires on state changes, not every second
+  renderTimerUI();
+  startTimerLoop();
 }
 
 function timerPause() {
   if(!state.timer || !state.timer.running) return;
-  // Calculate remaining time up to now
   const elapsed = Date.now() - state.timer.lastStarted;
   state.timer.remainingMs = Math.max(0, state.timer.remainingMs - elapsed);
   state.timer.running = false;
   state.timer.lastStarted = null;
   saveState();
-  if(!firebaseMode) { renderTimerUI(); stopTimerLoop(); }
+  renderTimerUI();
+  stopTimerLoop();
 }
 
 function timerReset() {
   state.timer = { running: false, remainingMs: 1200000, lastStarted: null };
   saveState();
-  if(!firebaseMode) { renderTimerUI(); stopTimerLoop(); }
+  renderTimerUI();
+  stopTimerLoop();
 }
 
 // Returns current remaining ms (accounts for running time since lastStarted)
@@ -3278,8 +3298,7 @@ function buildSpecBracket(bracket, type) {
   const rounds = bracket.rounds, nr = rounds.length;
   let html = '<div class="spec-bracket">';
   rounds.forEach((round, ri) => {
-    const isFinal = ri === nr-1;
-    const lbl = getRoundName(round.length, isFinal);
+    const lbl = getRoundName(ri, nr);
     const h = Math.pow(2, nr-1-ri)*90 + (Math.pow(2, nr-1-ri)-1)*16;
     html += `<div class="spec-bracket-round" style="height:${h+50}px;">
       <div class="spec-round-label">${lbl}</div>
