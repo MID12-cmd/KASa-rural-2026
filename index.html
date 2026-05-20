@@ -531,23 +531,25 @@
   }
   .bracket-hero-title svg { width: clamp(20px, 3vw, 34px); height: clamp(20px, 3vw, 34px); color: var(--acc); flex-shrink: 0; }
   .bracket-hero-sub { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
-  .bracket-wrapper { overflow-x: auto; padding: 20px 0; }
-  .bracket { display: flex; gap: 0; align-items: center; min-width: max-content; padding: 0 20px; }
+  .bracket-wrapper { overflow-x: auto; padding: 20px 0; display: flex; justify-content: center; }
+  .bracket { display: flex; gap: 0; align-items: center; padding: 0 20px; }
   .bracket-round { display: flex; flex-direction: column; justify-content: space-around; }
   .round-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; padding: 0 0 12px; }
   .bracket-match {
     background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    width: 200px; margin: 6px 0; overflow: hidden; transition: border-color .2s;
+    width: 240px; margin: 6px 0; overflow: hidden; transition: border-color .2s;
   }
   .bracket-match:hover { border-color: var(--acc); }
   .bracket-team {
-    padding: 8px 12px; font-size: 13px; font-weight: 600; display: flex;
-    align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); transition: background .2s;
+    padding: 8px 12px; font-size: 12px; font-weight: 600; display: flex;
+    align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border);
+    transition: background .2s; gap: 6px;
   }
+  .bracket-team span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .bracket-team:last-child { border-bottom: none; }
   .bracket-team.winner { background: rgba(200,241,53,.08); color: var(--lime); }
   .bracket-team.tbd    { color: var(--muted); font-style: italic; }
-  .bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--lime); min-width: 20px; text-align: right; }
+  .bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--lime); min-width: 20px; text-align: right; flex-shrink: 0; }
   .connector { width: 30px; display: flex; flex-direction: column; justify-content: space-around; }
 
   /* TROPHY */
@@ -910,7 +912,19 @@
   .spec-phase-badge svg { width: 14px; height: 14px; }
 
   /* SPEC CONTAINERS */
-  .spec-container { max-width: 1600px; margin: 0 auto; padding: 32px; position: relative; z-index: 1; }
+  .spec-container {
+    position: absolute; inset: 0;
+    padding: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .spec-inner {
+    width: 1600px;
+    padding: 20px 32px 24px;
+    transform-origin: top left;
+    position: absolute;
+    top: 0; left: 0;
+  }
 
   /* REGISTRO VIEW */
   .spec-registro-grid {
@@ -1059,7 +1073,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
-    width: 220px;
+    width: 260px;
     margin: 8px 0;
     overflow: hidden;
     transition: border-color .3s;
@@ -1067,7 +1081,7 @@
   .spec-match-card.has-winner { border-color: rgba(200,241,53,.2); }
   .spec-bracket-team {
     padding: 10px 14px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -1076,6 +1090,7 @@
     transition: background .3s;
     gap: 8px;
   }
+  .spec-bracket-team span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .spec-bracket-team:last-child { border-bottom: none; }
   .spec-bracket-team.winner { background: rgba(200,241,53,.08); color: var(--lime); }
   .spec-bracket-team.eliminated {
@@ -1208,7 +1223,6 @@
   @media(max-width:900px){
     .spec-grupos-layout { grid-template-columns: 1fr; }
     .spec-match-card { width: 180px; }
-    .spec-container { padding: 16px; }
   }
 
 
@@ -3246,7 +3260,8 @@ function escHtml(s){ if(!s)return''; return String(s).replace(/&/g,'&amp;').repl
       }
       if (_specMode === 'predicciones') tickPollRotation();
       // Refresh timer display in spectator every second
-      if (_specMode === 'grupos' || _specMode === 'eliminatoria') renderTimerUI();
+      if (_specMode === 'grupos' || _specMode === 'eliminatoria') { renderTimerUI(); scaleSpecToFit(); }
+      if (_specMode === 'predicciones' || _specMode === 'registro') scaleSpecToFit();
     }, 1000);
   });
 
@@ -3260,7 +3275,7 @@ if(!window._firebaseReady) document.addEventListener('DOMContentLoaded',()=>{ lo
      SPECTATOR MODE OVERLAY
      Opens in new tab via openSpectator(mode)
      ═══════════════════════════════════════════════════ -->
-<div id="spectatorOverlay" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;overflow-y:auto;">
+<div id="spectatorOverlay" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;overflow:hidden;">
 
   <!-- LIVE BADGE -->
   <div class="spec-live-badge">
@@ -3284,7 +3299,9 @@ if(!window._firebaseReady) document.addEventListener('DOMContentLoaded',()=>{ lo
 
   <!-- SPEC CONTENT -->
   <div class="spec-container">
-    <div id="specContent"></div>
+    <div class="spec-inner" id="specInner">
+      <div id="specContent"></div>
+    </div>
   </div>
 </div>
 
@@ -3298,9 +3315,19 @@ let _specPollTimer = 0;
 const SPEC_POLL_DURATION = 15000; // 15s per poll
 
 function openSpectator(mode) {
-  // Open in a real new browser tab using ?spectator=mode in the URL
   const url = window.location.href.split('?')[0] + '?spectator=' + mode;
   window.open(url, '_blank');
+}
+function scaleSpecToFit() {
+  const inner = document.getElementById('specInner');
+  if(!inner) return;
+  const availW = window.innerWidth;
+  const availH = window.innerHeight;
+  const scale = Math.min(availW / 1600, availH / inner.scrollHeight, 1);
+  inner.style.transform = `scale(${scale})`;
+  // Center horizontally if scaled
+  const scaledW = 1600 * scale;
+  inner.style.left = ((availW - scaledW) / 2) + 'px';
 }
 
 function closeSpectator() {
@@ -3310,7 +3337,7 @@ function closeSpectator() {
 
 // Called by the Firebase onValue listener to refresh spectator if open
 function refreshSpectatorIfOpen() {
-  if(_specMode) renderSpectator();
+  if(_specMode) { renderSpectator(); setTimeout(scaleSpecToFit, 30); }
 }
 
 function renderSpectator() {
