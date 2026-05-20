@@ -1239,11 +1239,11 @@
   .rule-card:hover { border-color: var(--acc); }
   .rule-icon {
     width: 48px; height: 48px;
-    background: rgba(161,0,255,.12);
+    background: rgba(200,241,53,.1);
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 14px;
-    color: var(--acc);
+    color: var(--lime);
   }
   .rule-icon svg { width: 26px; height: 26px; }
   .rule-title {
@@ -1513,20 +1513,20 @@
       <div class="sorteo-sub">Lee esto antes de empezar a jugar</div>
     </div>
     <div class="rules-grid" id="rulesGrid">
-      <div class="rule-card">
-        <div class="rule-icon"><svg><use href="#ico-users"/></svg></div>
-        <div class="rule-title">Formación de parejas</div>
-        <div class="rule-desc">Las parejas se forman por <strong>sorteo aleatorio</strong> usando criptografía real (crypto.getRandomValues). Nadie elige a su compañero: la suerte manda.</div>
-      </div>
-      <div class="rule-card">
-        <div class="rule-icon"><svg><use href="#ico-chart"/></svg></div>
-        <div class="rule-title">Formación de grupos</div>
-        <div class="rule-desc">Los grupos también son <strong>completamente aleatorios</strong>. Las parejas se distribuyen en grupos de hasta 4 y el orden de los partidos se genera intercalando entre grupos para que nadie espere demasiado.</div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(46,204,113,.1);color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <div class="rule-title" style="color:var(--green);">Garantía Anti-Divorcios</div>
+        <div class="rule-desc">Las parejas se forman por <strong>sorteo aleatorio</strong> usando criptografía real. Nadie elige a su compañero: la suerte manda. Los grupos también son <strong>completamente aleatorios</strong> y el orden de los partidos se intercala entre grupos para que nadie espere demasiado.<br><br>Además, el algoritmo <strong>crypto.getRandomValues()</strong> ha sido programado con una línea de código secreta que impide que te toque jugar con tu compañero de proyecto o compañero de llorería, previniendo así bajas laborales y herencias perdidas antes de la Copa Consolación.</div>
       </div>
       <div class="rule-card">
         <div class="rule-icon"><svg><use href="#ico-ball"/></svg></div>
-        <div class="rule-title">Sistema de puntuación</div>
-        <div class="rule-desc">Cada partido se juega a <strong>1 set</strong> sin límite de juegos. Gana la pareja que primero llegue a <strong>9 juegos</strong>, o la que más juegos tenga cuando se acaben los <strong>20 minutos</strong> de tiempo asignado.</div>
+        <div class="rule-title">Sistema de puntuación y Punto de Oro</div>
+        <div class="rule-desc">Cada partido se juega a <strong>1 set</strong> sin límite de juegos. Gana la pareja que primero llegue a <strong>9 juegos</strong>, o la que más juegos tenga cuando se acaben los <strong>20 minutos</strong> de tiempo asignado.<br><br>Todos los juegos que lleguen a <strong>40-40</strong> se decidirán con un único <strong>Punto de Oro</strong> (sin ventajas). Recibe el saque el miembro de la pareja rival que elija el jugador que saca. ¡Presión máxima!</div>
+      </div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(200,241,53,.1);color:var(--lime);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></div>
+        <div class="rule-title" style="color:var(--lime);">La Bola de Oro del Partido</div>
+        <div class="rule-desc">Si un partido acaba los <strong>20 minutos con empate exacto</strong> (ej: 4-4), no se acaba ahí. Se juega un <strong>único punto a cara o cruz</strong> en ese mismo instante. El que gane ese punto, gana el partido.</div>
       </div>
       <div class="rule-card">
         <div class="rule-icon"><svg><use href="#ico-chart"/></svg></div>
@@ -1544,19 +1544,9 @@
         <div class="rule-desc">Los ganadores de cada semifinal se enfrentan en la <strong>Gran Final</strong> por el título de <strong>Villa Pacheco Champion</strong>. Paralelamente se juega la final de la Copa Consolación. Nadie se va a casa sin haber jugado su final.</div>
       </div>
       <div class="rule-card">
-        <div class="rule-icon"><svg><use href="#ico-flag"/></svg></div>
-        <div class="rule-title">Temporizador de partidos</div>
-        <div class="rule-desc">Cada partido tiene un <strong>temporizador de 20 minutos</strong> visible en todos los dispositivos. El administrador lo arranca, pausa y reinicia. Se indica siempre el próximo partido para que nadie se despiste.</div>
-      </div>
-      <div class="rule-card">
         <div class="rule-icon"><svg><use href="#ico-crown"/></svg></div>
         <div class="rule-title">Encuestas y predicciones</div>
         <div class="rule-desc">Vota en las <strong>23 encuestas del torneo</strong>: ¿quién va a ganar?, ¿quién es el paquete?, ¿quién trae las cervezas?... Los rankings se actualizan en tiempo real y se revelan al final.</div>
-      </div>
-      <div class="rule-card">
-        <div class="rule-icon"><svg><use href="#ico-tv"/></svg></div>
-        <div class="rule-title">Modo Espectador</div>
-        <div class="rule-desc">En cada fase hay un botón <strong>"Modo Espectador"</strong> que abre una pantalla optimizada para proyectar en TV o seguir desde el móvil. Se actualiza en tiempo real. Ideal para seguir el torneo desde la piscina.</div>
       </div>
       <div class="rule-card rule-card-special">
         <div class="rule-icon" style="background:rgba(231,76,60,.15);color:var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2.5"/></svg></div>
@@ -1567,21 +1557,6 @@
         <div class="rule-icon" style="background:rgba(161,0,255,.15);color:#c87aff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3" stroke-dasharray="3 2"/><path d="M6 21v-2a6 6 0 0 1 12 0v2" stroke-dasharray="3 2"/><line x1="2" y1="2" x2="22" y2="22" stroke-width="1.5"/></svg></div>
         <div class="rule-title" style="color:#c87aff;">El Fantasma</div>
         <div class="rule-desc">Si suena el pitido virtual del temporizador y un jugador no está en pista porque <strong>"estaba en el baño"</strong>, <strong>"haciendo una RFP"</strong> o <strong>"haciendo un commit"</strong>, cuando aparezca jugará usando la pala con la <strong>mano no dominante</strong>.</div>
-      </div>
-      <div class="rule-card rule-card-special">
-        <div class="rule-icon" style="background:rgba(245,200,66,.12);color:#f5c842;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/><path d="M9 2.5 Q12 1 15 2.5" stroke-width="1.5"/></svg></div>
-        <div class="rule-title" style="color:#f5c842;">Punto de Oro</div>
-        <div class="rule-desc">Todos los juegos que lleguen a <strong>40-40</strong> se decidirán con un único <strong>Punto de Oro</strong> (sin ventajas). Recibe el saque el miembro de la pareja rival que elija el jugador que saca. ¡Presión máxima!</div>
-      </div>
-      <div class="rule-card rule-card-special">
-        <div class="rule-icon" style="background:rgba(200,241,53,.1);color:var(--lime);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/><path d="M12 8v8"/></svg></div>
-        <div class="rule-title" style="color:var(--lime);">La Bola de Oro del Partido</div>
-        <div class="rule-desc">Si un partido acaba los <strong>20 minutos con empate exacto</strong> (ej: 4-4), no se acaba ahí. Se juega un <strong>único punto a cara o cruz</strong> en ese mismo instante. El que gane ese punto, gana el partido.</div>
-      </div>
-      <div class="rule-card rule-card-special">
-        <div class="rule-icon" style="background:rgba(46,204,113,.1);color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-        <div class="rule-title" style="color:var(--green);">Garantía Anti-Divorcios</div>
-        <div class="rule-desc">El algoritmo <strong>crypto.getRandomValues()</strong> ha sido programado con una línea de código secreta que impide que te toque jugar con tu compañero de proyecto o compañero de llorería, previniendo así bajas laborales y herencias perdidas antes de la Copa Consolación.</div>
       </div>
     </div>
     <div style="display:flex;justify-content:center;margin-top:32px;padding-bottom:16px;">
