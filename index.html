@@ -1952,7 +1952,8 @@ function renderPlayers() {
     return `<div class="player-card">
       <div class="player-num">${i+1}</div>
       <div class="player-info">
-        <div class="player-name">${escHtml(p.name)}${p.nickname?` <span style="color:var(--muted);font-size:12px;font-weight:400;">"${escHtml(p.nickname)}"</span>`:''}</div>
+        <div class="player-name">${escHtml(p.name)}</div>
+        ${p.nickname?`<div style="font-size:12px;color:var(--lime);font-weight:600;margin-top:1px;">"${escHtml(p.nickname)}"</div>`:''}
         <div class="player-meta">${escHtml(p.team)}</div>
         <div class="mt-8"><span class="level-badge ${d.cls}"><svg><use href="#${d.icon}"/></svg>${d.label}</span></div>
       </div>
