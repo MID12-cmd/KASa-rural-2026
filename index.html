@@ -2122,49 +2122,57 @@ function goToReglas() {
   });
 }
 function goToSorteoParejas() {
-  // Navigate to the tab without starting the draw
-  state.phase = 'sorteo-parejas';
-  saveState();
-  if(!firebaseMode) renderAll();
-  showTab('sorteo-parejas');
-  // Show start button, hide reveal area
-  const startBtn = document.getElementById('sorteoStartPairsBtn');
-  if(startBtn) startBtn.style.display = 'flex';
-  document.getElementById('pairRevealArea').innerHTML = '';
-  document.getElementById('sorteoActionsArea').style.display = 'none';
+  requirePin(() => {
+    // Navigate to the tab without starting the draw
+    state.phase = 'sorteo-parejas';
+    saveState();
+    if(!firebaseMode) renderAll();
+    showTab('sorteo-parejas');
+    // Show start button, hide reveal area
+    const startBtn = document.getElementById('sorteoStartPairsBtn');
+    if(startBtn) startBtn.style.display = 'flex';
+    document.getElementById('pairRevealArea').innerHTML = '';
+    document.getElementById('sorteoActionsArea').style.display = 'none';
+  });
 }
 function startSorteoParejas() {
-  openModal(
-    '¿Iniciar el Sorteo de Parejas?',
-    `Se sortearán ${Math.floor((state.players||[]).length/2)} parejas. El registro quedará cerrado.`,
-    () => {
-      const startBtn = document.getElementById('sorteoStartPairsBtn');
-      if(startBtn) startBtn.style.display = 'none';
-      doStartPairDraw();
-    }
-  );
+  requirePin(() => {
+    openModal(
+      '¿Iniciar el Sorteo de Parejas?',
+      `Se sortearán ${Math.floor((state.players||[]).length/2)} parejas. El registro quedará cerrado.`,
+      () => {
+        const startBtn = document.getElementById('sorteoStartPairsBtn');
+        if(startBtn) startBtn.style.display = 'none';
+        doStartPairDraw();
+      }
+    );
+  });
 }
 function goToSorteoGrupos() {
-  showTab('sorteo-grupos');
-  state.phase = 'sorteo-grupos';
-  saveState();
-  if(!firebaseMode) renderAll();
-  // Show start button, don't auto-start
-  const startBtn = document.getElementById('sorteoStartGroupsBtn');
-  if(startBtn) startBtn.style.display = 'flex';
-  document.getElementById('groupRevealArea').innerHTML = '';
-  document.getElementById('sorteoGroupActions').style.display = 'none';
+  requirePin(() => {
+    showTab('sorteo-grupos');
+    state.phase = 'sorteo-grupos';
+    saveState();
+    if(!firebaseMode) renderAll();
+    // Show start button, don't auto-start
+    const startBtn = document.getElementById('sorteoStartGroupsBtn');
+    if(startBtn) startBtn.style.display = 'flex';
+    document.getElementById('groupRevealArea').innerHTML = '';
+    document.getElementById('sorteoGroupActions').style.display = 'none';
+  });
 }
 function startSorteoGrupos() {
-  openModal(
-    '¿Iniciar el Sorteo de Grupos?',
-    'Se asignarán las parejas a grupos de forma aleatoria.',
-    () => {
-      const startBtn = document.getElementById('sorteoStartGroupsBtn');
-      if(startBtn) startBtn.style.display = 'none';
-      startGroupDraw();
-    }
-  );
+  requirePin(() => {
+    openModal(
+      '¿Iniciar el Sorteo de Grupos?',
+      'Se asignarán las parejas a grupos de forma aleatoria.',
+      () => {
+        const startBtn = document.getElementById('sorteoStartGroupsBtn');
+        if(startBtn) startBtn.style.display = 'none';
+        startGroupDraw();
+      }
+    );
+  });
 }
 
 // ── STEP 1: CONFIRM → COMPUTE PAIRS → START DRAW ──
@@ -2334,11 +2342,13 @@ function animateGroupDraw(gIdx) {
 
 // ── STEP 3: CONFIRM START GROUP PHASE ─────────────
 function confirmStartGroupPhase() {
-  openModal(
-    '¿Comenzar Fase de Grupos?',
-    'Las parejas y grupos quedan fijados. Comenzará la fase de grupos. Esta acción no se puede deshacer.',
-    doStartGroupPhase
-  );
+  requirePin(() => {
+    openModal(
+      '¿Comenzar Fase de Grupos?',
+      'Las parejas y grupos quedan fijados. Comenzará la fase de grupos. Esta acción no se puede deshacer.',
+      doStartGroupPhase
+    );
+  });
 }
 
 function doStartGroupPhase() {
