@@ -1481,6 +1481,10 @@
     .bracket-hero { padding: 18px 0 12px; }
     .bracket-hero-sub { font-size: 11px; }
   }
+
+  /* ── PIN MODAL ───────────────────────────────────── */
+  #pinModal .modal { border-top-color: var(--lime); }
+  #pinInput { font-family: 'Bebas Neue', sans-serif; }
 </style>
 </head>
 <body>
@@ -1495,6 +1499,25 @@
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
       <button class="btn btn-lime" id="confirmBtn">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- PIN MODAL -->
+<div class="modal-overlay" id="pinModal">
+  <div class="modal">
+    <div class="modal-title">🔒 Acceso de Administrador</div>
+    <div class="modal-body">Introduce el PIN de administrador para continuar.</div>
+    <div class="form-group" style="margin-bottom:20px;">
+      <label>PIN</label>
+      <input type="password" id="pinInput" placeholder="••••" maxlength="8"
+             style="font-size:24px;letter-spacing:6px;text-align:center;"
+             onkeydown="if(event.key==='Enter') checkPin()">
+    </div>
+    <div id="pinError" style="color:var(--red);font-size:13px;margin-bottom:12px;display:none;">PIN incorrecto. Inténtalo de nuevo.</div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closePinModal()">Cancelar</button>
+      <button class="btn btn-lime" onclick="checkPin()"><svg><use href="#ico-check"/></svg>Confirmar</button>
     </div>
   </div>
 </div>
@@ -2091,10 +2114,12 @@ let _pendingGroups = [];  // computed groups waiting to be animated
 // ── NAVIGATION ────────────────────────────────────
 function goToReglas() {
   if((state.players||[]).length < 4){ showToast('Necesitas al menos 4 jugadores','error','ico-warn'); return; }
-  state.phase = 'reglas';
-  saveState();
-  if(!firebaseMode) renderAll();
-  showTab('reglas');
+  requirePin(() => {
+    state.phase = 'reglas';
+    saveState();
+    if(!firebaseMode) renderAll();
+    showTab('reglas');
+  });
 }
 function goToSorteoParejas() {
   // Navigate to the tab without starting the draw
@@ -2539,7 +2564,7 @@ function renderGroups() {
 }
 
 // ── FINISH GROUPS ─────────────────────────────────
-function confirmFinishGroups(){ openModal('¿Finalizar Fase de Grupos?','Se generarán los cuadros eliminatorios. Esta acción no se puede deshacer.',doFinishGroups); }
+function confirmFinishGroups(){ requirePin(() => openModal('¿Finalizar Fase de Grupos?','Se generarán los cuadros eliminatorios. Esta acción no se puede deshacer.',doFinishGroups)); }
 function doFinishGroups() {
   state.groupsFinished=true; state.phase='eliminatoria';
   const mp=[],cp=[];
@@ -2988,6 +3013,25 @@ function submitPrediction() { submitPollVote('winner'); }
 
 let _timerRAF = null; // requestAnimationFrame handle
 
+// ── BEEP (Web Audio API) ─────────────────────────
+function playTimerBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    // Three short beeps
+    [0, 0.35, 0.7].forEach(offset => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.6, ctx.currentTime + offset);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + offset + 0.25);
+      osc.start(ctx.currentTime + offset);
+      osc.stop(ctx.currentTime + offset + 0.25);
+    });
+  } catch(e) {}
+}
+
 function timerStart() {
   if(!state.timer) state.timer = { running:false, remainingMs:1200000, lastStarted:null, configuredMs:1200000 };
   if(state.timer.running) return;
@@ -3201,6 +3245,7 @@ function startTimerLoop() {
       state.timer.running = false;
       state.timer.remainingMs = 0;
       renderTimerUI();
+      playTimerBeep();
     }
   }
   _timerRAF = requestAnimationFrame(tick);
@@ -3221,12 +3266,43 @@ function syncTimerFromState() {
 }
 
 // ── RESET TORNEO ──────────────────────────────────
+// ── PIN SYSTEM ───────────────────────────────────
+const ADMIN_PIN = '0303';  // ← cambia esto para personalizar el PIN
+let _pinCallback = null;
+
+function requirePin(callback) {
+  _pinCallback = callback;
+  document.getElementById('pinInput').value = '';
+  document.getElementById('pinError').style.display = 'none';
+  document.getElementById('pinModal').classList.add('open');
+  setTimeout(() => document.getElementById('pinInput').focus(), 100);
+}
+
+function checkPin() {
+  const val = document.getElementById('pinInput').value.trim();
+  if (val === ADMIN_PIN) {
+    closePinModal();
+    if (_pinCallback) { _pinCallback(); _pinCallback = null; }
+  } else {
+    document.getElementById('pinError').style.display = '';
+    document.getElementById('pinInput').value = '';
+    document.getElementById('pinInput').focus();
+  }
+}
+
+function closePinModal() {
+  document.getElementById('pinModal').classList.remove('open');
+  _pinCallback = null;
+}
+
 function confirmResetTorneo() {
-  openModal(
-    '¿Reiniciar el torneo completo?',
-    'Se borrarán todos los jugadores, grupos, partidos y eliminatorias. El torneo volverá al estado inicial. Esta acción no se puede deshacer.',
-    doResetTorneo
-  );
+  requirePin(() => {
+    openModal(
+      '¿Reiniciar el torneo completo?',
+      'Se borrarán todos los jugadores, grupos, partidos y eliminatorias. El torneo volverá al estado inicial. Esta acción no se puede deshacer.',
+      doResetTorneo
+    );
+  });
 }
 function doResetTorneo() {
   // Reset local state immediately
