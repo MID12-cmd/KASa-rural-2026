@@ -1133,7 +1133,3735 @@
     gap: 16px;
   }
   .spec-pred-title svg { width: 36px; height: 36px; color: var(--acc); }
-  .spec-pred-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; max-width: 800px; }
+  .spec-pred-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+  .spec-pred-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .spec-pred-progress-track {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .spec-pred-progress-fill {
+    height: 100%;
+    background: var(--lime);
+    border-radius: 2px;
+    transition: width .1s linear;
+  }
+
+  .spec-poll-rank-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 18px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: border-color .3s;
+  }
+  .spec-poll-rank-item.rank-1 { border-color: rgba(245,200,66,.3); background: rgba(245,200,66,.04); }
+  .spec-poll-rank-item.rank-2 { border-color: rgba(176,184,200,.2); }
+  .spec-poll-rank-item.rank-3 { border-color: rgba(205,127,50,.2); }
+  .spec-poll-pos {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    min-width: 44px;
+    text-align: center;
+    line-height: 1;
+  }
+  .spec-poll-pos.p1 { color: #f5c842; text-shadow: 0 0 16px rgba(245,200,66,.5); }
+  .spec-poll-pos.p2 { color: #b0b8c8; }
+  .spec-poll-pos.p3 { color: #cd7f32; }
+  .spec-poll-pos.pn { color: var(--muted); }
+  .spec-poll-info { flex: 1; min-width: 0; }
+  .spec-poll-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1.1; }
+  .spec-poll-voters { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .spec-poll-bar-wrap { width: 200px; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+  .spec-poll-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--acc), var(--lime)); transition: width .8s ease; }
+  .spec-poll-count { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--lime); min-width: 44px; text-align: right; line-height: 1; }
+
+  .spec-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: transparent;
+    border: 1px solid rgba(200,241,53,.3);
+    color: var(--lime);
+    border-radius: 8px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .spec-btn svg { width: 14px; height: 14px; }
+  .spec-btn:hover { background: rgba(200,241,53,.08); border-color: var(--lime); }
+
+  @media(max-width:900px){
+    .spec-standings-row { grid-template-columns: 1fr; } .spec-results-row { grid-template-columns: 1fr; }
+    .spec-match-card { width: 180px; }
+  }
+
+
+  .spec-btn-main {
+    background: transparent;
+    border: 1px solid rgba(200,241,53,.25);
+    color: var(--lime);
+    font-size: 11px;
+    padding: 7px 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all .2s;
+  }
+  .spec-btn-main svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .spec-btn-main:hover { background: rgba(200,241,53,.08); border-color: var(--lime); }
+
+  /* ── RULES ──────────────────────────────────────── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .rule-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color .2s;
+  }
+  .rule-card:hover { border-color: var(--acc); }
+  .rule-icon {
+    width: 48px; height: 48px;
+    background: rgba(200,241,53,.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+    color: var(--lime);
+  }
+  .rule-icon svg { width: 26px; height: 26px; }
+  .rule-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--lime);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .rule-desc {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .rule-desc strong { color: var(--text); font-size: 17px; }
+  .rule-card-special { border-style: dashed; border-color: rgba(255,255,255,.1); }
+  .rule-card-special:hover { border-style: dashed; }
+
+  /* ── TIMER ───────────────────────────────────────── */
+  .timer-widget {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .timer-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: 4px;
+    min-width: 120px;
+    text-align: center;
+    transition: color .3s;
+  }
+  .timer-display.running  { color: var(--lime); text-shadow: 0 0 20px var(--lime-glow); }
+  .timer-display.paused   { color: var(--muted); }
+  .timer-display.finished { color: var(--red); text-shadow: 0 0 20px rgba(231,76,60,.3); animation: timerPulse 1s infinite; }
+  .timer-display.idle     { color: var(--muted); }
+  @keyframes timerPulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+  .timer-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+    text-align: center;
+  }
+  .timer-controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .timer-info { flex: 1; min-width: 160px; }
+  .timer-next-match {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .timer-next-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--text);
+    line-height: 1.2;
+    margin-top: 2px;
+  }
+  .timer-current-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: var(--lime);
+    line-height: 1.2;
+    margin-top: 2px;
+    margin-bottom: 12px;
+  }
+  .timer-next-match strong { color: var(--text); }
+
+  /* SPECTATOR TIMER */
+  .spec-timer-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-bottom: 2px solid var(--acc);
+    border-radius: 12px;
+    padding: 20px 28px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .spec-timer-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: 6px;
+    min-width: 180px;
+    text-align: center;
+    transition: color .3s;
+  }
+  .spec-timer-display.running  { color: var(--lime); text-shadow: 0 0 30px var(--lime-glow); }
+  .spec-timer-display.paused   { color: var(--muted); }
+  .spec-timer-display.finished { color: var(--red); animation: timerPulse 1s infinite; }
+  .spec-timer-display.idle     { color: var(--muted); }
+  .spec-timer-info { flex: 1; }
+  .spec-timer-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .spec-timer-next {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--text);
+    letter-spacing: 2px;
+    line-height: 1.3;
+  }
+  .spec-timer-next span { color: var(--lime); }
+
+  /* UTIL */
+  .text-center{text-align:center} .text-muted{color:var(--muted)} .text-lime{color:var(--lime)}
+  .text-green{color:var(--green)} .text-red{color:var(--red)}
+  .mt-8{margin-top:8px} .mt-16{margin-top:16px} .mt-24{margin-top:24px}
+  .flex{display:flex} .gap-8{gap:8px} .gap-12{gap:12px}
+  .flex-wrap{flex-wrap:wrap} .items-center{align-items:center} .justify-between{justify-content:space-between}
+
+  @media(max-width:600px){
+    .form-row{flex-direction:column} .form-group{min-width:unset}
+    .groups-grid{grid-template-columns:1fr} .header-inner{padding:14px 16px}
+  }
+
+  /* ── LAPTOP 14" OPTIMISATION (≤1440px) ─────────── */
+  @media (max-width: 1440px) {
+
+    /* Container */
+    .container { padding: 0 12px; }
+
+    /* Header */
+    .header-inner { padding: 12px 16px; }
+
+    /* Tabs — prevent horizontal overflow */
+    .tab-btn { padding: 8px 12px; font-size: 12px; letter-spacing: 0; }
+    .tab-btn svg { width: 13px; height: 13px; }
+
+    /* Progress steps — tighten */
+    .step-line { width: 40px; }
+    .progress-track { margin: 12px 0; }
+
+    /* Hero titles */
+    .sorteo-title { font-size: clamp(22px, 3.5vw, 36px); }
+    .bracket-hero-title { font-size: clamp(16px, 2.8vw, 28px); }
+    .pred-title { font-size: clamp(20px, 3vw, 32px); }
+    .sorteo-title svg { width: 28px; height: 28px; }
+
+    /* Rule cards — tighter grid */
+    .rules-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .rule-card { padding: 18px; }
+    .rule-title { font-size: 20px; }
+    .rule-desc { font-size: 14px; }
+    .rule-icon { width: 40px; height: 40px; margin-bottom: 10px; }
+    .rule-icon svg { width: 22px; height: 22px; }
+
+    /* Timer widget */
+    .timer-display { font-size: 40px; min-width: 100px; }
+    .timer-widget { padding: 12px 16px; gap: 14px; }
+    .timer-next-text { font-size: 18px; }
+    .timer-current-text { font-size: 21px; }
+
+    /* Bracket */
+    .bracket-wrapper { padding: 12px 0; }
+    .bracket-match { width: 200px; }
+    .bracket-team { font-size: 11px; padding: 6px 10px; }
+    .trophy-match { width: 180px; padding: 12px; }
+    .trophy-icon svg { width: 28px; height: 28px; }
+    .trophy-title { font-size: 11px; }
+    .trophy-team { font-size: 12px; }
+    .connector { width: 22px; }
+
+    /* Groups */
+    .groups-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .standings-table td { padding: 7px 8px; }
+    .standings-table th { padding: 6px 8px; }
+
+    /* Match cards */
+    .match-card { padding: 10px 12px; }
+    .pair-label { font-size: 13px; }
+    .set-input { width: 38px; font-size: 16px; padding: 6px 4px; }
+
+    /* Polls */
+    .polls-sidebar { width: 190px; }
+    .poll-panel-title { font-size: 22px; }
+    .pred-rank-pos { font-size: 22px; min-width: 28px; }
+    .pred-rank-count { font-size: 18px; min-width: 24px; }
+    .pred-rank-bar-wrap { width: 90px; }
+
+    /* Sorteo */
+    .sorteo-hero { padding: 20px 0 14px; }
+    .pair-reveal-area { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .group-reveal-area { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    .sorteo-actions { margin-top: 20px; padding-bottom: 20px; }
+    .btn-lg { padding: 11px 24px; font-size: 13px; }
+
+    /* Buttons */
+    .btn { padding: 8px 14px; font-size: 11px; }
+    .btn svg { width: 12px; height: 12px; }
+
+    /* Cards */
+    .card { padding: 16px; }
+    .tab-pane { padding: 16px 0; }
+
+    /* Section titles */
+    .section-title { font-size: 16px; }
+    .bracket-hero { padding: 18px 0 12px; }
+    .bracket-hero-sub { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal">
+    <div class="modal-title" id="confirmTitle">¿Estás seguro?</div>
+    <div class="modal-body"  id="confirmBody">Esta acción no se puede deshacer.</div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-lime" id="confirmBtn">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner" style="justify-content:center;text-align:center;">
+    <div>
+      <div class="logo">ROAD TO THE <span class="logo-yuncos">VILLA PACHECO</span> FINAL<span class="logo-by">powered by CAS Team</span></div>
+      <div class="subtitle">Torneo de Pádel &nbsp;·&nbsp; Casa Rural Palomeque 2026</div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- PROGRESS -->
+  <div class="progress-track" id="progressTrack">
+    <div class="step-container">
+      <div class="step-dot active" id="step-1"><svg><use href="#ico-users"/></svg></div>
+      <div class="step-label active" id="stepLabel-1">Registro</div>
+    </div>
+    <div class="step-line" id="stepLine-1"></div>
+    <div class="step-container">
+      <div class="step-dot" id="step-2"><svg><use href="#ico-info"/></svg></div>
+      <div class="step-label" id="stepLabel-2">Reglas</div>
+    </div>
+    <div class="step-line" id="stepLine-2"></div>
+    <div class="step-container">
+      <div class="step-dot" id="step-3"><svg><use href="#ico-users"/></svg></div>
+      <div class="step-label" id="stepLabel-3">Parejas</div>
+    </div>
+    <div class="step-line" id="stepLine-3"></div>
+    <div class="step-container">
+      <div class="step-dot" id="step-4"><svg><use href="#ico-chart"/></svg></div>
+      <div class="step-label" id="stepLabel-4">Grupos</div>
+    </div>
+    <div class="step-line" id="stepLine-4"></div>
+    <div class="step-container">
+      <div class="step-dot" id="step-5"><svg><use href="#ico-ball"/></svg></div>
+      <div class="step-label" id="stepLabel-5">Fase Grupos</div>
+    </div>
+    <div class="step-line" id="stepLine-5"></div>
+    <div class="step-container">
+      <div class="step-dot" id="step-6"><svg><use href="#ico-swords"/></svg></div>
+      <div class="step-label" id="stepLabel-6">Eliminatoria</div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('registro')"      id="tabBtn-registro"><svg><use href="#ico-users"/></svg>Registro</button>
+    <button class="tab-btn"        onclick="showTab('reglas')"        id="tabBtn-reglas"><svg><use href="#ico-info"/></svg>Reglas</button>
+    <button class="tab-btn"        onclick="showTab('sorteo-parejas')" id="tabBtn-sorteo-parejas"><svg><use href="#ico-users"/></svg>Sorteo Parejas</button>
+    <button class="tab-btn"        onclick="showTab('sorteo-grupos')"  id="tabBtn-sorteo-grupos"><svg><use href="#ico-chart"/></svg>Sorteo Grupos</button>
+    <button class="tab-btn"        onclick="showTab('grupos')"        id="tabBtn-grupos"><svg><use href="#ico-ball"/></svg>Fase de Grupos</button>
+    <button class="tab-btn"        onclick="showTab('eliminatoria')"  id="tabBtn-eliminatoria"><svg><use href="#ico-swords"/></svg>Eliminatorias</button>
+    <button class="tab-btn"        onclick="showTab('predicciones')"  id="tabBtn-predicciones"><svg><use href="#ico-crown"/></svg>Encuestas</button>
+  </div>
+
+  <!-- TAB 1: REGISTRO -->
+  <div class="tab-pane active" id="pane-registro">
+    <div class="status-bar">
+      <div class="status-dot"></div>
+      <span class="status-text" id="statusText">Esperando jugadores...</span>
+      <span class="status-badge badge-registro" id="statusBadge">REGISTRO ABIERTO</span>
+      <button class="btn btn-reset" onclick="confirmResetTorneo()" title="Borrar todo y empezar de cero">
+        <svg><use href="#ico-reset"/></svg>Reiniciar Torneo
+      </button>
+      <button class="btn spec-btn-main" onclick="openSpectator('registro')" title="Modo espectador">
+        <svg><use href="#ico-tv"/></svg>Modo Espectador
+      </button>
+    </div>
+    <div class="card" id="registroFormCard">
+      <div class="card-title"><svg><use href="#ico-plus"/></svg>Añadir Jugador</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" id="playerName" placeholder="Nombre completo" maxlength="40">
+        </div>
+        <div class="form-group">
+          <label>Equipo / Departamento</label>
+          <input type="text" id="playerTeam" placeholder="Ej: CAS, IAM, RRHH, ZTS..." maxlength="40">
+        </div>
+        <div class="form-group">
+          <label>Apodo <span style="color:var(--muted);font-weight:400;letter-spacing:0;text-transform:none;font-size:10px;">(opcional)</span></label>
+          <input type="text" id="playerNickname" placeholder='Ej: "El Muro", "Rayo"...' maxlength="30">
+        </div>
+        <div class="form-group">
+          <label>Nivel de Juego</label>
+          <select id="playerLevel">
+            <option value="1">Principiante — Aprendiendo</option>
+            <option value="2" selected>Intermedio — Me defiendo</option>
+            <option value="3">Avanzado — Aquí para ganar</option>
+          </select>
+        </div>
+        <div class="form-group" style="flex:0">
+          <label>&nbsp;</label>
+          <button class="btn btn-lime" onclick="addPlayer()"><svg><use href="#ico-plus"/></svg>Añadir</button>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-between items-center mt-16" style="margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+      <div style="font-size:14px;">
+        <strong id="playerCount">0</strong> jugadores registrados
+        <span style="color:var(--muted);font-size:12px;"> · <span id="pairNum">0</span> parejas</span>
+      </div>
+      <div class="flex gap-8 flex-wrap">
+        <button class="btn btn-outline" onclick="clearAllPlayers()" id="clearPlayersBtn"><svg><use href="#ico-trash"/></svg>Limpiar todo</button>
+        <button class="btn btn-acc"     onclick="goToReglas()" id="generateGroupsBtn"><svg><use href="#ico-bolt"/></svg>Siguiente: Reglas</button>
+      </div>
+    </div>
+    <div class="player-grid" id="playerGrid">
+      <div class="text-center text-muted" style="padding:40px;grid-column:1/-1;font-size:14px;display:flex;align-items:center;justify-content:center;gap:10px;">
+        <svg style="width:24px;height:24px;opacity:.25"><use href="#ico-racket"/></svg>
+        Añade jugadores para empezar el torneo
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB REGLAS -->
+  <div class="tab-pane" id="pane-reglas">
+    <div class="sorteo-hero" style="padding-bottom:10px;">
+      <div class="sorteo-title"><svg><use href="#ico-info"/></svg> REGLAS DEL TORNEO</div>
+      <div class="sorteo-sub">Lee esto antes de empezar a jugar</div>
+    </div>
+    <div class="rules-grid" id="rulesGrid">
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(46,204,113,.1);color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <div class="rule-title" style="color:var(--green);">Garantía Anti-Divorcios</div>
+        <div class="rule-desc">El algoritmo <strong>getRandomValues()</strong> está programado con una línea de código secreta que impide que te toque jugar con tu compañero de proyecto o compañero de llorería, previniendo así bajas laborales. Las <strong>parejas, grupos, cruces y orden de juego</strong> se generan de forma aleatoria.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-ball"/></svg></div>
+        <div class="rule-title">Sistema de puntuación y Punto de Oro</div>
+        <div class="rule-desc">El ganador del partido es la pareja que llegue primero a <strong>9 juegos</strong> o el que vaya ganando una vez pasados <strong>20 minutos</strong> de juego. En caso de empate en un juego o terminados los 20 minutos con empate, se jugará <strong>bola de oro</strong>. Recibe el saque el miembro de la pareja rival que elija el jugador que saca.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-chart"/></svg></div>
+        <div class="rule-title">Orden de clasificación</div>
+        <div class="rule-desc">Dentro de cada grupo se juegan todos contra todos. El orden de clasificación se determina por <strong>partidos ganados</strong> y en caso de empate por <strong>diferencia de juegos</strong>. Los <strong>2 primeros</strong> pasan al cuadro principal y los <strong>restantes</strong> a la Copa Consolación.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-trophy"/></svg></div>
+        <div class="rule-title">Las Finales</div>
+        <div class="rule-desc">Los ganadores de cada semifinal de su cuadro se enfrentan en la <strong>Gran Final</strong> por el título de <strong>Villa Pacheco Champion</strong>. Las finales se jugarán a <strong>11 juegos</strong>, con el mismo sistema de puntuación y con un tiempo límite de <strong>40 minutos</strong>. El administrador cambia el temporizador manualmente.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon"><svg><use href="#ico-crown"/></svg></div>
+        <div class="rule-title">Encuestas y predicciones</div>
+        <div class="rule-desc">Vota en las <strong>23 encuestas del torneo</strong>: ¿quién va a ganar?, ¿quién es el paquete?, ¿quién trae las cervezas?... Los rankings se actualizan en tiempo real y se revelan al final.</div>
+      </div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(231,76,60,.15);color:var(--red);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2.5"/></svg></div>
+        <div class="rule-title" style="color:var(--red);">Penalti de Sergio Ramos</div>
+        <div class="rule-desc">Si un jugador tarda más de <strong>45 segundos</strong> en recuperar una bola que ha mandado a <strong>NARNIA</strong> o se queda atando los cordones cuando va ganando, se le penalizará con <strong>-1 juego</strong> en el marcador de ese partido.</div>
+      </div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(161,0,255,.15);color:#c87aff;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3" stroke-dasharray="3 2"/><path d="M6 21v-2a6 6 0 0 1 12 0v2" stroke-dasharray="3 2"/><line x1="2" y1="2" x2="22" y2="22" stroke-width="1.5"/></svg></div>
+        <div class="rule-title" style="color:#c87aff;">El Fantasma</div>
+        <div class="rule-desc">Si suena el pitido virtual del temporizador y un jugador no está en pista porque <strong>"estaba en el baño"</strong>, <strong>"haciendo una RFP"</strong> o <strong>"haciendo un commit"</strong>, cuando aparezca jugará usando la pala con la <strong>mano no dominante</strong>.</div>
+      </div>
+      <div class="rule-card rule-card-special">
+        <div class="rule-icon" style="background:rgba(58,159,213,.12);color:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+        <div class="rule-title" style="color:var(--blue);">Política de Zero Trust</div>
+        <div class="rule-desc">Consideramos a todo jugador una <strong>amenaza interna</strong>. Queda prohibida la <strong>"escalada de privilegios"</strong> discutiendo con el administrador. Los pelotazos al cuerpo del rival se consideran <strong>vulnerabilidades críticas explotadas con éxito</strong> y no requieren pedir perdón.</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;margin-top:32px;padding-bottom:16px;">
+      <button class="btn btn-acc btn-lg" onclick="goToSorteoParejas()">
+        <svg><use href="#ico-bolt"/></svg>Ir al Sorteo de Parejas
+      </button>
+    </div>
+  </div>
+
+  <!-- TAB SORTEO PAREJAS -->
+  <div class="tab-pane" id="pane-sorteo-parejas">
+    <div class="sorteo-hero">
+      <div class="sorteo-title"><svg><use href="#ico-bolt"/></svg> SORTEO DE PAREJAS</div>
+      <div class="sorteo-sub">Sorteo aleatorio · Los compañeros se deciden aquí</div>
+    </div>
+    <div id="sorteo-pairs-section">
+      <div class="sorteo-phase-title">
+        <span class="sorteo-phase-num">01</span>
+        <span>Formación de Parejas</span>
+        <div class="sorteo-phase-line"></div>
+      </div>
+      <div class="sorteo-actions" id="sorteoStartPairsBtn" style="display:flex;margin-bottom:0;">
+        <button class="btn btn-acc btn-lg" onclick="startSorteoParejas()">
+          <svg><use href="#ico-bolt"/></svg>Iniciar Sorteo de Parejas
+        </button>
+      </div>
+      <div class="sorteo-bombo">
+        <div class="bombo-ball-container" id="bomboBallContainer">
+          <div class="bombo-ball spinning" id="bomboBall">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M7 4.5 C7 8 9 10 9 12 C9 14 7 16 7 19.5"/><path d="M17 4.5 C17 8 15 10 15 12 C15 14 17 16 17 19.5"/></svg>
+          </div>
+          <div class="bombo-name-flash" id="bomboNameFlash"></div>
+        </div>
+      </div>
+      <div id="pairRevealArea" class="pair-reveal-area"></div>
+      <div class="sorteo-actions" id="sorteoActionsArea" style="display:none">
+        <button class="btn btn-acc btn-lg" onclick="goToSorteoGrupos()">
+          <svg><use href="#ico-chart"/></svg>Pasar al Sorteo de Grupos
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB SORTEO GRUPOS -->
+  <div class="tab-pane" id="pane-sorteo-grupos">
+    <div class="sorteo-hero">
+      <div class="sorteo-title"><svg><use href="#ico-chart"/></svg> SORTEO DE GRUPOS</div>
+      <div class="sorteo-sub">Sorteo aleatorio · Los grupos se forman aquí</div>
+    </div>
+    <div id="sorteo-groups-section">
+      <div class="sorteo-phase-title">
+        <span class="sorteo-phase-num">02</span>
+        <span>Asignación de Grupos</span>
+        <div class="sorteo-phase-line"></div>
+      </div>
+      <div class="sorteo-actions" id="sorteoStartGroupsBtn" style="display:none;margin-bottom:16px;">
+        <button class="btn btn-acc btn-lg" onclick="startSorteoGrupos()">
+          <svg><use href="#ico-bolt"/></svg>Iniciar Sorteo de Grupos
+        </button>
+      </div>
+      <div id="groupRevealArea" class="group-reveal-area"></div>
+      <div class="sorteo-actions" id="sorteoGroupActions" style="display:none">
+        <button class="btn btn-lime btn-lg" onclick="confirmStartGroupPhase()">
+          <svg><use href="#ico-flag"/></svg>Comenzar Fase de Grupos
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB PREDICCIONES -->
+  <!-- TAB PREDICCIONES -->
+  <div class="tab-pane" id="pane-predicciones">
+    <div id="predNotReady" class="alert alert-info">
+      <svg><use href="#ico-info"/></svg>
+      Las encuestas estarán disponibles una vez comiencen los grupos.
+    </div>
+    <div id="predContent" style="display:none">
+
+      <div class="pred-hero">
+        <div class="pred-title"><svg><use href="#ico-crown"/></svg> ENCUESTAS DEL TORNEO</div>
+        <div class="pred-sub">Vota · Ríete · Comparte</div>
+        <div style="margin-top:12px;">
+          <button class="btn spec-btn-main" onclick="openSpectator('predicciones')"><svg><use href="#ico-tv"/></svg>Modo Espectador — Rankings en bucle</button>
+        </div>
+      </div>
+
+      <!-- VOTER NAME (shared across all polls) -->
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title"><svg><use href="#ico-users"/></svg>¿Quién eres?</div>
+        <div class="form-row" style="align-items:center;">
+          <div class="form-group">
+            <label>Tu nombre</label>
+            <input type="text" id="predVoterName" placeholder="Escribe tu nombre para votar" maxlength="40">
+          </div>
+          <div style="font-size:12px;color:var(--muted);padding-top:20px;flex-shrink:0;">
+            Puedes cambiar tu voto en cualquier encuesta en cualquier momento.
+          </div>
+        </div>
+      </div>
+
+      <!-- POLLS LAYOUT: sidebar + content -->
+      <div class="polls-layout">
+        <!-- SIDEBAR: poll list -->
+        <div class="polls-sidebar">
+          <div class="polls-sidebar-title">Encuestas</div>
+          <div id="pollsSidebarList"></div>
+        </div>
+        <!-- MAIN: active poll -->
+        <div class="polls-main" id="pollsMain"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB 2: FASE DE GRUPOS -->
+  <div class="tab-pane" id="pane-grupos">
+    <div id="noGroupsMsg" class="alert alert-info">
+      <svg><use href="#ico-info"/></svg>
+      Los grupos aún no han comenzado. Completa el sorteo y pulsa "Comenzar Fase de Grupos".
+    </div>
+    <div id="groupsContent" style="display:none">
+      <!-- TIMER WIDGET GRUPOS -->
+      <div class="timer-widget">
+        <div>
+          <div class="timer-display idle" id="timerDisplayGrupos">20:00</div>
+          <div class="timer-label">Tiempo restante</div>
+        </div>
+        <div class="timer-info">
+          <div class="timer-current-label" id="timerCurrentLabelGrupos" style="display:none">
+            <div class="timer-next-match" style="color:var(--lime);">PARTIDO EN CURSO</div>
+            <div class="timer-current-text" id="timerCurrentTextGrupos">—</div>
+          </div>
+          <div id="timerNextBlockGrupos">
+            <div class="timer-next-match">PRÓXIMO PARTIDO</div>
+            <div class="timer-next-text" id="timerNextTextGrupos">—</div>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-green" id="timerStartBtnGrupos" onclick="timerStart()">
+            <svg><use href="#ico-bolt"/></svg>Iniciar
+          </button>
+          <button class="btn btn-outline" id="timerPauseBtnGrupos" onclick="timerPause()" style="display:none">
+            <svg><use href="#ico-flag"/></svg>Pausar
+          </button>
+          <button class="btn btn-outline" onclick="timerReset()">
+            <svg><use href="#ico-refresh"/></svg>Reiniciar
+          </button>
+        </div>
+      </div>
+      <div class="flex justify-between items-center" style="margin-bottom:16px;flex-wrap:wrap;gap:8px;">
+        <div class="section-title" style="margin-bottom:0"><svg><use href="#ico-chart"/></svg>Clasificación en Vivo</div>
+        <div class="flex gap-8 flex-wrap">
+          <button class="btn spec-btn-main" onclick="openSpectator('grupos')"><svg><use href="#ico-tv"/></svg>Modo Espectador</button>
+          <button class="btn btn-outline" onclick="refreshGroups()"><svg><use href="#ico-refresh"/></svg>Actualizar</button>
+          <button class="btn btn-red" onclick="confirmFinishGroups()" id="finishGroupsBtn"><svg><use href="#ico-flag"/></svg>Finalizar Fase de Grupos</button>
+        </div>
+      </div>
+      <div class="flex gap-8" style="margin-bottom:16px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><span style="width:12px;height:12px;border-radius:2px;background:rgba(200,241,53,.3);display:inline-block;"></span>Avanza a eliminatoria</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px;"><span style="width:12px;height:12px;border-radius:2px;background:rgba(231,76,60,.2);display:inline-block;"></span>Consolación</div>
+      </div>
+      <div class="groups-grid" id="groupsStandings"></div>
+      <div class="matches-section">
+        <div class="section-title"><svg><use href="#ico-ball"/></svg>Partidos de Grupos</div>
+        <div id="groupMatches"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: ELIMINATORIAS -->
+  <div class="tab-pane" id="pane-eliminatoria">
+    <div id="noElimMsg" class="alert alert-warning">
+      <svg><use href="#ico-warn"/></svg>
+      La fase de grupos aún no ha finalizado. Completa todos los partidos y marca "Finalizar Fase de Grupos".
+    </div>
+    <div id="elimContent" style="display:none">
+      <!-- TIMER WIDGET ELIM -->
+      <div class="timer-widget">
+        <div>
+          <div class="timer-display idle" id="timerDisplayElim">20:00</div>
+          <div class="timer-label">Tiempo restante</div>
+        </div>
+        <div class="timer-info">
+          <div class="timer-current-label" id="timerCurrentLabelElim" style="display:none">
+            <div class="timer-next-match" style="color:var(--lime);">PARTIDO EN CURSO</div>
+            <div class="timer-current-text" id="timerCurrentTextElim">—</div>
+          </div>
+          <div id="timerNextBlockElim">
+            <div class="timer-next-match">PRÓXIMO PARTIDO</div>
+            <div class="timer-next-text" id="timerNextTextElim">—</div>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-green" id="timerStartBtnElim" onclick="timerStart()">
+            <svg><use href="#ico-bolt"/></svg>Iniciar
+          </button>
+          <button class="btn btn-outline" id="timerPauseBtnElim" onclick="timerPause()" style="display:none">
+            <svg><use href="#ico-flag"/></svg>Pausar
+          </button>
+          <button class="btn btn-outline" onclick="timerReset()">
+            <svg><use href="#ico-refresh"/></svg>Reiniciar
+          </button>
+          <button class="btn btn-outline" id="timerSet40Btn" onclick="timerSetDuration(2400000)" title="Cambiar a 40 minutos (para finales)" style="border-color:rgba(245,200,66,.4);color:#f5c842;">
+            <svg><use href="#ico-trophy"/></svg>40 min (Final)
+          </button>
+          <button class="btn btn-outline" id="timerSet20Btn" onclick="timerSetDuration(1200000)" title="Volver a 20 minutos" style="display:none;border-color:rgba(58,159,213,.4);color:var(--blue);">
+            <svg><use href="#ico-refresh"/></svg>20 min
+          </button>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+        <div class="sub-tabs" style="margin-bottom:0;">
+          <button class="sub-tab-btn active" onclick="showSubTab('main')"       id="subTabBtn-main"><svg><use href="#ico-trophy"/></svg>Cuadro Principal</button>
+          <button class="sub-tab-btn"        onclick="showSubTab('consolacion')" id="subTabBtn-consolacion"><svg><use href="#ico-medal"/></svg>Consolación</button>
+        </div>
+        <button class="btn spec-btn-main" onclick="openSpectator('eliminatoria')"><svg><use href="#ico-tv"/></svg>Modo Espectador</button>
+      </div>
+
+      <div id="subPane-main">
+        <div class="bracket-hero">
+          <div class="bracket-hero-title">
+            ROAD TO THE VILLA PACHECO FINAL
+          </div>
+          <div class="bracket-hero-sub">Cuadro Principal · Los Mejores de Cada Grupo</div>
+        </div>
+        <div class="bracket-wrapper"><div id="mainBracketViz"></div></div>
+        <div class="matches-section">
+          <div class="section-title"><svg><use href="#ico-ball"/></svg>Partidos — Cuadro Principal</div>
+          <div id="mainElimMatches"></div>
+        </div>
+      </div>
+
+      <div id="subPane-consolacion" style="display:none">
+        <div class="bracket-hero">
+          <div class="bracket-hero-title" style="color:var(--acc);">
+            COPA CONSOLACIÓN
+          </div>
+          <div class="bracket-hero-sub">Los que regresan · Nadie se rinde</div>
+        </div>
+        <div class="bracket-wrapper"><div id="consolBracketViz"></div></div>
+        <div class="matches-section">
+          <div class="section-title"><svg><use href="#ico-ball"/></svg>Partidos — Consolación</div>
+          <div id="consolElimMatches"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── STATE ─────────────────────────────────────────
+let state = {
+  players: [], pairs: [], groups: [], groupMatches: [],
+  groupsFinished: false, mainBracket: null, consolBracket: null,
+  predictions: {}, matchOrder: [],
+  phase: 'registro',
+  timer: { running: false, remainingMs: 1200000, lastStarted: null }
+};
+let firebaseMode = false, dbRef = null;
+
+// ── FIREBASE ──────────────────────────────────────
+document.addEventListener('firebaseReady', () => {
+  try {
+    dbRef = window._ref(window._db, 'torneo');
+    firebaseMode = true;
+    window._onValue(dbRef, snap => {
+      const d = snap.val();
+      if (d) {
+        state = { ...state, ...d };
+      } else {
+        // Node was deleted (e.g. after reset) — reset local state too
+        state = {
+          players: [], pairs: [], groups: [], groupMatches: [],
+          groupsFinished: false, mainBracket: null, consolBracket: null,
+          predictions: {}, phase: 'registro'
+        };
+      }
+      renderAll();
+    });
+    showToast('Firebase conectado — tiempo real activo', 'success', 'ico-check');
+  } catch(e) { console.error(e); loadFromLocal(); renderAll(); }
+});
+document.addEventListener('DOMContentLoaded', () => {
+  if (!window._firebaseReady) setTimeout(() => { loadFromLocal(); renderAll(); }, 1500);
+});
+function saveState() {
+  if (firebaseMode && dbRef) window._set(dbRef, state).catch(e => { console.error(e); saveToLocal(); });
+  else saveToLocal();
+}
+function saveToLocal()  { try { localStorage.setItem('yuncosTorneo', JSON.stringify(state)); } catch(e){} }
+function loadFromLocal(){ try { const s=localStorage.getItem('yuncosTorneo'); if(s) state={...state,...JSON.parse(s)}; } catch(e){} }
+
+// ── UI UTILS ──────────────────────────────────────
+function showTab(tab) {
+  document.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pane-'+tab).classList.add('active');
+  document.getElementById('tabBtn-'+tab).classList.add('active');
+}
+function showSubTab(tab) {
+  ['main','consolacion'].forEach(t=>{
+    document.getElementById('subPane-'+t).style.display = t===tab?'':'none';
+    document.getElementById('subTabBtn-'+t).classList.toggle('active', t===tab);
+  });
+}
+function showSorteoTab(tab) {
+  // tab: 'parejas' | 'grupos'
+  const pairsSection  = document.getElementById('sorteo-pairs-section');
+  const groupsSection = document.getElementById('sorteo-groups-section');
+  const btnParejas    = document.getElementById('sorteoTabBtn-parejas');
+  const btnGrupos     = document.getElementById('sorteoTabBtnGrupos');
+  if(!pairsSection || !groupsSection) return;
+  if(tab==='parejas'){
+    pairsSection.style.display='';
+    groupsSection.style.display='none';
+    if(btnParejas) btnParejas.classList.add('active');
+    if(btnGrupos) btnGrupos.classList.remove('active');
+  } else {
+    pairsSection.style.display='none';
+    groupsSection.style.display='';
+    if(btnParejas) btnParejas.classList.remove('active');
+    if(btnGrupos) btnGrupos.classList.add('active');
+  }
+}
+function showToast(msg, type='info', icon='ico-info', dur=3000) {
+  const c=document.getElementById('toastContainer'), t=document.createElement('div');
+  t.className=`toast ${type}`; t.innerHTML=`<svg><use href="#${icon}"/></svg>${escHtml(msg)}`;
+  c.appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; t.style.transition='opacity .3s'; setTimeout(()=>t.remove(),300); }, dur);
+}
+function openModal(title, body, onConfirm) {
+  document.getElementById('confirmTitle').textContent=title;
+  document.getElementById('confirmBody').textContent=body;
+  document.getElementById('confirmBtn').onclick=()=>{ closeModal(); onConfirm(); };
+  document.getElementById('confirmModal').classList.add('open');
+}
+function closeModal() { document.getElementById('confirmModal').classList.remove('open'); }
+
+// ── RENDER ALL ────────────────────────────────────
+function renderAll() { renderProgress(); renderStatus(); renderPlayers(); renderSorteo(); renderPredictions(); renderGroups(); renderElim(); renderTimerUI(); }
+
+function renderProgress() {
+  const m={'registro':1,'reglas':2,'sorteo-parejas':3,'sorteo-grupos':4,'grupos':5,'eliminatoria':6};
+  const cur = m[state.phase] || 1;
+  for(let i=1;i<=6;i++){
+    const d=document.getElementById('step-'+i), l=document.getElementById('stepLabel-'+i); if(!d)continue;
+    if(i<cur){d.classList.add('done');d.classList.remove('active');l.classList.add('done');l.classList.remove('active');}
+    else if(i===cur){d.classList.add('active');d.classList.remove('done');l.classList.add('active');l.classList.remove('done');}
+    else{d.classList.remove('active','done');l.classList.remove('active','done');}
+  }
+  for(let i=1;i<=5;i++){ const ln=document.getElementById('stepLine-'+i); if(ln) ln.classList.toggle('done',i<cur); }
+}
+
+function renderStatus() {
+  const st=document.getElementById('statusText'), sb=document.getElementById('statusBadge');
+  const n=(state.players||[]).length;
+  const p=state.phase;
+  if(p==='registro'){ st.textContent=`${n} jugadores · ${Math.floor(n/2)} parejas posibles`; sb.className='status-badge badge-registro'; sb.textContent='REGISTRO ABIERTO'; }
+  else if(p==='reglas'){ st.textContent='Leyendo las reglas del torneo'; sb.className='status-badge badge-sorteo'; sb.textContent='REGLAS'; }
+  else if(p==='sorteo-parejas'){ st.textContent='Sorteo de parejas en curso'; sb.className='status-badge badge-sorteo'; sb.textContent='SORTEO PAREJAS'; }
+  else if(p==='sorteo-grupos'){ st.textContent='Sorteo de grupos en curso'; sb.className='status-badge badge-sorteo'; sb.textContent='SORTEO GRUPOS'; }
+  else if(p==='grupos'){ st.textContent=state.groupsFinished?'Fase de grupos finalizada':'Fase de grupos en curso'; sb.className='status-badge badge-grupos'; sb.textContent='FASE DE GRUPOS'; }
+  else if(p==='eliminatoria'){ st.textContent='Fase eliminatoria en curso'; sb.className='status-badge badge-eliminatorias'; sb.textContent='ELIMINATORIAS'; }
+}
+
+// ── PLAYERS ───────────────────────────────────────
+function addPlayer() {
+  if(state.phase!=='registro'){ showToast('El registro ya está cerrado','error','ico-warn'); return; }
+  const name=document.getElementById('playerName').value.trim();
+  const team=document.getElementById('playerTeam').value.trim();
+  const level=document.getElementById('playerLevel').value;
+  const nickname=document.getElementById('playerNickname').value.trim();
+  if(!name){ showToast('Introduce el nombre','error','ico-warn'); return; }
+  if(!team){ showToast('Introduce el equipo','error','ico-warn'); return; }
+  if(!state.players) state.players=[];
+  state.players.push({ id:'p'+Date.now()+Math.random().toString(36).slice(2,5), name, team, level:parseInt(level), nickname });
+  saveState();
+  document.getElementById('playerName').value='';
+  document.getElementById('playerTeam').value='';
+  document.getElementById('playerNickname').value='';
+  document.getElementById('playerLevel').value='2';
+  showToast(`${name} añadido al torneo`,'success','ico-check');
+  if(!firebaseMode) renderAll();
+}
+function removePlayer(id) {
+  if(state.phase!=='registro') return;
+  state.players=state.players.filter(p=>p.id!==id); saveState(); if(!firebaseMode) renderAll();
+}
+function clearAllPlayers() {
+  if(state.phase!=='registro') return;
+  openModal('¿Borrar todos los jugadores?','Se eliminarán todos los jugadores. Esta acción no se puede deshacer.',()=>{
+    state.players=[]; saveState(); if(!firebaseMode) renderAll(); showToast('Lista borrada','info','ico-trash');
+  });
+}
+function renderPlayers() {
+  const grid=document.getElementById('playerGrid'), players=state.players||[], isR=state.phase==='registro';
+  document.getElementById('playerCount').textContent=players.length;
+  document.getElementById('pairNum').textContent=Math.floor(players.length/2);
+  document.getElementById('generateGroupsBtn').disabled=players.length<4;
+  document.getElementById('clearPlayersBtn').disabled=!isR;
+  document.getElementById('registroFormCard').style.display=isR?'':'none';
+  if(!players.length){
+    grid.innerHTML=`<div class="text-center text-muted" style="padding:40px;grid-column:1/-1;font-size:14px;display:flex;align-items:center;justify-content:center;gap:10px;"><svg style="width:24px;height:24px;opacity:.25"><use href="#ico-racket"/></svg>Añade jugadores para empezar el torneo</div>`;
+    return;
+  }
+  const ld={1:{label:'Principiante',cls:'level-1',icon:'ico-ball'},2:{label:'Intermedio',cls:'level-2',icon:'ico-racket'},3:{label:'Avanzado',cls:'level-3',icon:'ico-trophy'}};
+  grid.innerHTML=players.map((p,i)=>{
+    const d=ld[p.level]||ld[2];
+    return `<div class="player-card">
+      <div class="player-num">${i+1}</div>
+      <div class="player-info">
+        <div class="player-name">${escHtml(p.name)}</div>
+        ${p.nickname?`<div style="font-size:12px;color:var(--lime);font-weight:600;margin-top:1px;">"${escHtml(p.nickname)}"</div>`:''}
+        <div class="player-meta">${escHtml(p.team)}</div>
+        <div class="mt-8"><span class="level-badge ${d.cls}"><svg><use href="#${d.icon}"/></svg>${d.label}</span></div>
+      </div>
+      ${isR?`<button class="delete-btn" onclick="removePlayer('${p.id}')" title="Eliminar"><svg><use href="#ico-x"/></svg></button>`:''}
+    </div>`;
+  }).join('');
+}
+
+// ── SORTEO ANIMATION STATE ────────────────────────
+let drawState = { pairsRevealed: 0, groupsRevealed: 0 };
+let _pendingPairs = [];   // computed pairs waiting to be animated
+let _pendingGroups = [];  // computed groups waiting to be animated
+
+// ── NAVIGATION ────────────────────────────────────
+function goToReglas() {
+  if((state.players||[]).length < 4){ showToast('Necesitas al menos 4 jugadores','error','ico-warn'); return; }
+  state.phase = 'reglas';
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('reglas');
+}
+function goToSorteoParejas() {
+  // Navigate to the tab without starting the draw
+  state.phase = 'sorteo-parejas';
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('sorteo-parejas');
+  // Show start button, hide reveal area
+  const startBtn = document.getElementById('sorteoStartPairsBtn');
+  if(startBtn) startBtn.style.display = 'flex';
+  document.getElementById('pairRevealArea').innerHTML = '';
+  document.getElementById('sorteoActionsArea').style.display = 'none';
+}
+function startSorteoParejas() {
+  openModal(
+    '¿Iniciar el Sorteo de Parejas?',
+    `Se sortearán ${Math.floor((state.players||[]).length/2)} parejas. El registro quedará cerrado.`,
+    () => {
+      const startBtn = document.getElementById('sorteoStartPairsBtn');
+      if(startBtn) startBtn.style.display = 'none';
+      doStartPairDraw();
+    }
+  );
+}
+function goToSorteoGrupos() {
+  showTab('sorteo-grupos');
+  state.phase = 'sorteo-grupos';
+  saveState();
+  if(!firebaseMode) renderAll();
+  // Show start button, don't auto-start
+  const startBtn = document.getElementById('sorteoStartGroupsBtn');
+  if(startBtn) startBtn.style.display = 'flex';
+  document.getElementById('groupRevealArea').innerHTML = '';
+  document.getElementById('sorteoGroupActions').style.display = 'none';
+}
+function startSorteoGrupos() {
+  openModal(
+    '¿Iniciar el Sorteo de Grupos?',
+    'Se asignarán las parejas a grupos de forma aleatoria.',
+    () => {
+      const startBtn = document.getElementById('sorteoStartGroupsBtn');
+      if(startBtn) startBtn.style.display = 'none';
+      startGroupDraw();
+    }
+  );
+}
+
+// ── STEP 1: CONFIRM → COMPUTE PAIRS → START DRAW ──
+function confirmGeneratePairs() { goToReglas(); } // kept for backward compat
+
+function doStartPairDraw() {
+  // Compute pairs randomly
+  const players = shuffle([...(state.players||[])]);
+  _pendingPairs = [];
+  for(let i=0;i<players.length-1;i+=2)
+    _pendingPairs.push({id:'par_'+Date.now()+'_'+Math.random().toString(36).slice(2,6), p1:players[i], p2:players[i+1]});
+  if(players.length%2!==0){
+    const last=players[players.length-1];
+    _pendingPairs.push({id:'par_'+Date.now()+'_'+Math.random().toString(36).slice(2,6), p1:last, p2:null});
+  }
+
+  // Move to sorteo-parejas phase
+  state.phase = 'sorteo-parejas';
+  drawState = { pairsRevealed: 0, groupsRevealed: 0 };
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('sorteo-parejas');
+
+  // Reset sorteo UI
+  document.getElementById('pairRevealArea').innerHTML = '';
+  document.getElementById('sorteoActionsArea').style.display = 'none';
+  document.getElementById('groupRevealArea').innerHTML = '';
+
+  // Start the animated pair draw
+  _sorteoAnimating = true;
+  animatePairDraw(0);
+}
+
+function animatePairDraw(idx) {
+  if(idx >= _pendingPairs.length) {
+    // All pairs revealed — animation complete
+    _sorteoAnimating = false;
+    document.getElementById('sorteoActionsArea').style.display = 'flex';
+    // Save computed pairs to state
+    state.pairs = _pendingPairs;
+    saveState();
+    if(!firebaseMode) renderAll();
+    return;
+  }
+
+  const ball = document.getElementById('bomboBall');
+  const flash = document.getElementById('bomboNameFlash');
+
+  // Phase A: picking animation — cycle through random names
+  ball.classList.remove('spinning');
+  ball.classList.add('picking');
+
+  let cycleCount = 0;
+  const totalCycles = 8 + Math.floor(Math.random()*6); // 8–13 flashes
+  const players = state.players || [];
+  const usedIds = _pendingPairs.slice(0,idx).flatMap(p=>[p.p1.id, p.p2?.id]).filter(Boolean);
+  const remaining = players.filter(p=>!usedIds.includes(p.id));
+
+  // Pick player 1 first if this is a fresh slot, else already have p1
+  const pair = _pendingPairs[idx];
+
+  const cycleInterval = setInterval(() => {
+    const randPlayer = remaining[Math.floor(Math.random()*remaining.length)];
+    flash.textContent = randPlayer ? (randPlayer.nickname || randPlayer.name).toUpperCase() : '?';
+    flash.style.animation = 'none'; void flash.offsetWidth;
+    flash.style.animation = 'nameFlash .15s ease-in-out';
+    cycleCount++;
+    if(cycleCount >= totalCycles) {
+      clearInterval(cycleInterval);
+      // Reveal the pair
+      flash.textContent = pair.p2
+        ? (getPlayerDisplay(pair.p1) + ' & ' + getPlayerDisplay(pair.p2)).toUpperCase()
+        : (pair.p1.nickname || pair.p1.name).toUpperCase() + ' (libre)';
+      ball.classList.remove('picking');
+      ball.classList.add('spinning');
+
+      // Add pair card to reveal area
+      const area = document.getElementById('pairRevealArea');
+      const card = document.createElement('div');
+      card.className = 'pair-card-reveal complete';
+      card.style.animationDelay = '0ms';
+      card.innerHTML = `
+        <div class="pair-num-badge">${idx+1}</div>
+        <div class="pair-names">
+          <div class="pair-p1">${escHtml(pair.p1.nickname||pair.p1.name)}</div>
+          ${pair.p2 ? `<div class="pair-vs">&amp;</div><div class="pair-p2">${escHtml(pair.p2.nickname||pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
+        </div>
+        <svg style="width:16px;height:16px;color:var(--lime);flex-shrink:0"><use href="#ico-check"/></svg>
+      `;
+      area.appendChild(card);
+      // Scroll into view
+      card.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+      // Pause then reveal next pair
+      setTimeout(() => animatePairDraw(idx+1), 600);
+    }
+  }, 120);
+}
+
+// ── STEP 2: GROUP DRAW ─────────────────────────────
+function startGroupDraw() {
+  // Compute groups from already-revealed pairs
+  const sp = shuffle([..._pendingPairs]);
+  _pendingGroups = [];
+  const _groupSalt = Date.now();
+  for(let i=0;i<sp.length;i+=4)
+    _pendingGroups.push({id:String.fromCharCode(65+_pendingGroups.length), pairs:sp.slice(i,i+4), _salt:_groupSalt});
+  if(_pendingGroups.length>1 && _pendingGroups[_pendingGroups.length-1].pairs.length<2){
+    const last=_pendingGroups.pop();
+    last.pairs.forEach(p=>_pendingGroups[_pendingGroups.length-1].pairs.push(p));
+  }
+
+  // Show grupos draw tab
+  document.getElementById('groupRevealArea').innerHTML = '';
+  state.phase = 'sorteo-grupos';
+  saveState();
+
+  _sorteoAnimating = true;
+  animateGroupDraw(0);
+}
+
+function animateGroupDraw(gIdx) {
+  if(gIdx >= _pendingGroups.length) {
+    // All groups revealed — animation complete
+    _sorteoAnimating = false;
+    document.getElementById('sorteoGroupActions').style.display = 'flex';
+    return;
+  }
+
+  const g = _pendingGroups[gIdx];
+  const area = document.getElementById('groupRevealArea');
+
+  // Create group card (empty)
+  const card = document.createElement('div');
+  card.className = 'group-reveal-card';
+  card.style.animationDelay = '0ms';
+  card.innerHTML = `
+    <div class="group-reveal-header">
+      <span>GRUPO ${escHtml(g.id)}</span>
+      <span style="font-size:12px;font-family:'Barlow',sans-serif;color:var(--muted);font-weight:600;">${g.pairs.length} parejas</span>
+    </div>
+    <div id="grpPairs-${g.id}"></div>
+  `;
+  area.appendChild(card);
+  card.scrollIntoView({behavior:'smooth', block:'nearest'});
+
+  // Reveal pairs inside group one by one
+  let pIdx = 0;
+  function revealNextPairInGroup() {
+    if(pIdx >= g.pairs.length) {
+      // Done with this group, move to next after pause
+      setTimeout(() => animateGroupDraw(gIdx+1), 700);
+      return;
+    }
+    const pair = g.pairs[pIdx];
+    const container = document.getElementById('grpPairs-'+g.id);
+    const item = document.createElement('div');
+    item.className = 'group-pair-item';
+    item.style.animationDelay = '0ms';
+    item.innerHTML = `<svg><use href="#ico-racket"/></svg>${escHtml(getPairName(pair.id))}`;
+    container.appendChild(item);
+    pIdx++;
+    setTimeout(revealNextPairInGroup, 350);
+  }
+  setTimeout(revealNextPairInGroup, 300);
+}
+
+// ── STEP 3: CONFIRM START GROUP PHASE ─────────────
+function confirmStartGroupPhase() {
+  openModal(
+    '¿Comenzar Fase de Grupos?',
+    'Las parejas y grupos quedan fijados. Comenzará la fase de grupos. Esta acción no se puede deshacer.',
+    doStartGroupPhase
+  );
+}
+
+function doStartGroupPhase() {
+  const groups = _pendingGroups;
+  if(!groups.length){ showToast('Completa el sorteo primero','error','ico-warn'); return; }
+
+  const groupMatches = [];
+  groups.forEach(g=>{
+    const gp=g.pairs;
+    for(let a=0;a<gp.length;a++) for(let b=a+1;b<gp.length;b++)
+      groupMatches.push({id:'gm_'+g.id+'_'+a+'_'+b,groupId:g.id,pair1Id:gp[a].id,pair2Id:gp[b].id,sets:null,winner:null});
+  });
+
+  // Interleave matches across groups: [G1m1, G2m1, G3m1, G1m2, G2m2, ...]
+  // This ensures alternation between groups, no repeats within same group back-to-back
+  const matchOrder = buildInterleavedOrder(groupMatches, groups);
+
+  state.pairs = _pendingPairs;
+  state.groups = groups;
+  state.groupMatches = groupMatches;
+  state.matchOrder = matchOrder;
+  state.groupsFinished = false;
+  state.phase = 'grupos';
+  state.timer = { running: false, remainingMs: 1200000, lastStarted: null, configuredMs: 1200000 };
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('grupos');
+  showToast('¡Fase de grupos iniciada!','success','ico-bolt');
+}
+
+function buildInterleavedOrder(matches, groups) {
+  // Group matches by groupId
+  const byGroup = {};
+  groups.forEach(g => { byGroup[g.id] = []; });
+  matches.forEach(m => { if(byGroup[m.groupId]) byGroup[m.groupId].push(m.id); });
+  // Shuffle within each group
+  Object.keys(byGroup).forEach(gid => { byGroup[gid] = shuffle(byGroup[gid]); });
+  // Interleave: round-robin across groups
+  const groupIds = shuffle(groups.map(g=>g.id));
+  const result = [];
+  let remaining = true;
+  let round = 0;
+  while(remaining) {
+    remaining = false;
+    groupIds.forEach(gid => {
+      if(byGroup[gid][round] !== undefined) {
+        result.push(byGroup[gid][round]);
+        remaining = true;
+      }
+    });
+    round++;
+  }
+  return result;
+}
+
+// ── RESTORE SORTEO STATE on re-render ─────────────
+let _sorteoAnimating = false; // true while pair/group animation is in progress
+
+function renderSorteo() {
+  if(state.phase !== 'sorteo-parejas' && state.phase !== 'sorteo-grupos') return;
+  // If an animation is currently running, don't touch the UI
+  if(_sorteoAnimating) return;
+  // If pairs already saved and we're reloading (e.g. Firebase sync on another device),
+  // show the completed pairs and the groups draw option
+  const pairs = state.pairs || [];
+  if(!pairs.length) return;
+
+  _pendingPairs = pairs;
+  const area = document.getElementById('pairRevealArea');
+  if(!area) return;
+  area.innerHTML = '';
+
+  pairs.forEach((pair, idx) => {
+    const card = document.createElement('div');
+    card.className = 'pair-card-reveal complete';
+    card.style.opacity = '1';
+    card.innerHTML = `
+      <div class="pair-num-badge">${idx+1}</div>
+      <div class="pair-names">
+        <div class="pair-p1">${escHtml(pair.p1.nickname||pair.p1.name)}</div>
+        ${pair.p2 ? `<div class="pair-vs">&amp;</div><div class="pair-p2">${escHtml(pair.p2.nickname||pair.p2.name)}</div>` : '<div class="pair-vs" style="color:var(--muted)">(Libre)</div>'}
+      </div>
+      <svg style="width:16px;height:16px;color:var(--lime);flex-shrink:0"><use href="#ico-check"/></svg>
+    `;
+    area.appendChild(card);
+  });
+  document.getElementById('sorteoActionsArea').style.display = 'flex';
+  // If groups are already drawn too, restore that section
+  const groups = state.groups || [];
+  if (groups.length > 0) {
+    _pendingGroups = groups;
+    const gra = document.getElementById('groupRevealArea');
+    if (gra) {
+      gra.innerHTML = groups.map(g => `
+        <div class="group-reveal-card" style="opacity:1">
+          <div class="group-reveal-header">
+            <span>GRUPO ${escHtml(g.id)}</span>
+            <span style="font-size:12px;font-family:'Barlow',sans-serif;color:var(--muted);font-weight:600;">${g.pairs.length} parejas</span>
+          </div>
+          <div>${g.pairs.map(p=>`<div class="group-pair-item" style="opacity:1"><svg><use href="#ico-racket"/></svg>${escHtml(getPairName(p.id))}</div>`).join('')}</div>
+        </div>
+      `).join('');
+      document.getElementById('sorteoGroupActions').style.display = 'flex';
+    }
+  }
+}
+
+// ── STANDINGS ─────────────────────────────────────
+function getPlayerDisplay(player) {
+  if(!player) return '?';
+  return player.nickname ? escHtml(player.nickname) : escHtml(player.name);
+}
+function getPairName(id) {
+  const p=(state.pairs||[]).find(x=>x.id===id); if(!p) return '???';
+  return p.p2 ? getPlayerDisplay(p.p1)+' & '+getPlayerDisplay(p.p2) : getPlayerDisplay(p.p1)+' (libre)';
+}
+function computeStandings(gid) {
+  const g=(state.groups||[]).find(x=>x.id===gid); if(!g) return [];
+  const m=(state.groupMatches||[]).filter(x=>x.groupId===gid), st={};
+  g.pairs.forEach(p=>{ st[p.id]={pairId:p.id,won:0,lost:0,gamesWon:0,gamesLost:0}; });
+  m.forEach(m=>{ if(!m.winner||!m.sets) return; m.sets.p1.forEach((v,i)=>{ st[m.pair1Id].gamesWon+=v; st[m.pair1Id].gamesLost+=m.sets.p2[i]; st[m.pair2Id].gamesWon+=m.sets.p2[i]; st[m.pair2Id].gamesLost+=v; }); if(m.winner===m.pair1Id){st[m.pair1Id].won++;st[m.pair2Id].lost++;}else{st[m.pair2Id].won++;st[m.pair1Id].lost++;} });
+  return Object.values(st).sort((a,b)=>b.won!==a.won?b.won-a.won:(b.gamesWon-b.gamesLost)-(a.gamesWon-a.gamesLost));
+}
+
+function renderMatchCard(m, type) {
+  const done=!!m.winner, w1=m.winner===m.pair1Id, w2=m.winner===m.pair2Id;
+  let p1s1='', p2s1='';
+  if(m.sets){ p1s1=m.sets.p1[0]??''; p2s1=m.sets.p2[0]??''; }
+  return `<div class="match-card ${done?'completed':''}" id="mc-${m.id}">
+    <div class="match-header">
+      <span class="match-label"><svg><use href="#ico-court"/></svg>${type==='group'?'Partido de grupo':'Eliminatoria'}</span>
+      <span class="match-status ${done?'done':'pending'}"><svg><use href="${done?'#ico-check':'#ico-ball'}"/></svg>${done?'Completado':'Pendiente'}</span>
+    </div>
+    <div class="score-row">
+      <span class="pair-label ${w1?'text-lime':''}">${getPairName(m.pair1Id)}${w1?' ✓':''}</span>
+      <div class="sets-input">
+        <input class="set-input" id="${m.id}_p1s1" type="number" min="0" value="${p1s1}" placeholder="-" ${done?'readonly':''}>
+      </div>
+    </div>
+    <div class="vs-divider"></div>
+    <div class="score-row">
+      <span class="pair-label ${w2?'text-lime':''}">${getPairName(m.pair2Id)}${w2?' ✓':''}</span>
+      <div class="sets-input">
+        <input class="set-input" id="${m.id}_p2s1" type="number" min="0" value="${p2s1}" placeholder="-" ${done?'readonly':''}>
+      </div>
+    </div>
+    <div class="match-footer">
+      ${done
+        ? `<button class="btn btn-outline" onclick="resetMatch('${m.id}','${type}')"><svg><use href="#ico-edit"/></svg>Editar</button>`
+        : `<button class="btn btn-green"   onclick="saveMatch('${m.id}','${type}')"><svg><use href="#ico-save"/></svg>Guardar Resultado</button>`
+      }
+    </div>
+  </div>`;
+}
+
+function getVal(id){ const el=document.getElementById(id); return el?el.value.trim():''; }
+
+function saveMatch(mId, type) {
+  const a1 = getVal(mId+'_p1s1'), a2 = getVal(mId+'_p2s1');
+  if (a1 === '' || a2 === '') { showToast('Introduce el marcador', 'error', 'ico-warn'); return; }
+  const p1 = parseInt(a1), p2 = parseInt(a2);
+  if (isNaN(p1) || isNaN(p2)) { showToast('Marcador inválido', 'error', 'ico-warn'); return; }
+  if (p1 === p2) { showToast('Empate — revisa el marcador', 'error', 'ico-warn'); return; }
+  const ss = { p1:[p1], p2:[p2] };
+  const all = getAllElimMatchesRef(type), m = all.find(x=>x.id===mId); if(!m) return;
+  m.sets = ss;
+  m.winner = p1 > p2 ? m.pair1Id : m.pair2Id;
+  if(type==='main'||type==='consolacion') propagateWinner(type,mId,m.winner);
+  saveState(); if(!firebaseMode) renderAll(); showToast('Resultado guardado','success','ico-check');
+}
+function resetMatch(mId, type) {
+  const all=getAllElimMatchesRef(type), m=all.find(x=>x.id===mId); if(!m) return;
+  m.sets=null; m.winner=null;
+  if(type==='main'||type==='consolacion') clearDownstream(type,mId);
+  saveState(); if(!firebaseMode) renderAll();
+}
+function getAllElimMatchesRef(type) {
+  if(type==='group') return state.groupMatches||[];
+  if(type==='main')  return state.mainBracket?state.mainBracket.rounds.flat():[];
+  return state.consolBracket?state.consolBracket.rounds.flat():[];
+}
+function refreshGroups(){ renderGroups(); showToast('Clasificación actualizada','info','ico-refresh',1500); }
+
+// ── RENDER GROUPS ─────────────────────────────────
+function renderGroups() {
+  const gs=state.groups||[], noMsg=document.getElementById('noGroupsMsg'), content=document.getElementById('groupsContent');
+  if(!gs.length||state.phase==='registro'){ noMsg.style.display=''; content.style.display='none'; return; }
+  noMsg.style.display='none'; content.style.display='';
+  const fb=document.getElementById('finishGroupsBtn');
+  fb.disabled=state.groupsFinished;
+  if(state.groupsFinished) fb.innerHTML=`<svg><use href="#ico-check"/></svg>Fase de Grupos Finalizada`;
+  document.getElementById('groupsStandings').innerHTML=gs.map(g=>{
+    const s=computeStandings(g.id);
+    return `<div class="group-card"><div class="group-header"><div class="group-title">GRUPO ${g.id}</div><div style="font-size:12px;color:var(--muted)">${g.pairs.length} parejas</div></div>
+    <table class="standings-table"><thead><tr><th style="width:32px;">#</th><th>Pareja</th><th class="stat-num">PJ</th><th class="stat-num">PG</th><th class="stat-num">PP</th><th class="stat-num">+/-</th></tr></thead>
+    <tbody>${s.map((x,i)=>{ const d=x.gamesWon-x.gamesLost, ds=d>0?`<span class="diff-pos">+${d}</span>`:d<0?`<span class="diff-neg">${d}</span>`:'0';
+    return `<tr class="${i<2?'advance':'consolacion'}"><td><span class="pos-badge pos-${i+1}">${i+1}</span></td><td style="font-size:12px;font-weight:600;">${getPairName(x.pairId)}</td><td class="stat-num">${x.won+x.lost}</td><td class="stat-num text-green">${x.won}</td><td class="stat-num text-red">${x.lost}</td><td class="stat-num">${ds}</td></tr>`;
+    }).join('')}</tbody></table></div>`;
+  }).join('');
+  const gm=state.groupMatches||[];
+  const matchOrder = state.matchOrder||[];
+  // Build ordered match list: interleaved order if available, else default
+  let orderedMatches;
+  if(matchOrder.length > 0){
+    const matchById = {};
+    gm.forEach(m=>{ matchById[m.id]=m; });
+    orderedMatches = matchOrder.map(id=>matchById[id]).filter(Boolean);
+    // Add any matches not in order (safety)
+    gm.forEach(m=>{ if(!matchOrder.includes(m.id)) orderedMatches.push(m); });
+  } else {
+    orderedMatches = gm;
+  }
+  // Pending matches first, completed at the bottom (still editable)
+  const pending   = orderedMatches.filter(m => !m.winner);
+  const completed = orderedMatches.filter(m =>  m.winner);
+  const sorted = [...pending, ...completed];
+
+  const matchesHTML = sorted.map(m=>{
+    const g = gs.find(g=>g.id===m.groupId);
+    return `<div class="card-title" style="margin-top:16px;font-size:13px;color:var(--muted);"><svg><use href="#ico-court"/></svg>GRUPO ${g?g.id:'?'}</div>${renderMatchCard(m,'group')}`;
+  }).join('');
+  document.getElementById('groupMatches').innerHTML = matchesHTML || '<div class="text-muted" style="padding:20px;text-align:center;">No hay partidos generados.</div>';
+}
+
+// ── FINISH GROUPS ─────────────────────────────────
+function confirmFinishGroups(){ openModal('¿Finalizar Fase de Grupos?','Se generarán los cuadros eliminatorios. Esta acción no se puede deshacer.',doFinishGroups); }
+function doFinishGroups() {
+  state.groupsFinished=true; state.phase='eliminatoria';
+  const mp=[],cp=[];
+  (state.groups||[]).forEach(g=>{ computeStandings(g.id).forEach((s,i)=>{ if(i<2)mp.push(s.pairId);else cp.push(s.pairId); }); });
+  state.mainBracket=generateBracket(shuffle(mp),'main');
+  state.consolBracket=generateBracket(shuffle(cp),'consol');
+  state.timer = { running: false, remainingMs: 1200000, lastStarted: null, configuredMs: 1200000 };
+  saveState(); if(!firebaseMode) renderAll(); showTab('eliminatoria');
+  showToast('¡Eliminatorias generadas!','success','ico-trophy',4000);
+}
+function generateBracket(ids, prefix) {
+  let slots=1; while(slots<ids.length) slots*=2;
+  const seeded=[...ids]; while(seeded.length<slots) seeded.push(null);
+  const rounds=[]; let cur=[];
+  for(let i=0;i<seeded.length;i+=2){
+    const mId=prefix+'_r0_m'+(i/2); let w=null;
+    // Auto-bye: only when one slot is truly empty (null seeded)
+    if(!seeded[i]) w=seeded[i+1]; else if(!seeded[i+1]) w=seeded[i];
+    cur.push({id:mId,round:0,slot:i/2,pair1Id:seeded[i],pair2Id:seeded[i+1],sets:null,winner:w});
+  }
+  rounds.push(cur); let ri=1;
+  while(cur.length>1){
+    const nxt=[];
+    const isNextFinal = cur.length === 2; // next round will be the final
+    for(let i=0;i<cur.length;i+=2){
+      const mId=prefix+'_r'+ri+'_m'+(i/2);
+      const p1=cur[i].winner||null, p2=(cur[i+1]&&cur[i+1].winner)?cur[i+1].winner:null;
+      // Never auto-assign winner if this will be the final match
+      let w=null; if(p1&&!cur[i+1]&&!isNextFinal) w=p1;
+      nxt.push({id:mId,round:ri,slot:i/2,pair1Id:p1,pair2Id:p2,sets:null,winner:w,prevMatch1:cur[i].id,prevMatch2:cur[i+1]?.id});
+    }
+    rounds.push(nxt); cur=nxt; ri++;
+  }
+  return{rounds};
+}
+function propagateWinner(type, mId, wId) {
+  const b=type==='main'?state.mainBracket:state.consolBracket; if(!b) return;
+  const totalRounds = b.rounds.length;
+  for(let ri=0; ri<b.rounds.length; ri++){
+    const r = b.rounds[ri];
+    const isFinalRound = ri === totalRounds - 1;
+    for(const m of r){
+      if(m.prevMatch1===mId){
+        m.pair1Id=wId;
+        // Only auto-win if opponent slot is null AND this is NOT the final
+        // (final must always be played explicitly)
+        if(!m.pair2Id && !isFinalRound) m.winner=wId;
+      }
+      if(m.prevMatch2===mId){
+        m.pair2Id=wId;
+        if(!m.pair1Id && !isFinalRound) m.winner=wId;
+      }
+    }
+  }
+}
+function clearDownstream(type, mId) {
+  const b=type==='main'?state.mainBracket:state.consolBracket; if(!b) return;
+  const tc=new Set([mId]);
+  for(const r of b.rounds) for(const m of r){
+    if(tc.has(m.prevMatch1)||tc.has(m.prevMatch2)){
+      m.pair1Id=tc.has(m.prevMatch1)?null:m.pair1Id; m.pair2Id=tc.has(m.prevMatch2)?null:m.pair2Id;
+      m.winner=null; m.sets=null; tc.add(m.id);
+    }
+  }
+}
+
+// ── RENDER ELIM ───────────────────────────────────
+function renderElim() {
+  const noMsg=document.getElementById('noElimMsg'), content=document.getElementById('elimContent');
+  if(state.phase!=='eliminatoria'){ noMsg.style.display=''; content.style.display='none'; return; }
+  noMsg.style.display='none'; content.style.display='';
+  renderBracket('main',state.mainBracket); renderBracket('consolacion',state.consolBracket);
+  renderElimMatches('main',state.mainBracket); renderElimMatches('consolacion',state.consolBracket);
+}
+
+// Returns the correct round name based on rounds remaining until the final
+// roundsLeft = totalRounds - 1 - roundIndex  (0 = final, 1 = semi, 2 = quarters...)
+function getRoundName(roundIndex, totalRounds) {
+  const roundsLeft = totalRounds - 1 - roundIndex; // 0 = final
+  if (roundsLeft === 0) return 'FINAL';
+  if (roundsLeft === 1) return 'Semifinal';
+  if (roundsLeft === 2) return 'Cuartos de Final';
+  if (roundsLeft === 3) return 'Octavos de Final';
+  if (roundsLeft === 4) return 'Dieciseisavos';
+  return 'Ronda ' + (roundIndex + 1);
+}
+function renderBracket(type, bracket) {
+  const vizEl=document.getElementById(type==='main'?'mainBracketViz':'consolBracketViz');
+  if(!bracket||!vizEl) return;
+  const rounds=bracket.rounds, nr=rounds.length;
+  let html='<div class="bracket">';
+  rounds.forEach((round,ri)=>{
+    const lbl = getRoundName(ri, nr);
+    const h=Math.pow(2,nr-1-ri)*80+(Math.pow(2,nr-1-ri)-1)*12;
+    html+=`<div class="bracket-round" style="height:${h+40}px;"><div class="round-label">${lbl||('R'+(ri+1))}</div><div style="display:flex;flex-direction:column;justify-content:space-around;flex:1;">`;
+    round.forEach(m=>{
+      const p1=m.pair1Id?getPairName(m.pair1Id):'<em>Por determinar</em>', p2=m.pair2Id?getPairName(m.pair2Id):'<em>Por determinar</em>';
+      const pw1=m.winner&&m.winner===m.pair1Id, pw2=m.winner&&m.winner===m.pair2Id;
+      const sc1=m.sets?m.sets.p1.join(' '):'', sc2=m.sets?m.sets.p2.join(' '):'';
+      html+=`<div class="bracket-match"><div class="bracket-team ${pw1?'winner':''} ${!m.pair1Id?'tbd':''}"><span>${p1}</span><span class="bracket-score">${sc1}</span></div><div class="bracket-team ${pw2?'winner':''} ${!m.pair2Id?'tbd':''}"><span>${p2}</span><span class="bracket-score">${sc2}</span></div></div>`;
+    });
+    html+='</div></div>';
+    if(ri<nr-1){ html+=`<div class="connector" style="height:${h+40}px;"></div>`; }
+    else {
+      const f1=rounds[nr-1][0].pair1Id, f2=rounds[nr-1][0].pair2Id, champ=rounds[nr-1][0].winner, isCons=type!=='main';
+      html+=`<div style="display:flex;align-items:center;padding-left:16px;"><div class="trophy-match" ${isCons?'style="border-color:var(--acc);box-shadow:0 0 30px var(--acc-glow);"':''}>
+        <div class="trophy-icon"><svg style="${isCons?'color:var(--acc)':''}"><use href="${isCons?'#ico-medal':'#ico-trophy'}"/></svg></div>
+        <div class="trophy-title" style="${isCons?'color:var(--acc)':''}">${isCons?'COPA CONSOLACIÓN':'VILLA PACHECO CHAMPION'}</div>
+        ${champ?`<div class="trophy-team winner"><svg><use href="#ico-crown"/></svg>${getPairName(champ)}</div>`:`<div class="trophy-team ${f1?'':'tbd'}">${f1?getPairName(f1):'Por determinar'}</div><div class="trophy-vs">VS</div><div class="trophy-team ${f2?'':'tbd'}">${f2?getPairName(f2):'Por determinar'}</div>`}
+      </div></div>`;
+    }
+  });
+  html+='</div>'; vizEl.innerHTML=html;
+}
+function renderElimMatches(type, bracket) {
+  const el=document.getElementById(type==='main'?'mainElimMatches':'consolElimMatches');
+  if(!bracket||!el) return;
+  let html='';
+  bracket.rounds.forEach((round,ri)=>{
+    const lbl = getRoundName(ri, bracket.rounds.length);
+    html+=`<div class="section-title" style="margin-top:20px;font-size:16px;">${lbl}</div>`;
+    round.forEach(m=>{ if(!m.pair1Id||!m.pair2Id) return; html+=renderMatchCard(m,type); });
+  });
+  el.innerHTML=html||'<div class="text-muted" style="padding:20px;text-align:center;">Los cruces se generarán cuando avancen los equipos</div>';
+}
+
+// ── POLLS SYSTEM ──────────────────────────────────
+
+// Poll definitions — fixed list, options generated dynamically or from players
+const POLLS = [
+  {
+    id: 'winner',
+    icon: 'ico-poll-winner',
+    title: '¿Quién va a ganar?',
+    desc: 'Vota la pareja que crees que se lleva el torneo. Se revelará el ganador al final del torneo.',
+    type: 'pairs',
+  },
+  {
+    id: 'nevera',
+    icon: 'ico-poll-nevera',
+    title: 'El Nevera',
+    desc: 'El espectador VIP del partido, solo toca la bola cuando le toca sacar. Los rivales le hacen un vacío tan absoluto y destructivo que podría aprovechar el set para sacarse un curso online o mirar Tinder en la esquina de la pista. Su única función es congelarse de frío mientras ve cómo masacran físicamente a su pareja, a la que solo le falta pedir asilo político en la otra pista.',
+    type: 'players',
+  },
+  {
+    id: 'limpiacristales',
+    icon: 'ico-poll-limpiacristales',
+    title: 'El Limpiacristales',
+    desc: 'Tiene una atracción magnética y peligrosa por el metacrilato del fondo. No da una bola por perdida, pero el precio a pagar es estamparse de cara contra la pared tres veces por juego. Deja la marca de la frente, la nariz y el sudor de la camiseta en el cristal. El dueño del club debería descontarle dinero de la pista por el mantenimiento.',
+    type: 'players',
+  },
+  {
+    id: 'francotirador',
+    icon: 'ico-poll-francotirador',
+    title: 'El Francotirador (sin puntería)',
+    desc: 'Sufre de optimismo patológico. Da igual que la bola le venga rasa, con efecto o a la altura de los tobillos: él va a saltar con los ojos cerrados para intentar sacarla por tres metros. El resultado es un misil tierra-aire que termina en la red o que sale del recinto directo a romperle el retrovisor a un coche en el parking.',
+    type: 'players',
+  },
+  {
+    id: 'rompepistas',
+    icon: 'ico-poll-rompepistas',
+    title: 'El Rompepistas',
+    desc: 'No tiene término medio: o le da a la bola con la fuerza de mil soles o no le da. Juega al pádel como si fuera tenis de los años 90. Sus golpes planos de derecha van tan fuertes que si impactan en el cuerpo del rival, le borran los tatuajes. La sutileza y el control no entran en su vocabulario.',
+    type: 'players',
+  },
+  {
+    id: 'disculpas',
+    icon: 'ico-poll-disculpas',
+    title: 'El Disculpas',
+    desc: 'Pide perdón por todo. Si la tira a la red: \"Perdón\". Si la saca por la puerta: \"Perdón\". Si te da un raquetazo sin querer en el bazo: \"Perdón\". Si mete un puntazo espectacular por la escuadra: \"Uy, perdón, quería cruzarla\". Llega un momento en que dan ganas de pedirle perdón a él por existir.',
+    type: 'players',
+  },
+  {
+    id: 'ahorro',
+    icon: 'ico-poll-ahorro',
+    title: 'El Modo Ahorro',
+    desc: 'Su política energética es estricta: correr es de cobardes. Si la bola no le va exactamente a la mano, ni lo intenta. Te mira desde el otro lado de la pista con los brazos caídos mientras te dice: \"No llegaba, tío\", cuando la bola ha botado a medio metro de su posición. Termina el partido sin haber sudado una sola gota.',
+    type: 'players',
+  },
+  {
+    id: 'casipunto',
+    icon: 'ico-poll-casipunto',
+    title: 'El Casi-Punto',
+    desc: 'El rey de los universos paralelos y los \"hubiera\". Es el autor de la mítica frase: \"¡Buah, si entra esa bola, cerramos el club y nos vamos a cenar!\". Alerta para los navegantes: la bola nunca entra, suele botar en la valla del vecino y siempre perdemos el saque por culpa de su obsesión por salir en los resúmenes de jugadas que nadie está grabando.',
+    type: 'players',
+  },
+  {
+    id: 'robapuntos',
+    icon: 'ico-poll-robapuntos',
+    title: 'El Robapuntos',
+    desc: 'Ojo de águila para el campo ajeno, ciego total para el suyo. Si la bola del rival roza la línea a 120 km/h, él grita \"¡FUERA!\" antes de que bote. Pero si el rival le mete un viaje que bota en mitad de su cuadro, te mira fijamente y dice: \"Me ha pillado a contrapié, no la he visto bien, yo creo que se repite, ¿no?\".',
+    type: 'players',
+  },
+  {
+    id: 'fisio',
+    icon: 'ico-poll-fisio',
+    title: 'El Fisioterapeuta',
+    desc: 'Se lesiona o le da un tirón mágicamente justo cuando vais perdiendo 5-1 en el primer set. Su umbral del dolor está directamente conectado con el marcador. Con 2-2 en el primer set está para jugar los Juegos Olímpicos; pero en cuanto el partido se pone cuesta arriba con un 5-1 en contra, empieza a tocarse el gemelo, a mirar al cielo con dolor y a pedir un tiempo muerto médico para salvar la dignidad.',
+    type: 'players',
+  },
+  {
+    id: 'paquete',
+    icon: 'ico-poll-paquete',
+    title: 'El Paquete',
+    desc: 'Su mejor golpe es el saludo inicial en la red. Tiene una relación tóxica con el deporte: él ama el pádel, pero el pádel le pone una orden de alejamiento. Su hábitat natural es el suelo buscando bolas que no ha olido o pidiendo perdón con la mano levantada el 90% del partido. Jugar con él es un acto de caridad cristiana; jugar contra él es aburrido porque los puntos duran menos que un suspiro.',
+    type: 'players',
+  },
+  {
+    id: 'flipado',
+    icon: 'ico-poll-flipado',
+    title: 'El Flipado',
+    desc: 'Se viste como si fuera a jugar la final del Premier Padel (muñequeras a juego, ropa de marca, pala de 300 euros). Intenta sacar la bola por tres metros en cada golpe, aunque esté en el fondo de la pista y de espaldas. El 99% de sus remates acaban en el cristal... en el suyo. Ese que ya ha reservado pista en el club, que tiene dos raquetas de 400€ y que te explica la \"posición correcta\" antes de cada saque.',
+    type: 'players',
+  },
+  {
+    id: 'cangrejo',
+    icon: 'ico-poll-cangrejo',
+    title: 'El Cangrejo',
+    desc: 'Su técnica de desplazamiento es un misterio de la evolución. No sabe correr hacia adelante ni hacia atrás; solo se mueve de lado a lado pegado a la red de la pista como un crustáceo. Si le tiran un globo, se queda mirando la bola hacia arriba como si fuera un ovni mientras camina de espaldas hasta tropezar con sus propios pies.',
+    type: 'players',
+  },
+  {
+    id: 'utillero',
+    icon: 'ico-poll-utillero',
+    title: 'El Utillero',
+    desc: 'El jugador más valioso y respetado del torneo. No sabe lo que es una bandeja ni cómo se hace una dejada, pero tiene un máster cum laude en mantener los tercios a la temperatura perfecta en la nevera portátil. Su rendimiento dentro de la pista es inversamente proporcional a su velocidad para pedir la cuenta en el bar. Si no viene él, el torneo se cancela.',
+    type: 'players',
+  },
+  {
+    id: 'enfadado',
+    icon: 'ico-poll-enfadado',
+    title: 'El que más se Enfada',
+    desc: 'Su peor enemigo no son los rivales, es él mismo. Capaz de insultar a la bola, maldecir el viento en pista cubierta y pegarle un viaje al cristal que hace temblar la estructura. Si falla dos puntos seguidos, corres el riesgo de que tire la pala al tejado del club. El que insulta a su pareja, a la pelota, al sol, a la red y a la decisión de participar en esto.',
+    type: 'players',
+  },
+  {
+    id: 'excusas',
+    icon: 'ico-poll-excusas',
+    title: 'El Rey de las Excusas',
+    desc: 'Nunca pierde por culpa de su nivel. Si falla, es porque \"había demasiada arena en esa zona\", \"la luz del foco le ha dado justo en la retina\", \"el grip estaba húmedo\" o \"le ha venido un bajón de tensión por no desayunar fuerte en 2018\". Siempre hay un dedo raro, una rodilla frágil, o la clásica \"Me ha dado un bajón de azúcar por no desayunar fuerte en 2019\". El campeón indiscutible de las justificaciones.',
+    type: 'players',
+  },
+  {
+    id: 'comentarista',
+    icon: 'ico-poll-comentarista',
+    title: 'El Comentarista',
+    desc: 'Narra el partido en tiempo real mientras juega. \"¡Uuuuy, casi!\", \"¡Buena dejada!\", \"¡Qué paralela!\". El problema es que habla tanto que se le olvida darle a la pelota. Es el único capaz de perder un punto por estar felicitando al rival a mitad de la jugada. \"¡Qué golpe!\", \"¡Se la he puesto!\", \"¡Madre mía, qué volea!\".',
+    type: 'players',
+  },
+  {
+    id: 'tecnico',
+    icon: 'ico-poll-tecnico',
+    title: 'El Más Técnico',
+    desc: 'Te calcula el ángulo de rebote en el doble cristal usando el teorema de Pitágoras. Sabe perfectamente la teoría de dónde hay que colocarse, la empuñadura exacta y la flexión de rodillas. El único inconveniente es que su cuerpo no responde a las órdenes de su cerebro científico y termina dándole a la bola con la muñeca rígida como un Playmobil.',
+    type: 'players',
+  },
+  {
+    id: 'calentamiento',
+    icon: 'ico-poll-calentamiento',
+    title: 'El del Calentamiento de 20 Min',
+    desc: 'Llega una hora antes para hacer carrera continua, usar bandas elásticas y estirar músculos que la ciencia ni siquiera ha descubierto. Se toma el peloteo inicial en la red como si le fuera la vida en ello. Spoiler: a los tres minutos del primer set real, ya está pidiendo la hora, con las manos en las caderas y buscando el bote de Reflex.',
+    type: 'players',
+  },
+  {
+    id: 'influencer',
+    icon: 'ico-poll-influencer',
+    title: 'El Influencer del Pádel',
+    desc: 'Su prioridad no es ganar, es que el algoritmo sepa que hace deporte. Sube una Story a Instagram antes de empezar, graba un vídeo en el cambio de set y te obliga a posar abrazados y sudados al final con el hashtag #PadelLife. Si el partido no tiene más de 30 likes, para él ese partido nunca existió. Más fotos que puntos. Su Instagram vale más que su ranking.',
+    type: 'players',
+  },
+  {
+    id: 'profesor',
+    icon: 'ico-poll-profesor',
+    title: 'El Profesor',
+    desc: 'El \"entrenador frustrado\". No te deja jugar tranquilo porque se pasa el partido diciéndote: \"Entra más de lado\", \"Cierra la pista\", \"Sube a la red\". Curiosamente, cuando la bola le va a él, ejecuta exactamente todo lo contrario de lo que predica. Entre punto y punto te explica qué has hecho mal, cómo deberías moverte y qué raqueta deberías comprar.',
+    type: 'players',
+  },
+  {
+    id: 'sargento',
+    icon: 'ico-poll-sargento',
+    title: 'El Sargento de Hierro',
+    desc: 'A diferencia del \"profesor\", este no te da consejos teóricos, te da órdenes directas a gritos mientras juegas. \"¡Mía!\", \"¡Tuya!\", \"¡Déjala!\", \"¡Sube!\", \"¡Baja!\". Te genera tal nivel de ansiedad y estrés postraumático que terminas jugando encogido y pidiéndole permiso hasta para respirar.',
+    type: 'players',
+  },
+  {
+    id: 'desaparecido',
+    icon: 'ico-poll-desaparecido',
+    title: 'El Desaparecido',
+    desc: 'Un mito viviente. Dice que va al torneo por el grupo de WhatsApp, pero jamás confirma la pista. Llega 15 minutos tarde (si es que aparece), ignora los mensajes de \"falta uno\" y, cuando por fin entra a la pista, se queda estático en la red viendo pasar las bolas a su lado con la mirada perdida, como si fuera un holograma.',
+    type: 'players',
+  },
+];
+
+let activePollId = 'winner';
+
+function getVoterName() {
+  return (document.getElementById('predVoterName') || {}).value?.trim() || '';
+}
+
+function renderPredictions() {
+  const notReady = document.getElementById('predNotReady');
+  const content  = document.getElementById('predContent');
+  if (!notReady || !content) return;
+
+  const active = ['grupos','eliminatoria'].includes(state.phase);
+  notReady.style.display = active ? 'none' : '';
+  content.style.display  = active ? ''     : 'none';
+  if (!active) return;
+
+  const preds = state.predictions || {};
+
+  // Build sidebar
+  const sidebarEl = document.getElementById('pollsSidebarList');
+  if (sidebarEl) {
+    sidebarEl.innerHTML = POLLS.map(poll => {
+      const pollVotes = preds[poll.id] ? Object.keys(preds[poll.id]).length : 0;
+      return `<div class="poll-sidebar-item ${poll.id===activePollId?'active':''}" onclick="selectPoll('${poll.id}')">
+        <svg class="poll-svg-icon"><use href="#${poll.icon}"/></svg>
+        <span style="flex:1">${poll.title}</span>
+        <span class="poll-vote-count">${pollVotes||''}</span>
+      </div>`;
+    }).join('');
+  }
+
+  // Build main area
+  const mainEl = document.getElementById('pollsMain');
+  if (!mainEl) return;
+  mainEl.innerHTML = '';
+
+  POLLS.forEach(poll => {
+    const panel = document.createElement('div');
+    panel.className = `poll-panel${poll.id===activePollId?' active':''}`;
+    panel.id = `poll-panel-${poll.id}`;
+
+    const pollVotes = preds[poll.id] || {};
+    const options = getPollOptions(poll);
+
+    // Count votes
+    const counts = {};
+    options.forEach(o => { counts[o.id] = 0; });
+    Object.values(pollVotes).forEach(optId => { if(counts[optId]!==undefined) counts[optId]++; });
+    const sorted = options.slice().sort((a,b)=>counts[b.id]-counts[a.id]);
+    const maxVotes = sorted.length ? counts[sorted[0].id] : 0;
+    const totalVotes = Object.values(counts).reduce((a,b)=>a+b,0);
+
+    // Find special winner mark for winner poll
+    let tournamentWinner = null;
+    if (poll.id==='winner' && state.mainBracket) {
+      const fr=state.mainBracket.rounds[state.mainBracket.rounds.length-1];
+      if(fr && fr[0] && fr[0].winner) tournamentWinner=fr[0].winner;
+    }
+
+    // Voter names per option
+    const voterMap = {};
+    options.forEach(o=>{ voterMap[o.id]=[]; });
+    Object.entries(pollVotes).forEach(([voter,optId])=>{ if(voterMap[optId]!==undefined) voterMap[optId].push(voter); });
+
+    panel.innerHTML = `
+      <div class="poll-panel-title"><svg class="poll-title-icon"><use href="#${poll.icon}"/></svg>${poll.title}</div>
+      <div class="poll-panel-desc">${poll.desc}</div>
+      <div class="poll-vote-form">
+        <div class="form-group" style="flex:1;min-width:180px">
+          <label>Tu voto</label>
+          <select id="pollSelect-${poll.id}">
+            ${options.map(o=>`<option value="${escHtml(o.id)}">${escHtml(o.label)}</option>`).join('')}
+          </select>
+        </div>
+        <button class="btn btn-acc" onclick="submitPollVote('${poll.id}')">
+          <svg><use href="#ico-check"/></svg>Votar
+        </button>
+      </div>
+      <div class="section-title" style="margin-top:4px;font-size:16px;">
+        <svg><use href="#ico-chart"/></svg>Ranking
+      </div>
+      <div id="pollRanking-${poll.id}">
+        ${totalVotes===0
+          ? `<div class="pred-rank-item" style="opacity:1;justify-content:center;"><span class="pred-zero">Aún no hay votos. ¡Sé el primero!</span></div>`
+          : sorted.map((opt,i)=>{
+              const votes=counts[opt.id];
+              const pct=maxVotes>0?Math.round((votes/maxVotes)*100):0;
+              const posClass=['p1','p2','p3'][i]||'pn';
+              const voters=voterMap[opt.id];
+              const voterStr=voters.length?voters.map(v=>escHtml(v)).join(', '):'Nadie aún';
+              const isWin=poll.id==='winner'&&tournamentWinner&&opt.id===tournamentWinner;
+              return `<div class="pred-rank-item" style="animation-delay:${i*50}ms;${isWin?'border-color:rgba(245,200,66,.4);background:rgba(245,200,66,.03);':''}">
+                <div class="pred-rank-pos ${posClass}">${i+1}°</div>
+                <div class="pred-rank-info">
+                  <div class="pred-rank-name">${escHtml(opt.label)}</div>
+                  <div class="pred-rank-voters">${escHtml(voterStr)}</div>
+                </div>
+                <div class="pred-rank-bar-wrap"><div class="pred-rank-bar" style="width:${pct}%"></div></div>
+                <div class="pred-rank-count">${votes}</div>
+                ${isWin?'<div class="pred-winner-badge">CAMPEÓN</div>':''}
+              </div>`;
+            }).join('')
+        }
+      </div>
+    `;
+    mainEl.appendChild(panel);
+  });
+}
+
+function getPollOptions(poll) {
+  if (poll.type === 'pairs') {
+    return (state.pairs||[]).map(p => ({ id: p.id, label: getPairName(p.id) }));
+  }
+  if (poll.type === 'players') {
+    return (state.players||[]).map(p => ({
+      id: p.id,
+      label: p.nickname ? `${p.name} "${p.nickname}"` : p.name
+    }));
+  }
+  return [];
+}
+
+function selectPoll(pollId) {
+  activePollId = pollId;
+  renderPredictions();
+}
+
+function submitPollVote(pollId) {
+  const voter = getVoterName();
+  if (!voter) { showToast('Escribe tu nombre antes de votar', 'error', 'ico-warn'); return; }
+  const sel = document.getElementById('pollSelect-'+pollId);
+  if (!sel || !sel.value) { showToast('Selecciona una opción', 'error', 'ico-warn'); return; }
+
+  if (!state.predictions) state.predictions = {};
+  if (!state.predictions[pollId]) state.predictions[pollId] = {};
+
+  const isChange = state.predictions[pollId][voter] !== undefined;
+  state.predictions[pollId][voter] = sel.value;
+
+  saveState();
+  if (!firebaseMode) renderPredictions();
+  showToast(isChange ? '¡Voto actualizado!' : '¡Voto registrado!', 'success', 'ico-check');
+}
+
+// Keep old submitPrediction as alias (not used in new UI but kept for safety)
+function submitPrediction() { submitPollVote('winner'); }
+
+
+// ── TIMER SYSTEM ──────────────────────────────────
+// Timer state lives in state.timer = { running, remainingMs, lastStarted }
+// Only writes to Firebase on Start/Pause/Reset (not every second)
+// Each client calculates display time locally from lastStarted + remainingMs
+
+let _timerRAF = null; // requestAnimationFrame handle
+
+function timerStart() {
+  if(!state.timer) state.timer = { running:false, remainingMs:1200000, lastStarted:null, configuredMs:1200000 };
+  if(state.timer.running) return;
+  state.timer.running = true;
+  state.timer.lastStarted = Date.now();
+  saveState();
+  // Always start local loop regardless of Firebase mode —
+  // Firebase only fires on state changes, not every second
+  renderTimerUI();
+  startTimerLoop();
+}
+
+function timerPause() {
+  if(!state.timer || !state.timer.running) return;
+  const elapsed = Date.now() - state.timer.lastStarted;
+  state.timer.remainingMs = Math.max(0, state.timer.remainingMs - elapsed);
+  state.timer.running = false;
+  state.timer.lastStarted = null;
+  saveState();
+  renderTimerUI();
+  stopTimerLoop();
+}
+
+function timerReset() {
+  // Reset to current configured duration (default 20min, or 40min if set for finals)
+  const dur = state.timer && state.timer.configuredMs ? state.timer.configuredMs : 1200000;
+  state.timer = { running: false, remainingMs: dur, lastStarted: null, configuredMs: dur };
+  saveState();
+  renderTimerUI();
+  stopTimerLoop();
+}
+
+function timerSetDuration(ms) {
+  // Change timer duration (only when not running)
+  if(state.timer && state.timer.running) {
+    showToast('Pausa el temporizador antes de cambiar la duración', 'error', 'ico-warn');
+    return;
+  }
+  state.timer = { running: false, remainingMs: ms, lastStarted: null, configuredMs: ms };
+  saveState();
+  renderTimerUI();
+  stopTimerLoop();
+  const mins = Math.round(ms / 60000);
+  showToast(`Temporizador configurado a ${mins} minutos`, 'info', 'ico-flag');
+}
+
+// Returns current remaining ms (accounts for running time since lastStarted)
+function timerGetRemaining() {
+  if(!state.timer) return 1200000;
+  // Use configuredMs as the base if available
+  if(!state.timer.running) return state.timer.remainingMs;
+  const elapsed = Date.now() - (state.timer.lastStarted || Date.now());
+  return Math.max(0, state.timer.remainingMs - elapsed);
+}
+
+function timerFormatMs(ms) {
+  const totalSecs = Math.ceil(ms / 1000);
+  const mins = Math.floor(totalSecs / 60);
+  const secs = totalSecs % 60;
+  return mins.toString().padStart(2,'0') + ':' + secs.toString().padStart(2,'0');
+}
+
+function timerGetStatus() {
+  if(!state.timer) return 'idle';
+  const rem = timerGetRemaining();
+  if(rem <= 0) return 'finished';
+  if(state.timer.running) return 'running';
+  if(state.timer.remainingMs < 1200000) return 'paused';
+  return 'idle';
+}
+
+function renderTimerUI() {
+  const rem = timerGetRemaining();
+  const status = timerGetStatus();
+  const fmt = timerFormatMs(rem);
+
+  // Update all timer displays (grupos + elim)
+  ['Grupos','Elim'].forEach(suffix => {
+    const disp = document.getElementById('timerDisplay'+suffix);
+    const startBtn = document.getElementById('timerStartBtn'+suffix);
+    const pauseBtn = document.getElementById('timerPauseBtn'+suffix);
+    if(disp) {
+      disp.textContent = fmt;
+      disp.className = 'timer-display ' + status;
+    }
+    if(startBtn) startBtn.style.display = status==='running' ? 'none' : '';
+    if(pauseBtn) pauseBtn.style.display = status==='running' ? '' : 'none';
+    // Show/hide 40/20 min toggle buttons (only in elim widget)
+    if(suffix === 'Elim') {
+      const btn40 = document.getElementById('timerSet40Btn');
+      const btn20 = document.getElementById('timerSet20Btn');
+      const is40 = state.timer && state.timer.configuredMs === 2400000;
+      if(btn40) btn40.style.display = (is40 || status==='running') ? 'none' : '';
+      if(btn20) btn20.style.display = (is40 && status!=='running') ? '' : 'none';
+    }
+
+    // Update current + next match text
+    const nextEl = document.getElementById('timerNextText'+suffix);
+    const currentEl = document.getElementById('timerCurrentText'+suffix);
+    const currentLabel = document.getElementById('timerCurrentLabel'+suffix);
+    const nextBlock = document.getElementById('timerNextBlock'+suffix);
+    const isRunning = status === 'running';
+    const pending = getPendingList();
+
+    if(currentLabel) currentLabel.style.display = (isRunning && pending.length > 0) ? '' : 'none';
+    if(nextBlock) nextBlock.style.display = pending.length > (isRunning ? 1 : 0) ? '' : 'none';
+
+    if(currentEl && isRunning && pending.length > 0) {
+      currentEl.innerHTML = formatMatchLabel(pending[0]);
+    }
+    if(nextEl) {
+      const next = getNextPendingMatch();
+      nextEl.innerHTML = next || '<span style="color:var(--muted)">—</span>';
+    }
+  });
+
+  // Update spectator timer if open
+  const specDisp = document.getElementById('specTimerDisplay');
+  if(specDisp) {
+    specDisp.textContent = fmt;
+    specDisp.className = 'spec-timer-display ' + status;
+    const specNext = document.getElementById('specTimerNext');
+    if(specNext) {
+      const next = getNextPendingMatch();
+      specNext.innerHTML = next
+        ? `<span>Próximo: </span>${next}`
+        : '<span style="color:var(--muted)">Sin partidos pendientes</span>';
+    }
+  }
+}
+
+function getPendingList() {
+  // Returns ordered list of pending matches for current phase
+  if(state.phase === 'grupos') {
+    const order = state.matchOrder || [];
+    const matches = state.groupMatches || [];
+    const matchById = {};
+    matches.forEach(m=>{ matchById[m.id]=m; });
+    const list = order.length > 0
+      ? order.map(id=>matchById[id]).filter(Boolean)
+      : matches;
+    return list.filter(m=>!m.winner);
+  }
+  if(state.phase === 'eliminatoria') {
+    const all = [];
+    for(const bracket of [state.mainBracket, state.consolBracket]) {
+      if(!bracket) continue;
+      for(const round of bracket.rounds)
+        round.forEach(m=>{ if(m.pair1Id&&m.pair2Id&&!m.winner) all.push(m); });
+    }
+    return all;
+  }
+  return [];
+}
+
+function formatMatchLabel(m) {
+  if(state.phase === 'grupos') {
+    const g = (state.groups||[]).find(g=>g.id===m.groupId);
+    return `[Grupo ${g?g.id:'?'}] ${getPairName(m.pair1Id)} vs ${getPairName(m.pair2Id)}`;
+  }
+  const mainRounds = state.mainBracket ? state.mainBracket.rounds : [];
+  const isFinalMatch = mainRounds.length > 0 && mainRounds[mainRounds.length-1][0]?.id === m.id;
+  if(isFinalMatch) {
+    const SVG_TROPHY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--lime)"><path d="M8 21h8M12 17v4M7 4H4a1 1 0 0 0-1 1v2a4 4 0 0 0 4 4M17 4h3a1 1 0 0 1 1 1v2a4 4 0 0 1-4 4"/><path d="M7 4v8a5 5 0 0 0 10 0V4H7z"/></svg>';
+    return SVG_TROPHY + 'GRAN FINAL &nbsp;·&nbsp; ' + getPairName(m.pair1Id) + ' vs ' + getPairName(m.pair2Id);
+  }
+  return getPairName(m.pair1Id) + ' vs ' + getPairName(m.pair2Id);
+}
+
+function getNextPendingMatch() {
+  const pending = getPendingList();
+  if(state.phase === 'grupos') {
+    if(!pending.length) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--lime)"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>FASE DE ELIMINATORIAS';
+    const next = pending[0];
+    // If this is the last pending match, add warning after
+    const isLast = pending.length === 1;
+    const g = (state.groups||[]).find(g=>g.id===next.groupId);
+    const txt = `[Grupo ${g?g.id:'?'}] ${getPairName(next.pair1Id)} vs ${getPairName(next.pair2Id)}`;
+    return isLast ? txt + ' &nbsp;<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;color:var(--acc)"><ellipse cx="10" cy="9" rx="6" ry="7.5"/><line x1="4.5" y1="14.5" x2="2" y2="22"/><line x1="15.5" y1="14.5" x2="18" y2="22"/><line x1="10" y1="4" x2="10" y2="16.5"/><line x1="4.5" y1="9" x2="15.5" y2="9"/></svg><span style="color:var(--acc);font-size:.85em;">ÚLTIMO PARTIDO DE GRUPOS</span>' : txt;
+  }
+  if(state.phase === 'eliminatoria') {
+    // Collect all pending matches across both brackets
+    const allPending = [];
+    for(const bracket of [state.mainBracket, state.consolBracket]) {
+      if(!bracket) continue;
+      for(const round of bracket.rounds) {
+        round.forEach(m=>{ if(m.pair1Id&&m.pair2Id&&!m.winner) allPending.push(m); });
+      }
+    }
+    if(!allPending.length) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--gold,#f5c842)"><path d="M2 20h20"/><path d="M2 20l3-9 5 4 2-7 2 7 5-4 3 9"/></svg>REVISIÓN DE ENCUESTAS';
+    const next = allPending[0];
+    // Check if this is the final of main bracket
+    const mainRounds = state.mainBracket ? state.mainBracket.rounds : [];
+    const isFinalMatch = mainRounds.length > 0 && mainRounds[mainRounds.length-1][0]?.id === next.id;
+    const isLast = allPending.length === 1;
+    const txt = `${getPairName(next.pair1Id)} vs ${getPairName(next.pair2Id)}`;
+    if(isFinalMatch) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--lime)"><path d="M8 21h8M12 17v4M7 4H4a1 1 0 0 0-1 1v2a4 4 0 0 0 4 4M17 4h3a1 1 0 0 1 1 1v2a4 4 0 0 1-4 4"/><path d="M7 4v8a5 5 0 0 0 10 0V4H7z"/></svg>GRAN FINAL &nbsp;·&nbsp; ' + txt;
+    return isLast ? txt + ' · <span style="color:var(--lime)">ÚLTIMA ELIMINATORIA</span>' : txt;
+  }
+  return null;
+}
+
+function startTimerLoop() {
+  stopTimerLoop();
+  function tick() {
+    renderTimerUI();
+    if(timerGetStatus() === 'running') {
+      _timerRAF = requestAnimationFrame(tick);
+    } else if(timerGetRemaining() <= 0) {
+      // Timer finished — auto-pause in state
+      state.timer.running = false;
+      state.timer.remainingMs = 0;
+      renderTimerUI();
+    }
+  }
+  _timerRAF = requestAnimationFrame(tick);
+}
+
+function stopTimerLoop() {
+  if(_timerRAF) { cancelAnimationFrame(_timerRAF); _timerRAF = null; }
+}
+
+// Call this whenever state is loaded from Firebase
+function syncTimerFromState() {
+  if(state.timer && state.timer.running) {
+    startTimerLoop();
+  } else {
+    stopTimerLoop();
+    renderTimerUI();
+  }
+}
+
+// ── RESET TORNEO ──────────────────────────────────
+function confirmResetTorneo() {
+  openModal(
+    '¿Reiniciar el torneo completo?',
+    'Se borrarán todos los jugadores, grupos, partidos y eliminatorias. El torneo volverá al estado inicial. Esta acción no se puede deshacer.',
+    doResetTorneo
+  );
+}
+function doResetTorneo() {
+  // Reset local state immediately
+  state = {
+    players: [], pairs: [], groups: [], groupMatches: [],
+    groupsFinished: false, mainBracket: null, consolBracket: null,
+    predictions: {}, phase: 'registro'
+  };
+  // Clear animation state
+  _pendingPairs = [];
+  _pendingGroups = [];
+  _sorteoAnimating = false;
+  drawState = { pairsRevealed: 0, groupsRevealed: 0 };
+  // Always clear localStorage regardless of Firebase mode
+  try { localStorage.removeItem('yuncosTorneo'); } catch(e) {}
+  // In Firebase mode: DELETE the node entirely (not overwrite)
+  // This triggers the onValue listener on all devices with d=null → clean reset everywhere
+  if (firebaseMode && dbRef && window._remove) {
+    window._remove(dbRef).catch(e => { console.error('Firebase remove error:', e); saveState(); });
+  } else {
+    saveToLocal();
+  }
+  renderAll();
+  showTab('registro');
+  // Reset sorteo UI elements
+  const pra = document.getElementById('pairRevealArea');
+  if(pra) pra.innerHTML='';
+  const gra = document.getElementById('groupRevealArea');
+  if(gra) gra.innerHTML='';
+  const saa = document.getElementById('sorteoActionsArea');
+  if(saa) saa.style.display='none';
+  const sga = document.getElementById('sorteoGroupActions');
+  if(sga) sga.style.display='none';
+  showToast('Torneo reiniciado. ¡A empezar de nuevo!', 'info', 'ico-reset', 4000);
+}
+
+// ── UTILS ─────────────────────────────────────────
+function shuffle(arr){
+  const a = [...arr];
+  // Unbiased Fisher-Yates using rejection sampling with crypto.getRandomValues
+  // buf[0] % max has modulo bias when 2^32 is not divisible by max.
+  // We reject values >= floor(2^32 / max) * max to eliminate bias.
+  const cryptoRnd = (max) => {
+    if (!window.crypto || !window.crypto.getRandomValues) {
+      return Math.floor(Math.random() * max);
+    }
+    const buf = new Uint32Array(1);
+    const limit = Math.floor(0x100000000 / max) * max; // largest multiple of max <= 2^32
+    let v;
+    do {
+      window.crypto.getRandomValues(buf);
+      v = buf[0];
+    } while (v >= limit); // reject biased values — loop runs <2 times on average
+    return v % max;
+  };
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = cryptoRnd(i + 1);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function escHtml(s){ if(!s)return''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+// ── SPECTATOR MODE BOOT ───────────────────────────
+// Detect ?spectator=mode in URL — if present, show spectator UI only
+// Set _specMode immediately so Firebase listener uses it from first fire
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const specParam = params.get('spectator');
+  if (!specParam) return; // normal app mode
+
+  // Set _specMode NOW, before Firebase fires
+  _specMode = specParam;
+
+  // Override renderAll immediately so Firebase onValue calls renderSpectator
+  // (we redefine it here; the original definition below will be shadowed)
+  window.renderAll = function() { if(_specMode) renderSpectator(); };
+
+  // Hide main app, show spectator overlay immediately
+  document.addEventListener('DOMContentLoaded', () => {
+    // Hide everything except the spectator overlay
+    document.querySelector('header') && (document.querySelector('header').style.display = 'none');
+    const container = document.querySelector('.container');
+    if (container) container.style.display = 'none';
+
+    // Show spectator overlay full screen
+    const overlay = document.getElementById('spectatorOverlay');
+    if (overlay) {
+      overlay.style.display = 'block';
+      // Remove the close button X in spectator tab — user closes the tab directly
+      const closeBtn = overlay.querySelector('button[onclick="closeSpectator()"]');
+      if (closeBtn) closeBtn.style.display = 'none';
+    }
+
+    _specMode = specParam;
+    _specPollIndex = 0;
+    _specPollMs = 0;
+
+    // Start live clock
+    _specLiveInterval = setInterval(() => {
+      const el = document.getElementById('specLiveTime');
+      if (el) {
+        const n = new Date();
+        el.textContent = n.getHours().toString().padStart(2,'0') + ':' +
+                         n.getMinutes().toString().padStart(2,'0') + ':' +
+                         n.getSeconds().toString().padStart(2,'0');
+      }
+      if (_specMode === 'predicciones') tickPollRotation();
+      // Refresh timer display in spectator every second
+      if (_specMode === 'grupos' || _specMode === 'eliminatoria') renderTimerUI();
+    }, 1000);
+  });
+
+  // renderAll already patched above at IIFE time, before Firebase fires.
+})();
+
+if(!window._firebaseReady) document.addEventListener('DOMContentLoaded',()=>{ loadFromLocal(); renderAll(); });
+</script>
+
+<!-- ═══════════════════════════════════════════════════
+     SPECTATOR MODE OVERLAY
+     Opens in new tab via openSpectator(mode)
+     ═══════════════════════════════════════════════════ -->
+<div id="spectatorOverlay" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:9999;overflow-y:auto;">
+
+  <!-- LIVE BADGE -->
+  <div class="spec-live-badge">
+    <div class="spec-live-dot"></div>
+    EN VIVO
+    <span class="spec-live-time" id="specLiveTime"></span>
+    <button onclick="closeSpectator()" style="background:none;border:none;color:var(--muted);cursor:pointer;margin-left:8px;padding:0;display:flex;align-items:center;">
+      <svg style="width:14px;height:14px;"><use href="#ico-x"/></svg>
+    </button>
+  </div>
+
+  <!-- SPEC HEADER -->
+  <div class="spec-header">
+    <div class="spec-logo">ROAD TO THE <span class="spec-logo-acc">VILLA PACHECO</span> FINAL</div>
+    <div class="spec-subtitle">Torneo de Pádel &nbsp;·&nbsp; Casa Rural Palomeque 2026 &nbsp;·&nbsp; by Accenture</div>
+    <div class="spec-phase-badge" id="specPhaseBadge">
+      <svg><use href="#ico-signal"/></svg>
+      <span id="specPhaseLabel">EN DIRECTO</span>
+    </div>
+  </div>
+
+  <!-- SPEC CONTENT -->
+  <div class="spec-container">
+    <div id="specContent"></div>
+  </div>
+</div>
+
+<script>
+// ── SPECTATOR SYSTEM ───────────────────────────────────────────────
+let _specMode = null;
+let _specLiveInterval = null;
+let _specPollInterval = null;
+let _specPollIndex = 0;
+let _specPollTimer = 0;
+const SPEC_POLL_DURATION = 15000; // 15s per poll
+
+function openSpectator(mode) {
+  const url = window.location.href.split('?')[0] + '?spectator=' + mode;
+  window.open(url, '_blank');
+}
+
+function closeSpectator() {
+  // In new-tab mode: just close the tab
+  window.close();
+}
+
+// Called by the Firebase onValue listener to refresh spectator if open
+function refreshSpectatorIfOpen() {
+  if(_specMode) renderSpectator();
+}
+
+function renderSpectator() {
+  const content = document.getElementById('specContent');
+  const phaseLbl = document.getElementById('specPhaseLabel');
+  if(!content) return;
+
+  const phaseNames = { registro:'REGISTRO', reglas:'REGLAS', 'sorteo-parejas':'SORTEO PAREJAS', 'sorteo-grupos':'SORTEO GRUPOS', grupos:'FASE DE GRUPOS', eliminatoria:'ELIMINATORIAS', predicciones:'ENCUESTAS' };
+  if(phaseLbl) phaseLbl.textContent = phaseNames[_specMode] || 'EN DIRECTO';
+
+  switch(_specMode) {
+    case 'registro':      content.innerHTML = buildSpecRegistro(); break;
+    case 'grupos':        content.innerHTML = buildSpecGrupos();   break;
+    case 'eliminatoria':  content.innerHTML = buildSpecElim();     break;
+    case 'predicciones':  buildSpecPred(content);                  break;
+    default:              content.innerHTML = '';
+  }
+}
+
+// ── REGISTRO SPECTATOR ────────────────────────────
+function buildSpecRegistro() {
+  const players = state.players || [];
+  const levelData = {
+    1: { label:'Principiante', color:'var(--green)' },
+    2: { label:'Intermedio',   color:'var(--blue)'  },
+    3: { label:'Avanzado',     color:'#c87aff'      },
+  };
+  return `
+    <div class="spec-count-bar">
+      <div class="spec-count-num">${players.length}</div>
+      <div>
+        <div class="spec-count-label">Jugadores registrados</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px;">${Math.floor(players.length/2)} parejas posibles</div>
+      </div>
+    </div>
+    <div class="spec-registro-grid">
+      ${players.map((p,i) => `
+        <div class="spec-player-card" style="animation-delay:${i*30}ms">
+          <div class="spec-player-num">${i+1}</div>
+          <div style="flex:1;min-width:0">
+            <div class="spec-player-name">${escHtml(p.name)}</div>
+            ${p.nickname ? `<div class="spec-player-nick">"${escHtml(p.nickname)}"</div>` : ''}
+            <div class="spec-player-team">${escHtml(p.team)}</div>
+            <div class="spec-player-level" style="color:${(levelData[p.level]||levelData[2]).color}">
+              <svg style="width:11px;height:11px;"><use href="#ico-racket"/></svg>
+              <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">${(levelData[p.level]||levelData[2]).label}</span>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    ${players.length === 0 ? '<div style="text-align:center;padding:60px;color:var(--muted);font-size:16px;letter-spacing:2px;text-transform:uppercase;">Esperando jugadores...</div>' : ''}
+  `;
+}
+
+// ── GRUPOS SPECTATOR ──────────────────────────────
+function buildSpecGrupos() {
+  const groups = state.groups || [];
+  const gm = state.groupMatches || [];
+  if(!groups.length) return '<div style="text-align:center;padding:60px;color:var(--muted);">Los grupos aún no se han generado.</div>';
+
+  const timerBanner = buildSpecTimerBanner();
+  const standingsHTML = groups.map(g => {
+    const s = computeStandings(g.id);
+    const posClass = ['p1','p2','p3','p4'];
+    return `
+      <div class="spec-group-card">
+        <div class="spec-group-header">
+          <div class="spec-group-name">GRUPO ${escHtml(g.id)}</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:600;">${g.pairs.length} parejas</div>
+        </div>
+        <table class="spec-standings-table">
+          <thead><tr>
+            <th style="width:36px;">#</th><th>Pareja</th>
+            <th style="text-align:center">PJ</th><th style="text-align:center">PG</th>
+            <th style="text-align:center">PP</th><th style="text-align:center">+/-</th>
+          </tr></thead>
+          <tbody>
+            ${s.map((x,i) => {
+              const diff = x.gamesWon-x.gamesLost;
+              const ds = diff>0?`<span style="color:var(--green)">+${diff}</span>`:diff<0?`<span style="color:var(--red)">${diff}</span>`:'0';
+              return `<tr class="${i<2?'advance':'consolacion'}">
+                <td><span class="spec-pos ${posClass[i]||'pn'}">${i+1}</span></td>
+                <td style="font-weight:600;">${getPairName(x.pairId)}</td>
+                <td style="text-align:center">${x.won+x.lost}</td>
+                <td style="text-align:center;color:var(--green)">${x.won}</td>
+                <td style="text-align:center;color:var(--red)">${x.lost}</td>
+                <td style="text-align:center">${ds}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }).join('');
+
+  const matchesHTML = groups.map(g => {
+    const matches = gm.filter(m => m.groupId === g.id);
+    const completed = matches.filter(m => m.winner);
+    if(!completed.length) return '';
+    return `
+      <div class="spec-group-card">
+        <div class="spec-group-header">
+          <div class="spec-group-name">GRUPO ${escHtml(g.id)} — Resultados</div>
+          <div style="font-size:12px;color:var(--muted)">${completed.length}/${matches.length} jugados</div>
+        </div>
+        ${completed.map(m => {
+          const w1 = m.winner === m.pair1Id, w2 = m.winner === m.pair2Id;
+          const sc1 = m.sets ? m.sets.p1.join('-') : '';
+          const sc2 = m.sets ? m.sets.p2.join('-') : '';
+          return `<div class="spec-match-row">
+            <div class="spec-match-team ${w1?'winner':''}">${getPairName(m.pair1Id)}</div>
+            <div class="spec-match-score">${sc1}</div>
+            <div class="spec-match-vs">·</div>
+            <div class="spec-match-score">${sc2}</div>
+            <div class="spec-match-team ${w2?'winner':''}" style="text-align:right">${getPairName(m.pair2Id)}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    `;
+  }).join('');
+
+  const hasResults = groups.some(g => gm.filter(m => m.groupId === g.id && m.winner).length > 0);
+
+  return timerBanner + `
+    <div class="spec-grupos-layout">
+      <div class="spec-section-title"><svg><use href="#ico-chart"/></svg>Clasificación</div>
+      <div class="spec-standings-row">
+        ${standingsHTML}
+      </div>
+      ${hasResults ? `
+        <div class="spec-section-title" style="margin-top:8px;"><svg><use href="#ico-ball"/></svg>Resultados</div>
+        <div class="spec-results-row">
+          ${matchesHTML}
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+// ── ELIMINATORIA SPECTATOR ────────────────────────
+function buildSpecElim() {
+  const main = state.mainBracket;
+  const consol = state.consolBracket;
+  if(!main && !consol) return '<div style="text-align:center;padding:60px;color:var(--muted);">La fase eliminatoria aún no ha comenzado.</div>';
+
+  return buildSpecTimerBanner() + `
+    <div class="spec-bracket-section">
+      <div class="spec-bracket-title">ROAD TO THE VILLA PACHECO FINAL</div>
+      <div class="spec-bracket-sub">Cuadro Principal · Los Mejores de Cada Grupo</div>
+      <div style="overflow-x:auto;padding:10px 0;">${buildSpecBracket(main, 'main')}</div>
+    </div>
+    <div class="spec-bracket-section" style="margin-top:48px;">
+      <div class="spec-bracket-title" style="color:var(--acc);">COPA CONSOLACIÓN</div>
+      <div class="spec-bracket-sub">Los que regresan · Nadie se rinde</div>
+      <div style="overflow-x:auto;padding:10px 0;">${buildSpecBracket(consol, 'consol')}</div>
+    </div>
+  `;
+}
+
+function buildSpecBracket(bracket, type) {
+  if(!bracket) return '<div style="color:var(--muted);padding:20px;text-align:center;">Sin datos</div>';
+  const rounds = bracket.rounds, nr = rounds.length;
+  let html = '<div class="spec-bracket">';
+  rounds.forEach((round, ri) => {
+    const lbl = getRoundName(ri, nr);
+    const h = Math.pow(2, nr-1-ri)*90 + (Math.pow(2, nr-1-ri)-1)*16;
+    html += `<div class="spec-bracket-round" style="height:${h+50}px;">
+      <div class="spec-round-label">${lbl}</div>
+      <div style="display:flex;flex-direction:column;justify-content:space-around;flex:1;">`;
+
+    round.forEach(m => {
+      const hasWinner = !!m.winner;
+      const p1n = m.pair1Id ? getPairName(m.pair1Id) : null;
+      const p2n = m.pair2Id ? getPairName(m.pair2Id) : null;
+      const pw1 = m.winner && m.winner === m.pair1Id;
+      const pw2 = m.winner && m.winner === m.pair2Id;
+      const elim1 = hasWinner && !pw1 && m.pair1Id;
+      const elim2 = hasWinner && !pw2 && m.pair2Id;
+      const sc1 = m.sets ? m.sets.p1.join(' ') : '';
+      const sc2 = m.sets ? m.sets.p2.join(' ') : '';
+
+      const teamClass1 = pw1 ? 'winner' : elim1 ? 'eliminated' : !p1n ? 'tbd' : '';
+      const teamClass2 = pw2 ? 'winner' : elim2 ? 'eliminated' : !p2n ? 'tbd' : '';
+
+      html += `<div class="spec-match-card ${hasWinner?'has-winner':''}">
+        <div class="spec-bracket-team ${teamClass1}">
+          <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p1n || '<em style=\"color:var(--muted)\">Por determinar</em>'}</span>
+          ${elim1 ? '<svg class="spec-elim-icon"><use href="#ico-eliminate"/></svg>' : ''}
+          <span class="spec-bracket-score">${sc1}</span>
+        </div>
+        <div class="spec-bracket-team ${teamClass2}">
+          <span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${p2n || '<em style=\"color:var(--muted)\">Por determinar</em>'}</span>
+          ${elim2 ? '<svg class="spec-elim-icon"><use href="#ico-eliminate"/></svg>' : ''}
+          <span class="spec-bracket-score">${sc2}</span>
+        </div>
+      </div>`;
+    });
+
+    html += '</div></div>';
+
+    if(ri < nr-1) {
+      html += `<div class="spec-connector" style="height:${h+50}px;"></div>`;
+    } else {
+      const f1 = rounds[nr-1][0].pair1Id;
+      const f2 = rounds[nr-1][0].pair2Id;
+      const champ = rounds[nr-1][0].winner;
+      const isCons = type !== 'main';
+      html += `<div style="display:flex;align-items:center;padding-left:20px;">
+        <div class="spec-trophy-card" ${isCons?'style="border-color:var(--acc);box-shadow:0 0 40px var(--acc-glow);"':''}>
+          <div class="spec-trophy-icon"><svg style="${isCons?'color:var(--acc)':''}"><use href="${isCons?'#ico-medal':'#ico-trophy'}"/></svg></div>
+          <div class="spec-trophy-title" style="${isCons?'color:var(--acc)':''}">${isCons?'COPA CONSOLACIÓN':'VILLA PACHECO CHAMPION'}</div>
+          ${champ
+            ? `<div class="spec-trophy-winner" style="${isCons?'color:var(--acc)':''}"><svg><use href="#ico-crown"/></svg>${getPairName(champ)}</div>`
+            : `<div class="spec-trophy-finalist">${f1?getPairName(f1):'Por determinar'}</div>
+               <div class="spec-trophy-vs">VS</div>
+               <div class="spec-trophy-finalist">${f2?getPairName(f2):'Por determinar'}</div>`
+          }
+        </div>
+      </div>`;
+    }
+  });
+  html += '</div>';
+  return html;
+}
+
+// ── TIMER BANNER FOR SPECTATOR ───────────────────
+function buildSpecTimerBanner() {
+  const rem = timerGetRemaining();
+  const status = timerGetStatus();
+  const fmt = timerFormatMs(rem);
+  const pending = getPendingList();
+  const isRunning = status === 'running';
+  const currentMatch = (isRunning && pending.length > 0) ? formatMatchLabel(pending[0]) : null;
+  const next = getNextPendingMatch();
+  return `<div class="spec-timer-banner">
+    <div>
+      <div class="spec-timer-display ${status}" id="specTimerDisplay">${fmt}</div>
+      <div class="spec-timer-title">Tiempo restante</div>
+    </div>
+    <div class="spec-timer-info">
+      ${currentMatch ? `
+        <div class="spec-timer-title" style="color:var(--lime);">Partido en curso</div>
+        <div class="spec-timer-next" id="specTimerCurrent" style="color:var(--lime);font-size:32px;">${currentMatch}</div>
+        ${next ? `<div class="spec-timer-title" style="margin-top:10px;">Próximo partido</div>
+        <div class="spec-timer-next" id="specTimerNext" style="font-size:20px;color:var(--muted);">${next}</div>` : ''}
+      ` : `
+        <div class="spec-timer-title">Próximo partido</div>
+        <div class="spec-timer-next" id="specTimerNext">
+          ${next ? next : '<span style="color:var(--muted)">Sin partidos pendientes</span>'}
+        </div>
+      `}
+    </div>
+  </div>`;
+}
+
+// ── PREDICCIONES SPECTATOR ────────────────────────
+let _specPollMs = 0;
+const SPEC_TICK_MS = 1000;
+
+function tickPollRotation() {
+  _specPollMs += SPEC_TICK_MS;
+  const pct = (_specPollMs / SPEC_POLL_DURATION) * 100;
+  const fill = document.getElementById('specPollProgressFill');
+  if(fill) fill.style.width = Math.min(pct,100)+'%';
+  if(_specPollMs >= SPEC_POLL_DURATION) {
+    _specPollMs = 0;
+    _specPollIndex = (_specPollIndex + 1) % POLLS.length;
+    buildSpecPred(document.getElementById('specContent'));
+  }
+}
+
+function buildSpecPred(container) {
+  if(!container) return;
+  const preds = state.predictions || {};
+  const poll = POLLS[_specPollIndex];
+  const pollVotes = preds[poll.id] || {};
+  const options = getPollOptions(poll);
+
+  const counts = {};
+  options.forEach(o => { counts[o.id] = 0; });
+  Object.values(pollVotes).forEach(id => { if(counts[id]!==undefined) counts[id]++; });
+  const sorted = options.slice().sort((a,b) => counts[b.id]-counts[a.id]);
+  const maxVotes = sorted.length ? counts[sorted[0].id] : 0;
+  const totalVotes = Object.values(counts).reduce((a,b)=>a+b,0);
+
+  const voterMap = {};
+  options.forEach(o=>{ voterMap[o.id]=[]; });
+  Object.entries(pollVotes).forEach(([v,id])=>{ if(voterMap[id]!==undefined) voterMap[id].push(v); });
+
+  let tournamentWinner = null;
+  if(poll.id==='winner' && state.mainBracket){
+    const fr=state.mainBracket.rounds[state.mainBracket.rounds.length-1];
+    if(fr&&fr[0]&&fr[0].winner) tournamentWinner=fr[0].winner;
+  }
+
+  const posClasses = ['p1','p2','p3'];
+
+  container.innerHTML = `
+    <div class="spec-pred-layout">
+      <div class="spec-pred-poll-card">
+        <div class="spec-pred-progress">
+          <span>${_specPollIndex+1} / ${POLLS.length}</span>
+          <div class="spec-pred-progress-track">
+            <div class="spec-pred-progress-fill" id="specPollProgressFill" style="width:${(_specPollMs/SPEC_POLL_DURATION)*100}%"></div>
+          </div>
+          <span style="color:var(--lime);">${POLLS[(_specPollIndex+1)%POLLS.length].title}</span>
+        </div>
+        <div class="spec-pred-title">
+          <svg><use href="#${poll.icon}"/></svg>${poll.title}
+        </div>
+        <div class="spec-pred-desc">${poll.desc}</div>
+        <div>
+          ${totalVotes === 0
+            ? `<div style="color:var(--muted);text-align:center;padding:40px;font-size:14px;letter-spacing:2px;text-transform:uppercase;">Sin votos aún</div>`
+            : sorted.slice(0, 5).map((opt,i) => {
+                const votes = counts[opt.id];
+                const pct = maxVotes>0 ? Math.round((votes/maxVotes)*100) : 0;
+                const pc = posClasses[i]||'pn';
+                const voters = voterMap[opt.id];
+                const voterStr = voters.length ? voters.join(', ') : 'Sin votos';
+                const isWin = poll.id==='winner' && tournamentWinner && opt.id===tournamentWinner;
+                return `<div class="spec-poll-rank-item ${i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':''}" style="${isWin?'border-color:rgba(245,200,66,.5);background:rgba(245,200,66,.05);':''}">
+                  <div class="spec-poll-pos ${pc}">${i+1}°</div>
+                  <div class="spec-poll-info">
+                    <div class="spec-poll-name">${escHtml(opt.label)}</div>
+                    <div class="spec-poll-voters">${escHtml(voterStr)}</div>
+                  </di<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Road to the Villa Pacheco Final · Accenture Pádel</title>
+
+<!-- Firebase -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, set, get, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCM3q1gXxpYC8dAHGvkW0Y7ABNWp5eWkDI",
+    authDomain: "torneo-kasa-rural-2026.firebaseapp.com",
+    databaseURL: "https://torneo-kasa-rural-2026-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "torneo-kasa-rural-2026",
+    storageBucket: "torneo-kasa-rural-2026.firebasestorage.app",
+    messagingSenderId: "364295397643",
+    appId: "1:364295397643:web:dc57a38c9db14684fc820e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+  window._db = db;
+  window._ref = ref;
+  window._set = set;
+  window._get = get;
+  window._onValue = onValue;
+  window._update = update;
+  window._remove = remove;
+  window._firebaseReady = true;
+  document.dispatchEvent(new Event('firebaseReady'));
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- SVG ICON LIBRARY -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ico-racket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="10" cy="9" rx="6" ry="7.5"/>
+      <line x1="4.5" y1="14.5" x2="2" y2="22"/>
+      <line x1="15.5" y1="14.5" x2="18" y2="22"/>
+      <line x1="10" y1="4" x2="10" y2="16.5"/>
+      <line x1="4.5" y1="9" x2="15.5" y2="9"/>
+    </symbol>
+    <symbol id="ico-ball" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M7 4.5 C7 8 9 10 9 12 C9 14 7 16 7 19.5"/>
+      <path d="M17 4.5 C17 8 15 10 15 12 C15 14 17 16 17 19.5"/>
+    </symbol>
+    <symbol id="ico-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 21h8M12 17v4M7 4H4a1 1 0 0 0-1 1v2a4 4 0 0 0 4 4M17 4h3a1 1 0 0 1 1 1v2a4 4 0 0 1-4 4"/>
+      <path d="M7 4v8a5 5 0 0 0 10 0V4H7z"/>
+    </symbol>
+    <symbol id="ico-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="9" cy="7" r="3"/>
+      <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+      <circle cx="17" cy="7" r="3" opacity=".5"/>
+      <path d="M21 21v-2a4 4 0 0 0-3-3.87" opacity=".5"/>
+    </symbol>
+    <symbol id="ico-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+      <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+    </symbol>
+    <symbol id="ico-swords" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/>
+      <line x1="13" y1="19" x2="15" y2="21"/><line x1="16" y1="16" x2="20" y2="20"/>
+      <polyline points="9.5 6.5 11 5 21 3 21 13 19.5 14.5"/>
+      <line x1="5" y1="11" x2="3" y2="13"/><line x1="8" y1="8" x2="4" y2="4"/>
+    </symbol>
+    <symbol id="ico-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </symbol>
+    <symbol id="ico-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="3 6 5 6 21 6"/>
+      <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+      <path d="M10 11v6M14 11v6M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+    </symbol>
+    <symbol id="ico-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+    </symbol>
+    <symbol id="ico-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+    </symbol>
+    <symbol id="ico-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+      <line x1="4" y1="22" x2="4" y2="15"/>
+    </symbol>
+    <symbol id="ico-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+      <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+    </symbol>
+    <symbol id="ico-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="1 4 1 10 7 10"/>
+      <path d="M3.51 15a9 9 0 1 0 .49-3.51"/>
+    </symbol>
+    <symbol id="ico-medal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="15" r="6"/>
+      <polyline points="8.56 2.75 4.55 3.85 3.53 7.8"/>
+      <polyline points="15.44 2.75 19.45 3.85 20.47 7.8"/>
+      <path d="M12 2 L12 9"/>
+    </symbol>
+    <symbol id="ico-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 20h20"/><path d="M2 20l3-9 5 4 2-7 2 7 5-4 3 9"/>
+    </symbol>
+    <symbol id="ico-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </symbol>
+    <symbol id="ico-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+    </symbol>
+    <symbol id="ico-warn" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+    </symbol>
+    <symbol id="ico-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </symbol>
+    <symbol id="ico-court" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <rect x="2" y="4" width="20" height="16" rx="1"/>
+      <line x1="12" y1="4" x2="12" y2="20"/><line x1="2" y1="12" x2="22" y2="12"/>
+      <line x1="2" y1="8" x2="12" y2="8"/><line x1="12" y1="16" x2="22" y2="16"/>
+    </symbol>
+    <symbol id="ico-acc" viewBox="0 0 24 24" fill="none">
+      <path d="M8 4 L16 12 L8 20" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="ico-reset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+      <path d="M3 3v5h5"/>
+    </symbol>
+    <!-- SPECTATOR ICONS -->
+    <symbol id="ico-tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="4" width="20" height="14" rx="2"/>
+      <line x1="8" y1="22" x2="16" y2="22"/>
+      <line x1="12" y1="18" x2="12" y2="22"/>
+    </symbol>
+    <symbol id="ico-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </symbol>
+    <symbol id="ico-signal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="1" y1="6" x2="1" y2="18"/>
+      <line x1="6" y1="3" x2="6" y2="21"/>
+      <line x1="11" y1="8" x2="11" y2="16"/>
+      <line x1="16" y1="5" x2="16" y2="19"/>
+      <line x1="21" y1="2" x2="21" y2="22"/>
+    </symbol>
+    <symbol id="ico-eliminate" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <circle cx="12" cy="12" r="9" stroke-width="1.5" opacity=".4"/>
+      <line x1="7" y1="7" x2="17" y2="17"/>
+      <line x1="17" y1="7" x2="7" y2="17"/>
+    </symbol>
+    <!-- POLL ICONS -->
+    <symbol id="ico-poll-winner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 21h8M12 17v4M7 4H4a1 1 0 0 0-1 1v2a4 4 0 0 0 4 4M17 4h3a1 1 0 0 1 1 1v2a4 4 0 0 1-4 4"/>
+      <path d="M7 4v8a5 5 0 0 0 10 0V4H7z"/>
+      <path d="M10 9l1.5 1.5L14 8" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="ico-poll-nevera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="2" width="14" height="20" rx="2"/>
+      <line x1="5" y1="9" x2="19" y2="9"/>
+      <line x1="10" y1="5.5" x2="10" y2="7.5"/>
+      <line x1="10" y1="12" x2="10" y2="16"/>
+    </symbol>
+    <symbol id="ico-poll-limpiacristales" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2"/>
+      <path d="M7 7 Q12 10 17 7"/>
+      <path d="M7 12 Q12 15 17 12"/>
+      <circle cx="8" cy="8" r="1" fill="currentColor"/>
+    </symbol>
+    <symbol id="ico-poll-francotirador" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <line x1="12" y1="3" x2="12" y2="21"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19 5l2-2M5 19l-2 2" stroke-width="2"/>
+    </symbol>
+    <symbol id="ico-poll-rompepistas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+    </symbol>
+    <symbol id="ico-poll-disculpas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 11V7a3 3 0 0 1 6 0v4"/>
+      <rect x="5" y="11" width="14" height="10" rx="2"/>
+      <circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+      <path d="M9 2.5 Q12 1 15 2.5" stroke-width="1.5"/>
+    </symbol>
+    <symbol id="ico-poll-ahorro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M8 12h8"/>
+      <path d="M12 9v0" stroke-width="3"/>
+      <path d="M8 16h8" stroke-width="1" opacity=".5"/>
+      <path d="M5 19l14-14" stroke="currentColor" stroke-width="1.5" opacity=".4"/>
+    </symbol>
+    <symbol id="ico-poll-casipunto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 8v5l3 3"/>
+      <path d="M16.5 4.5l1.5-1.5M7.5 4.5L6 3"/>
+    </symbol>
+    <symbol id="ico-poll-robapuntos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="3"/>
+      <path d="M12 11v4"/>
+      <path d="M9 15h6"/>
+      <path d="M3 8 C3 5 5 3 8 4"/>
+      <path d="M21 8 C21 5 19 3 16 4"/>
+      <line x1="2" y1="22" x2="22" y2="2" stroke-width="1.5" opacity=".5"/>
+    </symbol>
+    <symbol id="ico-poll-fisio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2a4 4 0 0 1 4 4c0 2-1 3.5-2.5 4.5"/>
+      <path d="M12 10v4l-3 5h6l-3-5"/>
+      <path d="M7 19 Q5 17 6 14"/>
+      <path d="M17 19 Q19 17 18 14"/>
+      <path d="M8 8l-2 2M16 8l2 2"/>
+    </symbol>
+    <symbol id="ico-poll-paquete" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="7" width="20" height="15" rx="2"/>
+      <path d="M16 7V5a2 2 0 0 0-4 0v2M8 7V5a2 2 0 0 1 4 0v2"/>
+      <line x1="12" y1="12" x2="12" y2="17"/>
+      <line x1="9" y1="14.5" x2="15" y2="14.5"/>
+      <path d="M7 12l1 1-1 1"/>
+    </symbol>
+    <symbol id="ico-poll-flipado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="3"/>
+      <path d="M6 21v-2a6 6 0 0 1 12 0v2"/>
+      <path d="M17 4l2-2M15 3l1-2.5"/>
+      <path d="M5 12h2M4 15l2-1"/>
+    </symbol>
+    <symbol id="ico-poll-cangrejo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <ellipse cx="12" cy="13" rx="5" ry="4"/>
+      <path d="M7 13 C5 12 3 13 3 15 C3 17 5 17 7 16"/>
+      <path d="M17 13 C19 12 21 13 21 15 C21 17 19 17 17 16"/>
+      <path d="M9 9 C8 7 6 6 5 7"/>
+      <path d="M15 9 C16 7 18 6 19 7"/>
+      <circle cx="10" cy="12" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="14" cy="12" r="1" fill="currentColor" stroke="none"/>
+      <path d="M10 15.5 Q12 17 14 15.5"/>
+    </symbol>
+    <symbol id="ico-poll-utillero" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="9" width="18" height="12" rx="2"/>
+      <path d="M3 13h18"/>
+      <path d="M8 9V6a4 4 0 0 1 8 0v3"/>
+      <circle cx="12" cy="16" r="1.5" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="ico-poll-enfadado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M8 15s1-2 4-2 4 2 4 2"/>
+      <path d="M8 9l2 1M16 9l-2 1"/>
+      <path d="M6 6l2 2M18 6l-2 2"/>
+    </symbol>
+    <symbol id="ico-poll-excusas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      <line x1="12" y1="8" x2="12" y2="11"/>
+      <line x1="12" y1="14" x2="12.01" y2="14" stroke-width="2.5"/>
+    </symbol>
+    <symbol id="ico-poll-comentarista" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2a3 3 0 0 1 3 3v4a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/>
+      <path d="M19 10a7 7 0 0 1-14 0"/>
+      <line x1="12" y1="19" x2="12" y2="23"/>
+      <line x1="8" y1="23" x2="16" y2="23"/>
+    </symbol>
+    <symbol id="ico-poll-tecnico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 20h20M6 20V10l6-7 6 7v10"/>
+      <rect x="9" y="14" width="6" height="6"/>
+      <line x1="9" y1="17" x2="15" y2="17"/>
+      <line x1="12" y1="14" x2="12" y2="20"/>
+    </symbol>
+    <symbol id="ico-poll-calentamiento" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="5" r="2"/>
+      <path d="M12 7v5l-3 5h6l-3-5"/>
+      <path d="M9 12 C7 11 6 9 7 7"/>
+      <path d="M15 12 C17 11 18 9 17 7"/>
+      <path d="M6 19l2-3M18 19l-2-3"/>
+    </symbol>
+    <symbol id="ico-poll-influencer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="6" width="20" height="14" rx="2"/>
+      <circle cx="12" cy="13" r="4"/>
+      <circle cx="12" cy="13" r="1.5" fill="currentColor" stroke="none"/>
+      <line x1="16" y1="6" x2="16" y2="2"/>
+      <path d="M13 2h6"/>
+    </symbol>
+    <symbol id="ico-poll-profesor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2"/>
+      <path d="M8 21h8M12 17v4"/>
+      <path d="M7 8h5M7 11h3"/>
+      <path d="M16 8l1.5 1.5L20 7"/>
+    </symbol>
+    <symbol id="ico-poll-sargento" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+      <path d="M2 12l10 5 10-5"/>
+      <path d="M2 17l10 5 10-5"/>
+    </symbol>
+    <symbol id="ico-poll-desaparecido" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="8" r="3" stroke-dasharray="3 2"/>
+      <path d="M6 21v-2a6 6 0 0 1 12 0v2" stroke-dasharray="3 2"/>
+      <line x1="2" y1="2" x2="22" y2="22" stroke-width="1.5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<style>
+  :root {
+    --bg:        #080810;
+    --surface:   #10101c;
+    --surface2:  #18182a;
+    --border:    #252538;
+    --acc:       #a100ff;
+    --acc2:      #7d00cc;
+    --acc-glow:  rgba(161,0,255,.25);
+    --lime:      #c8f135;
+    --lime2:     #a8d520;
+    --lime-glow: rgba(200,241,53,.2);
+    --green:     #2ecc71;
+    --red:       #e74c3c;
+    --blue:      #3a9fd5;
+    --text:      #e8e8f2;
+    --muted:     #6a6a8a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 44px, rgba(161,0,255,.035) 44px, rgba(161,0,255,.035) 45px),
+      repeating-linear-gradient(90deg, transparent, transparent 44px, rgba(161,0,255,.035) 44px, rgba(161,0,255,.035) 45px);
+    pointer-events: none; z-index: 0;
+  }
+
+  body::after {
+    content: ''; position: fixed; top: -80px; right: -80px; width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(200,241,53,.055) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  .container { position: relative; z-index: 1; max-width: 1300px; margin: 0 auto; padding: 0 16px; }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #080810 0%, #12001f 60%, #080810 100%);
+    border-bottom: 2px solid var(--acc);
+    position: relative; overflow: hidden;
+  }
+  header::after {
+    content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+    width: 240px; height: 3px; background: var(--lime); box-shadow: 0 0 20px var(--lime-glow);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; flex-wrap: wrap; gap: 12px; }
+  .logo { font-family: 'Bebas Neue', sans-serif; font-size: clamp(16px, 3.5vw, 36px); color: #fff; letter-spacing: 2px; line-height: 1; }
+  .logo-yuncos { color: var(--lime); }
+  .logo-by { font-size: .45em; color: var(--muted); letter-spacing: 1px; font-family: 'Barlow', sans-serif; font-weight: 400; margin-left: 8px; vertical-align: middle; }
+  .subtitle { color: var(--muted); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-top: 4px; }
+
+
+  /* TABS */
+  .tabs { display: flex; gap: 4px; padding: 16px 0 0; border-bottom: 1px solid var(--border); overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    background: transparent; border: 1px solid transparent; color: var(--muted);
+    padding: 10px 20px; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; cursor: pointer; border-radius: 6px 6px 0 0;
+    transition: all .2s; white-space: nowrap; flex-shrink: 0; display: flex; align-items: center; gap: 7px;
+  }
+  .tab-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .tab-btn:hover { color: var(--text); border-color: var(--border); }
+  .tab-btn.active {
+    background: var(--surface2); border-color: var(--border); border-bottom-color: var(--surface2);
+    color: var(--lime); margin-bottom: -1px; box-shadow: 0 -2px 0 var(--lime) inset;
+  }
+
+  /* SUB-TABS */
+  .sub-tabs {
+    display: flex; gap: 8px; margin-bottom: 20px; background: var(--surface);
+    border-radius: 8px; padding: 6px; border: 1px solid var(--border); width: fit-content;
+  }
+  .sub-tab-btn {
+    background: transparent; border: none; color: var(--muted);
+    padding: 8px 18px; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;
+    cursor: pointer; border-radius: 6px; transition: all .2s; display: flex; align-items: center; gap: 6px;
+  }
+  .sub-tab-btn svg { width: 13px; height: 13px; }
+  .sub-tab-btn.active { background: var(--surface2); color: var(--lime); box-shadow: 0 0 0 1px var(--border); }
+
+  /* TAB PANES */
+  .tab-pane { display: none; padding: 24px 0; }
+  .tab-pane.active { display: block; }
+
+  /* CARDS */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--lime);
+    letter-spacing: 1px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .card-title svg { width: 15px; height: 15px; }
+
+  /* FORMS */
+  .form-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 12px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 160px; }
+  label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+  input, select {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 10px 12px; color: var(--text); font-family: 'Barlow', sans-serif; font-size: 14px;
+    transition: border-color .2s, box-shadow .2s; width: 100%;
+  }
+  input:focus, select:focus { outline: none; border-color: var(--acc); box-shadow: 0 0 0 2px var(--acc-glow); }
+  select option { background: var(--surface2); }
+
+  /* BUTTONS */
+  .btn {
+    padding: 10px 18px; border: none; border-radius: 6px; font-family: 'Barlow', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; transition: all .2s; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .btn-lime  { background: var(--lime);  color: #080810; }
+  .btn-lime:hover  { transform: translateY(-1px); box-shadow: 0 4px 16px var(--lime-glow); background: var(--lime2); }
+  .btn-acc   { background: var(--acc);   color: #fff; }
+  .btn-acc:hover   { transform: translateY(-1px); box-shadow: 0 4px 16px var(--acc-glow); background: var(--acc2); }
+  .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-outline:hover { border-color: var(--lime); color: var(--lime); }
+  .btn-green { background: var(--green); color: #fff; }
+  .btn-green:hover { background: #27ae60; transform: translateY(-1px); }
+  .btn-red   { background: var(--red);   color: #fff; }
+  .btn-red:hover   { background: #c0392b; }
+  .btn-reset {
+    background: transparent;
+    border: 1px dashed rgba(231,76,60,.5);
+    color: rgba(231,76,60,.7);
+    font-size: 11px;
+    padding: 7px 13px;
+  }
+  .btn-reset:hover { border-color: var(--red); color: var(--red); background: rgba(231,76,60,.07); }
+  .btn:disabled { opacity: .35; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+  /* PLAYER GRID */
+  .player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-top: 12px; }
+  .player-card {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 14px; display: flex; align-items: center; gap: 12px; transition: border-color .2s;
+  }
+  .player-card:hover { border-color: var(--acc); }
+  .player-num { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--acc); min-width: 26px; text-align: center; }
+  .player-info { flex: 1; min-width: 0; }
+  .player-name { font-weight: 700; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .player-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .level-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; padding: 2px 7px;
+    border-radius: 20px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .level-badge svg { width: 10px; height: 10px; }
+  .level-1 { background: rgba(46,204,113,.12);  color: var(--green); border: 1px solid rgba(46,204,113,.25); }
+  .level-2 { background: rgba(58,159,213,.12);  color: var(--blue);  border: 1px solid rgba(58,159,213,.25); }
+  .level-3 { background: rgba(161,0,255,.12);   color: #c87aff;      border: 1px solid rgba(161,0,255,.3); }
+  .delete-btn { background: none; border: none; color: var(--muted); cursor: pointer; padding: 4px; display: flex; align-items: center; transition: color .2s; }
+  .delete-btn svg { width: 13px; height: 13px; }
+  .delete-btn:hover { color: var(--red); }
+
+  /* GROUPS */
+  .groups-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .group-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .group-header {
+    background: linear-gradient(90deg, rgba(161,0,255,.1), transparent);
+    border-bottom: 1px solid var(--border); padding: 12px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .group-title { font-family: 'Bebas Neue', sans-serif; font-size: 17px; color: var(--lime); letter-spacing: 2px; }
+  .standings-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .standings-table th {
+    background: var(--surface2); padding: 8px 10px; text-align: left;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted); border-bottom: 1px solid var(--border);
+  }
+  .standings-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .standings-table tr:last-child td { border-bottom: none; }
+  .standings-table tr.advance    { background: rgba(200,241,53,.04); }
+  .standings-table tr.consolacion { background: rgba(231,76,60,.04); }
+  .pos-badge { font-family: 'Bebas Neue', sans-serif; font-size: 14px; width: 24px; text-align: center; }
+  .pos-1 { color: var(--lime); } .pos-2 { color: var(--acc); }
+  .pos-3 { color: var(--muted); } .pos-4 { color: var(--red); }
+  .stat-num { text-align: center; font-variant-numeric: tabular-nums; }
+  .diff-pos { color: var(--green); } .diff-neg { color: var(--red); }
+
+  /* MATCHES */
+  .matches-section { margin-top: 24px; }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--text);
+    letter-spacing: 1px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-title svg { width: 17px; height: 17px; color: var(--lime); flex-shrink: 0; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .match-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 10px; transition: border-color .2s;
+  }
+  .match-card.completed { border-color: rgba(200,241,53,.2); background: rgba(200,241,53,.015); }
+  .match-card:hover { border-color: var(--acc); }
+  .match-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .match-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+  .match-label svg { width: 11px; height: 11px; }
+  .match-status { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
+  .match-status svg { width: 11px; height: 11px; }
+  .match-status.done { color: var(--lime); } .match-status.pending { color: var(--muted); }
+  .score-row { display: flex; align-items: center; gap: 10px; }
+  .pair-label { flex: 1; font-weight: 600; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sets-input { display: flex; gap: 6px; }
+  .set-input {
+    width: 44px; text-align: center; padding: 8px 4px; font-size: 18px; font-weight: 700;
+    color: var(--lime); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+    -moz-appearance: textfield;
+  }
+  .set-input::-webkit-outer-spin-button,
+  .set-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .vs-divider { width: 100%; height: 1px; background: var(--border); margin: 10px 0; }
+  .match-footer { display: flex; justify-content: flex-end; margin-top: 12px; gap: 8px; }
+
+  /* BRACKET */
+  .bracket-hero { text-align: center; padding: 30px 0 20px; }
+  .bracket-hero-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: clamp(18px, 4vw, 38px);
+    color: var(--lime); text-shadow: 0 0 40px var(--lime-glow); letter-spacing: 3px; line-height: 1;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+  }
+  .bracket-hero-title svg { width: clamp(20px, 3vw, 34px); height: clamp(20px, 3vw, 34px); color: var(--acc); flex-shrink: 0; }
+  .bracket-hero-sub { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+  .bracket-wrapper { overflow-x: auto; padding: 20px 0; display: flex; justify-content: center; }
+  .bracket { display: flex; gap: 0; align-items: center; padding: 0 20px; }
+  .bracket-round { display: flex; flex-direction: column; justify-content: space-around; }
+  .round-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; padding: 0 0 12px; }
+  .bracket-match {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    width: 240px; margin: 6px 0; overflow: hidden; transition: border-color .2s;
+  }
+  .bracket-match:hover { border-color: var(--acc); }
+  .bracket-team {
+    padding: 8px 12px; font-size: 12px; font-weight: 600; display: flex;
+    align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border);
+    transition: background .2s; gap: 6px;
+  }
+  .bracket-team span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bracket-team:last-child { border-bottom: none; }
+  .bracket-team.winner { background: rgba(200,241,53,.08); color: var(--lime); }
+  .bracket-team.tbd    { color: var(--muted); font-style: italic; }
+  .bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--lime); min-width: 20px; text-align: right; flex-shrink: 0; }
+  .connector { width: 30px; display: flex; flex-direction: column; justify-content: space-around; }
+
+  /* TROPHY */
+  .trophy-match {
+    background: linear-gradient(135deg, rgba(200,241,53,.08), rgba(161,0,255,.06));
+    border: 2px solid var(--lime); border-radius: 12px; width: 220px; padding: 16px;
+    text-align: center; box-shadow: 0 0 30px rgba(200,241,53,.08);
+  }
+  .trophy-icon { display: flex; justify-content: center; margin-bottom: 10px; }
+  .trophy-icon svg { width: 36px; height: 36px; color: var(--lime); }
+  .trophy-title { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: var(--lime); letter-spacing: 2px; margin-bottom: 12px; }
+  .trophy-team { font-weight: 700; font-size: 14px; padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; }
+  .trophy-team.winner { background: rgba(200,241,53,.1); color: var(--lime); display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .trophy-team.winner svg { width: 13px; height: 13px; }
+  .trophy-team.tbd { color: var(--muted); font-style: italic; font-size: 13px; }
+  .trophy-vs { font-size: 12px; color: var(--muted); margin: 4px 0; font-weight: 700; letter-spacing: 2px; }
+
+  /* STATUS BAR */
+  .status-bar {
+    display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--lime);
+    box-shadow: 0 0 8px var(--lime-glow); animation: pulse 2s infinite; flex-shrink: 0;
+  }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:.35} }
+  .status-text { font-size: 13px; color: var(--muted); flex: 1; }
+  .status-badge { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; }
+  .badge-sorteo        { background: rgba(161,0,255,.1);    color: #c87aff;      border: 1px solid rgba(161,0,255,.25); }
+  .badge-registro      { background: rgba(58,159,213,.1);   color: var(--blue);  border: 1px solid rgba(58,159,213,.2); }
+  .badge-grupos        { background: rgba(200,241,53,.08);  color: var(--lime);  border: 1px solid rgba(200,241,53,.2); }
+  .badge-eliminatorias { background: rgba(161,0,255,.1);    color: #c87aff;      border: 1px solid rgba(161,0,255,.25); }
+  .badge-finalizado    { background: rgba(46,204,113,.1);   color: var(--green); border: 1px solid rgba(46,204,113,.2); }
+
+  /* ALERTS */
+  .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 14px; display: flex; align-items: flex-start; gap: 10px; }
+  .alert svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 1px; }
+  .alert-info    { background: rgba(58,159,213,.07);  border: 1px solid rgba(58,159,213,.2);  color: #7ec8f0; }
+  .alert-warning { background: rgba(200,241,53,.07);  border: 1px solid rgba(200,241,53,.18); color: var(--lime); }
+  .alert-error   { background: rgba(231,76,60,.07);   border: 1px solid rgba(231,76,60,.2);   color: #f08080; }
+
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.75); backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--acc); border-radius: 16px; padding: 28px; max-width: 480px; width: 100%; animation: modalIn .2s ease; }
+  @keyframes modalIn { from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1} }
+  .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--lime); margin-bottom: 12px; }
+  .modal-body  { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
+  .modal-footer { display: flex; gap: 10px; justify-content: flex-end; }
+
+  /* TOAST */
+  .toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 8px; }
+  .toast { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; font-size: 13px; animation: toastIn .3s ease; max-width: 300px; display: flex; align-items: center; gap: 8px; }
+  .toast svg { width: 14px; height: 14px; flex-shrink: 0; }
+  @keyframes toastIn { from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1} }
+  .toast.success { border-color: rgba(200,241,53,.35); color: var(--lime); }
+  .toast.error   { border-color: rgba(231,76,60,.35);  color: var(--red); }
+  .toast.info    { border-color: rgba(58,159,213,.35);  color: var(--blue); }
+
+  /* PROGRESS */
+  .progress-track { display: flex; align-items: center; justify-content: center; margin: 20px 0; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; -ms-overflow-style: none; }
+  .progress-track::-webkit-scrollbar { display: none; }
+  .step-dot {
+    width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; border: 2px solid var(--border); background: var(--surface);
+    color: var(--muted); transition: all .3s; position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .step-dot svg { width: 14px; height: 14px; }
+  .step-dot.active { border-color: var(--lime); color: var(--lime); background: rgba(200,241,53,.07); box-shadow: 0 0 12px rgba(200,241,53,.12); }
+  .step-dot.done   { border-color: var(--acc);  background: var(--acc); color: #fff; box-shadow: 0 0 10px var(--acc-glow); }
+  .step-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-top: 4px; text-align: center; max-width: 70px; }
+  .step-label.active { color: var(--lime); } .step-label.done { color: #c87aff; }
+  .step-container { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .step-line { width: 60px; height: 2px; background: var(--border); margin-bottom: 18px; transition: background .3s; flex-shrink: 0; }
+  .step-line.done { background: var(--acc); }
+
+
+  /* ── SORTEO ──────────────────────────────────────── */
+  .sorteo-hero { text-align: center; padding: 32px 0 20px; }
+  .sorteo-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    color: var(--lime); letter-spacing: 4px; line-height: 1;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    text-shadow: 0 0 40px var(--lime-glow);
+  }
+  .sorteo-title svg { width: 36px; height: 36px; color: var(--acc); }
+  .sorteo-sub { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+  .sorteo-phase-title {
+    display: flex; align-items: center; gap: 14px;
+    margin: 28px 0 20px; font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; color: var(--text); letter-spacing: 2px;
+  }
+  .sorteo-phase-num {
+    font-size: 13px; font-weight: 700; background: var(--acc);
+    color: #fff; border-radius: 6px; padding: 4px 10px; letter-spacing: 1px;
+    font-family: 'Barlow', sans-serif; flex-shrink: 0;
+  }
+  .sorteo-phase-line { flex: 1; height: 1px; background: var(--border); }
+
+  /* BOMBO */
+  .sorteo-bombo {
+    display: flex; justify-content: center; align-items: center;
+    padding: 24px 0 16px; position: relative;
+  }
+  .bombo-ball-container {
+    position: relative; display: flex; flex-direction: column; align-items: center; gap: 16px;
+  }
+  .bombo-ball {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(161,0,255,.5), rgba(161,0,255,.15));
+    border: 2px solid var(--acc); display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 0 40px var(--acc-glow), inset 0 0 20px rgba(161,0,255,.2);
+  }
+  .bombo-ball svg { width: 44px; height: 44px; color: var(--lime); }
+  .bombo-ball.spinning { animation: bombSpin 1.5s linear infinite; }
+  .bombo-ball.picking  { animation: bombPick .4s ease-in-out infinite alternate; }
+  @keyframes bombSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  @keyframes bombPick { from{transform:scale(1) rotate(-5deg)} to{transform:scale(1.12) rotate(5deg)} }
+  .bombo-name-flash {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--lime);
+    letter-spacing: 2px; min-height: 32px; text-align: center;
+    text-shadow: 0 0 20px var(--lime-glow);
+    animation: nameFlash .15s ease-in-out;
+  }
+  @keyframes nameFlash { from{opacity:0;transform:scale(.8)} to{opacity:1;transform:scale(1)} }
+
+  /* PAIR REVEAL */
+  .pair-reveal-area {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px; margin-top: 12px;
+  }
+  .pair-card-reveal {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+    animation: pairReveal .5s cubic-bezier(.34,1.56,.64,1);
+    opacity: 0; animation-fill-mode: forwards;
+  }
+  @keyframes pairReveal {
+    from { opacity:0; transform: translateY(20px) scale(.9); }
+    to   { opacity:1; transform: translateY(0) scale(1); }
+  }
+  .pair-card-reveal.complete { border-color: rgba(200,241,53,.3); background: rgba(200,241,53,.03); }
+  .pair-num-badge {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--acc);
+    min-width: 32px; text-align: center;
+  }
+  .pair-names { flex: 1; min-width: 0; }
+  .pair-p1 { font-weight: 700; font-size: 15px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pair-p2 { font-weight: 700; font-size: 15px; color: var(--lime); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pair-vs { font-size: 10px; font-weight: 700; color: var(--acc); letter-spacing: 2px; margin: 2px 0; }
+  .pair-pending-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--acc); animation: pulse 1s infinite; flex-shrink: 0;
+  }
+
+  /* GROUP REVEAL */
+  .group-reveal-area {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px; margin-top: 12px;
+  }
+  .group-reveal-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; animation: pairReveal .5s cubic-bezier(.34,1.56,.64,1);
+    opacity: 0; animation-fill-mode: forwards;
+  }
+  .group-reveal-header {
+    background: linear-gradient(90deg, rgba(161,0,255,.15), transparent);
+    border-bottom: 1px solid var(--border); padding: 12px 16px;
+    font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--lime); letter-spacing: 2px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .group-pair-item {
+    padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,.04);
+    font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px;
+    animation: pairReveal .4s cubic-bezier(.34,1.56,.64,1); opacity:0; animation-fill-mode: forwards;
+  }
+  .group-pair-item:last-child { border-bottom: none; }
+  .group-pair-item svg { width: 12px; height: 12px; color: var(--lime); flex-shrink: 0; }
+
+  .sorteo-actions { display: flex; justify-content: center; margin-top: 32px; padding-bottom: 32px; }
+  .btn-lg { padding: 14px 32px; font-size: 14px; border-radius: 8px; }
+
+  /* ── POLLS LAYOUT ────────────────────────────────── */
+  .polls-layout {
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .polls-sidebar {
+    width: 220px; flex-shrink: 0;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; position: sticky; top: 16px;
+  }
+  .polls-sidebar-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px;
+    color: var(--muted); padding: 14px 16px 10px; border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+  }
+  .poll-sidebar-item {
+    padding: 12px 16px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,.04);
+    transition: background .15s; display: flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 600; color: var(--muted);
+  }
+  .poll-sidebar-item:last-child { border-bottom: none; }
+  .poll-sidebar-item:hover { background: var(--surface2); color: var(--text); }
+  .poll-sidebar-item.active { background: rgba(161,0,255,.1); color: var(--lime); border-left: 3px solid var(--acc); }
+  .poll-sidebar-item .poll-svg-icon { width: 16px; height: 16px; flex-shrink: 0; color: var(--muted); transition: color .15s; }
+  .poll-sidebar-item.active .poll-svg-icon { color: var(--lime); }
+  .poll-sidebar-item:hover .poll-svg-icon { color: var(--text); }
+  .poll-title-icon { width: 28px; height: 28px; color: var(--acc); flex-shrink: 0; }
+  .poll-sidebar-item .poll-vote-count {
+    margin-left: auto; font-size: 11px; font-family:'Bebas Neue',sans-serif;
+    font-size: 14px; color: var(--acc);
+  }
+
+  .polls-main { flex: 1; min-width: 0; }
+  .poll-panel { display: none; }
+  .poll-panel.active { display: block; }
+
+  .poll-panel-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--lime);
+    letter-spacing: 2px; margin-bottom: 4px; display: flex; align-items: center; gap: 10px;
+  }
+  .poll-panel-desc { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+
+  .poll-vote-form {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px; margin-bottom: 20px; display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;
+  }
+  .poll-vote-form .form-group { margin: 0; }
+
+  @media(max-width:700px){
+    .polls-layout { flex-direction: column; }
+    .polls-sidebar { width: 100%; position: static; }
+  }
+  /* ── PREDICTIONS ────────────────────────────────── */
+  .pred-hero { text-align: center; padding: 28px 0 20px; }
+  .pred-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(26px, 4.5vw, 48px);
+    color: var(--gold,#f5c842); letter-spacing: 4px; line-height: 1;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    text-shadow: 0 0 40px rgba(245,200,66,.3);
+  }
+  .pred-title svg { width: 32px; height: 32px; color: var(--acc); }
+  .pred-sub { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+
+  .pred-rank-item {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 18px; margin-bottom: 10px; transition: border-color .2s;
+    animation: pairReveal .4s cubic-bezier(.34,1.56,.64,1); opacity:0; animation-fill-mode:forwards;
+  }
+  .pred-rank-item:hover { border-color: var(--acc); }
+  .pred-rank-pos {
+    font-family: 'Bebas Neue', sans-serif; font-size: 28px; min-width: 36px;
+    text-align: center; line-height: 1;
+  }
+  .pred-rank-pos.p1 { color: #f5c842; text-shadow: 0 0 12px rgba(245,200,66,.4); }
+  .pred-rank-pos.p2 { color: #b0b8c8; }
+  .pred-rank-pos.p3 { color: #cd7f32; }
+  .pred-rank-pos.pn { color: var(--muted); }
+  .pred-rank-info { flex: 1; min-width: 0; }
+  .pred-rank-name { font-weight: 700; font-size: 15px; }
+  .pred-rank-voters { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .pred-rank-bar-wrap { width: 120px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+  .pred-rank-bar { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--acc), var(--lime)); transition: width .6s ease; }
+  .pred-rank-count {
+    font-family: 'Bebas Neue', sans-serif; font-size: 22px;
+    color: var(--lime); min-width: 32px; text-align: right;
+  }
+  .pred-winner-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 20px;
+    background: rgba(245,200,66,.15); color: #f5c842; border: 1px solid rgba(245,200,66,.3);
+    flex-shrink: 0;
+  }
+  .pred-zero { color: var(--muted); font-size: 13px; opacity: .7; }
+
+
+  /* ── SPECTATOR MODE ─────────────────────────────── */
+  .spec-body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* LIVE badge */
+  .spec-live-badge {
+    position: fixed;
+    top: 14px; left: 20px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(8,8,16,.85);
+    border: 1px solid rgba(200,241,53,.3);
+    border-radius: 20px;
+    padding: 6px 14px;
+    backdrop-filter: blur(8px);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+  .spec-live-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 8px var(--red);
+    animation: pulse 1.2s infinite;
+    flex-shrink: 0;
+  }
+  .spec-live-time { color: var(--muted); font-size: 10px; letter-spacing: 1px; margin-left: 4px; }
+
+  /* SPEC HEADER */
+  .spec-header {
+    background: linear-gradient(135deg, #080810 0%, #12001f 60%, #080810 100%);
+    border-bottom: 2px solid var(--acc);
+    padding: 20px 32px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  .spec-header::after {
+    content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 3px; background: var(--lime); box-shadow: 0 0 20px var(--lime-glow);
+  }
+  .spec-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(22px, 3.5vw, 42px);
+    color: #fff;
+    letter-spacing: 4px;
+    line-height: 1;
+    text-align: center;
+  }
+  .spec-logo-acc { color: var(--lime); }
+  .spec-subtitle { color: var(--muted); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-top: 6px; text-align: center; }
+  .spec-phase-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    padding: 5px 16px;
+    border-radius: 20px;
+    background: rgba(161,0,255,.15);
+    border: 1px solid rgba(161,0,255,.3);
+    color: #c87aff;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .spec-phase-badge svg { width: 14px; height: 14px; }
+
+  /* SPEC CONTAINERS */
+  .spec-container { max-width: 1600px; margin: 0 auto; padding: 32px; position: relative; z-index: 1; }
+
+  /* REGISTRO VIEW */
+  .spec-registro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .spec-player-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    animation: pairReveal .5s cubic-bezier(.34,1.56,.64,1);
+  }
+  .spec-player-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--acc);
+    min-width: 40px;
+    text-align: center;
+    line-height: 1;
+  }
+  .spec-player-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1; }
+  .spec-player-nick { font-size: 13px; color: var(--lime); margin-top: 2px; }
+  .spec-player-team { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .spec-player-level { display: flex; align-items: center; gap: 4px; margin-top: 6px; }
+  .spec-player-level svg { width: 12px; height: 12px; }
+  .spec-count-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .spec-count-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--lime);
+    line-height: 1;
+  }
+  .spec-count-label { font-size: 13px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+  /* GRUPOS VIEW */
+  .spec-grupos-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 16px;
+  }
+  .spec-standings-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .spec-results-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .spec-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--text);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .spec-section-title svg { width: 22px; height: 22px; color: var(--lime); }
+  .spec-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .spec-group-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .spec-group-header {
+    background: linear-gradient(90deg, rgba(161,0,255,.15), transparent);
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .spec-group-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--lime); letter-spacing: 3px; }
+  .spec-standings-table { width: 100%; border-collapse: collapse; }
+  .spec-standings-table th {
+    background: var(--surface2); padding: 7px 12px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted); border-bottom: 1px solid var(--border); text-align: left;
+  }
+  .spec-standings-table td { padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,.04); font-size: 13px; }
+  .spec-standings-table tr:last-child td { border-bottom: none; }
+  .spec-standings-table tr.advance { background: rgba(200,241,53,.05); }
+  .spec-standings-table tr.consolacion { background: rgba(231,76,60,.04); }
+  .spec-pos { font-family: 'Bebas Neue', sans-serif; font-size: 20px; width: 30px; text-align: center; }
+  .spec-pos.p1 { color: var(--lime); }
+  .spec-pos.p2 { color: var(--acc); }
+  .spec-pos.p3, .spec-pos.p4 { color: var(--muted); }
+
+  /* Match results in grupos spectator */
+  .spec-match-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    font-size: 13px;
+  }
+  .spec-match-row:last-child { border-bottom: none; }
+  .spec-match-team { flex: 1; font-weight: 600; }
+  .spec-match-team.winner { color: var(--lime); }
+  .spec-match-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: var(--lime);
+    min-width: 28px;
+    text-align: center;
+  }
+  .spec-match-vs {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    letter-spacing: 2px;
+    padding: 0 4px;
+  }
+  .spec-match-pending { color: var(--muted); font-style: italic; font-size: 12px; padding: 10px 14px; }
+
+  /* BRACKET SPECTATOR */
+  .spec-bracket-section { margin-top: 24px; }
+  .spec-bracket-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(24px, 3.5vw, 42px);
+    color: var(--lime);
+    text-shadow: 0 0 40px var(--lime-glow);
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .spec-bracket-sub { text-align: center; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+
+  .spec-bracket { display: flex; gap: 0; align-items: center; min-width: max-content; padding: 0 20px; overflow-x: auto; }
+  .spec-bracket-round { display: flex; flex-direction: column; justify-content: space-around; }
+  .spec-round-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; padding: 0 0 14px; }
+  .spec-match-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    width: 260px;
+    margin: 8px 0;
+    overflow: hidden;
+    transition: border-color .3s;
+  }
+  .spec-match-card.has-winner { border-color: rgba(200,241,53,.2); }
+  .spec-bracket-team {
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    transition: background .3s;
+    gap: 8px;
+  }
+  .spec-bracket-team span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .spec-bracket-team:last-child { border-bottom: none; }
+  .spec-bracket-team.winner { background: rgba(200,241,53,.08); color: var(--lime); }
+  .spec-bracket-team.eliminated {
+    background: rgba(255,255,255,.02);
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(107,107,138,.5);
+  }
+  .spec-bracket-team.tbd { color: var(--muted); font-style: italic; font-size: 13px; }
+  .spec-elim-icon { width: 14px; height: 14px; color: var(--red); opacity: .7; flex-shrink: 0; }
+  .spec-bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--lime); min-width: 28px; text-align: right; }
+  .spec-connector { width: 32px; display: flex; flex-direction: column; justify-content: space-around; }
+
+  .spec-trophy-card {
+    background: linear-gradient(135deg, rgba(200,241,53,.1), rgba(161,0,255,.08));
+    border: 2px solid var(--lime);
+    border-radius: 14px;
+    width: 240px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(200,241,53,.1);
+  }
+  .spec-trophy-icon { display: flex; justify-content: center; margin-bottom: 12px; }
+  .spec-trophy-icon svg { width: 44px; height: 44px; color: var(--lime); }
+  .spec-trophy-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--lime); letter-spacing: 3px; margin-bottom: 14px; }
+  .spec-trophy-winner { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--lime); display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .spec-trophy-winner svg { width: 18px; height: 18px; }
+  .spec-trophy-tbd { color: var(--muted); font-style: italic; font-size: 13px; }
+  .spec-trophy-vs { font-size: 12px; color: var(--muted); margin: 6px 0; font-weight: 700; letter-spacing: 2px; }
+  .spec-trophy-finalist { font-size: 14px; font-weight: 600; padding: 6px 10px; background: rgba(161,0,255,.08); border-radius: 6px; margin-bottom: 4px; }
+
+  /* PREDICCIONES SPECTATOR */
+  .spec-pred-layout { margin-top: 24px; }
+  .spec-pred-poll-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 32px;
+    animation: fadeSlide .6s ease;
+  }
+  @keyframes fadeSlide { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  .spec-pred-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--lime);
+    letter-spacing: 4px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .spec-pred-title svg { width: 36px; height: 36px; color: var(--acc); }
+  .spec-pred-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
   .spec-pred-progress {
     display: flex;
     align-items: center;
@@ -3727,6 +7455,25 @@ function buildSpecPred(container) {
                     <div class="spec-poll-name">${escHtml(opt.label)}</div>
                     <div class="spec-poll-voters">${escHtml(voterStr)}</div>
                   </div>
+                  <div class="spec-poll-bar-wrap"><div class="spec-poll-bar" style="width:${pct}%"></div></div>
+                  <div class="spec-poll-count">${votes}</div>
+                  ${isWin?'<div class="pred-winner-badge">CAMPEÓN</div>':''}
+                </div>`;
+              }).join('')
+          }
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Hook into Firebase listener to refresh spectator
+const _origOnValue = window._onValue;
+</script>
+
+
+</body>
+</html>v>
                   <div class="spec-poll-bar-wrap"><div class="spec-poll-bar" style="width:${pct}%"></div></div>
                   <div class="spec-poll-count">${votes}</div>
                   ${isWin?'<div class="pred-winner-badge">CAMPEÓN</div>':''}
