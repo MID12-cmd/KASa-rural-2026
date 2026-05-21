@@ -1385,6 +1385,91 @@
     .form-row{flex-direction:column} .form-group{min-width:unset}
     .groups-grid{grid-template-columns:1fr} .header-inner{padding:14px 16px}
   }
+
+  /* ── LAPTOP 14" OPTIMISATION (≤1440px) ─────────── */
+  @media (max-width: 1440px) {
+
+    /* Container */
+    .container { padding: 0 12px; }
+
+    /* Header */
+    .header-inner { padding: 12px 16px; }
+
+    /* Tabs — prevent horizontal overflow */
+    .tab-btn { padding: 8px 12px; font-size: 12px; letter-spacing: 0; }
+    .tab-btn svg { width: 13px; height: 13px; }
+
+    /* Progress steps — tighten */
+    .step-line { width: 40px; }
+    .progress-track { margin: 12px 0; }
+
+    /* Hero titles */
+    .sorteo-title { font-size: clamp(22px, 3.5vw, 36px); }
+    .bracket-hero-title { font-size: clamp(16px, 2.8vw, 28px); }
+    .pred-title { font-size: clamp(20px, 3vw, 32px); }
+    .sorteo-title svg { width: 28px; height: 28px; }
+
+    /* Rule cards — tighter grid */
+    .rules-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .rule-card { padding: 18px; }
+    .rule-title { font-size: 20px; }
+    .rule-desc { font-size: 14px; }
+    .rule-icon { width: 40px; height: 40px; margin-bottom: 10px; }
+    .rule-icon svg { width: 22px; height: 22px; }
+
+    /* Timer widget */
+    .timer-display { font-size: 40px; min-width: 100px; }
+    .timer-widget { padding: 12px 16px; gap: 14px; }
+    .timer-next-text { font-size: 18px; }
+    .timer-current-text { font-size: 21px; }
+
+    /* Bracket */
+    .bracket-wrapper { padding: 12px 0; }
+    .bracket-match { width: 200px; }
+    .bracket-team { font-size: 11px; padding: 6px 10px; }
+    .trophy-match { width: 180px; padding: 12px; }
+    .trophy-icon svg { width: 28px; height: 28px; }
+    .trophy-title { font-size: 11px; }
+    .trophy-team { font-size: 12px; }
+    .connector { width: 22px; }
+
+    /* Groups */
+    .groups-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .standings-table td { padding: 7px 8px; }
+    .standings-table th { padding: 6px 8px; }
+
+    /* Match cards */
+    .match-card { padding: 10px 12px; }
+    .pair-label { font-size: 13px; }
+    .set-input { width: 38px; font-size: 16px; padding: 6px 4px; }
+
+    /* Polls */
+    .polls-sidebar { width: 190px; }
+    .poll-panel-title { font-size: 22px; }
+    .pred-rank-pos { font-size: 22px; min-width: 28px; }
+    .pred-rank-count { font-size: 18px; min-width: 24px; }
+    .pred-rank-bar-wrap { width: 90px; }
+
+    /* Sorteo */
+    .sorteo-hero { padding: 20px 0 14px; }
+    .pair-reveal-area { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .group-reveal-area { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    .sorteo-actions { margin-top: 20px; padding-bottom: 20px; }
+    .btn-lg { padding: 11px 24px; font-size: 13px; }
+
+    /* Buttons */
+    .btn { padding: 8px 14px; font-size: 11px; }
+    .btn svg { width: 12px; height: 12px; }
+
+    /* Cards */
+    .card { padding: 16px; }
+    .tab-pane { padding: 16px 0; }
+
+    /* Section titles */
+    .section-title { font-size: 16px; }
+    .bracket-hero { padding: 18px 0 12px; }
+    .bracket-hero-sub { font-size: 11px; }
+  }
 </style>
 </head>
 <body>
