@@ -320,6 +320,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
   body::before {
     content: ''; position: fixed; inset: 0;
     background-image:
@@ -327,6 +328,7 @@
       repeating-linear-gradient(90deg, transparent, transparent 44px, rgba(161,0,255,.035) 44px, rgba(161,0,255,.035) 45px);
     pointer-events: none; z-index: 0;
   }
+
   body::after {
     content: ''; position: fixed; top: -80px; right: -80px; width: 360px; height: 360px;
     background: radial-gradient(circle, rgba(200,241,53,.055) 0%, transparent 70%);
@@ -521,23 +523,25 @@
   }
   .bracket-hero-title svg { width: clamp(20px, 3vw, 34px); height: clamp(20px, 3vw, 34px); color: var(--acc); flex-shrink: 0; }
   .bracket-hero-sub { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
-  .bracket-wrapper { overflow-x: auto; padding: 20px 0; }
-  .bracket { display: flex; gap: 0; align-items: center; min-width: max-content; padding: 0 20px; }
+  .bracket-wrapper { overflow-x: auto; padding: 20px 0; display: flex; justify-content: center; }
+  .bracket { display: flex; gap: 0; align-items: center; padding: 0 20px; }
   .bracket-round { display: flex; flex-direction: column; justify-content: space-around; }
   .round-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; padding: 0 0 12px; }
   .bracket-match {
     background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-    width: 200px; margin: 6px 0; overflow: hidden; transition: border-color .2s;
+    width: 240px; margin: 6px 0; overflow: hidden; transition: border-color .2s;
   }
   .bracket-match:hover { border-color: var(--acc); }
   .bracket-team {
-    padding: 8px 12px; font-size: 13px; font-weight: 600; display: flex;
-    align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); transition: background .2s;
+    padding: 8px 12px; font-size: 12px; font-weight: 600; display: flex;
+    align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border);
+    transition: background .2s; gap: 6px;
   }
+  .bracket-team span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .bracket-team:last-child { border-bottom: none; }
   .bracket-team.winner { background: rgba(200,241,53,.08); color: var(--lime); }
   .bracket-team.tbd    { color: var(--muted); font-style: italic; }
-  .bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--lime); min-width: 20px; text-align: right; }
+  .bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 15px; color: var(--lime); min-width: 20px; text-align: right; flex-shrink: 0; }
   .connector { width: 30px; display: flex; flex-direction: column; justify-content: space-around; }
 
   /* TROPHY */
@@ -1049,7 +1053,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
-    width: 220px;
+    width: 260px;
     margin: 8px 0;
     overflow: hidden;
     transition: border-color .3s;
@@ -1057,7 +1061,7 @@
   .spec-match-card.has-winner { border-color: rgba(200,241,53,.2); }
   .spec-bracket-team {
     padding: 10px 14px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -1066,6 +1070,7 @@
     transition: background .3s;
     gap: 8px;
   }
+  .spec-bracket-team span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .spec-bracket-team:last-child { border-bottom: none; }
   .spec-bracket-team.winner { background: rgba(200,241,53,.08); color: var(--lime); }
   .spec-bracket-team.eliminated {
@@ -1198,7 +1203,6 @@
   @media(max-width:900px){
     .spec-grupos-layout { grid-template-columns: 1fr; }
     .spec-match-card { width: 180px; }
-    .spec-container { padding: 16px; }
   }
 
 
@@ -3288,7 +3292,6 @@ let _specPollTimer = 0;
 const SPEC_POLL_DURATION = 15000; // 15s per poll
 
 function openSpectator(mode) {
-  // Open in a real new browser tab using ?spectator=mode in the URL
   const url = window.location.href.split('?')[0] + '?spectator=' + mode;
   window.open(url, '_blank');
 }
@@ -3640,6 +3643,7 @@ function buildSpecPred(container) {
 // Hook into Firebase listener to refresh spectator
 const _origOnValue = window._onValue;
 </script>
+
 
 </body>
 </html>
