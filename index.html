@@ -3714,7 +3714,7 @@ function buildSpecPred(container) {
         <div>
           ${totalVotes === 0
             ? `<div style="color:var(--muted);text-align:center;padding:40px;font-size:14px;letter-spacing:2px;text-transform:uppercase;">Sin votos aún</div>`
-            : sorted.map((opt,i) => {
+            : sorted.slice(0, 5).map((opt,i) => {
                 const votes = counts[opt.id];
                 const pct = maxVotes>0 ? Math.round((votes/maxVotes)*100) : 0;
                 const pc = posClasses[i]||'pn';
