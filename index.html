@@ -865,7 +865,7 @@
   .spec-header {
     background: linear-gradient(135deg, #080810 0%, #12001f 60%, #080810 100%);
     border-bottom: 2px solid var(--acc);
-    padding: 20px 32px 20px;
+    padding: 10px 24px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -879,29 +879,29 @@
   }
   .spec-logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(22px, 3.5vw, 42px);
+    font-size: clamp(16px, 2.2vw, 28px);
     color: #fff;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     line-height: 1;
     text-align: center;
   }
   .spec-logo-acc { color: var(--lime); }
-  .spec-subtitle { color: var(--muted); font-size: 11px; letter-spacing: 4px; text-transform: uppercase; margin-top: 6px; text-align: center; }
+  .spec-subtitle { color: var(--muted); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-top: 3px; text-align: center; }
   .spec-phase-badge {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 13px;
-    letter-spacing: 3px;
-    padding: 5px 16px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 3px 10px;
     border-radius: 20px;
     background: rgba(161,0,255,.15);
     border: 1px solid rgba(161,0,255,.3);
     color: #c87aff;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 10px;
+    gap: 6px;
+    margin-top: 6px;
   }
-  .spec-phase-badge svg { width: 14px; height: 14px; }
+  .spec-phase-badge svg { width: 11px; height: 11px; }
 
   /* SPEC CONTAINERS */
   .spec-container { max-width: 1600px; margin: 0 auto; padding: 16px 24px; position: relative; z-index: 1; }
@@ -909,50 +909,50 @@
   /* REGISTRO VIEW */
   .spec-registro-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 14px;
-    margin-top: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+    margin-top: 12px;
   }
   .spec-player-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 20px;
+    border-radius: 8px;
+    padding: 10px 12px;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
     animation: pairReveal .5s cubic-bezier(.34,1.56,.64,1);
   }
   .spec-player-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
+    font-size: 20px;
     color: var(--acc);
-    min-width: 40px;
+    min-width: 26px;
     text-align: center;
     line-height: 1;
   }
-  .spec-player-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1; }
-  .spec-player-nick { font-size: 13px; color: var(--lime); margin-top: 2px; }
-  .spec-player-team { font-size: 12px; color: var(--muted); margin-top: 3px; }
-  .spec-player-level { display: flex; align-items: center; gap: 4px; margin-top: 6px; }
-  .spec-player-level svg { width: 12px; height: 12px; }
+  .spec-player-name { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 1px; line-height: 1; }
+  .spec-player-nick { font-size: 11px; color: var(--lime); margin-top: 1px; }
+  .spec-player-team { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .spec-player-level { display: flex; align-items: center; gap: 4px; margin-top: 4px; }
+  .spec-player-level svg { width: 10px; height: 10px; }
   .spec-count-bar {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
-    padding: 16px 20px;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 10px 14px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 8px;
   }
   .spec-count-num {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 48px;
+    font-size: 32px;
     color: var(--lime);
     line-height: 1;
   }
-  .spec-count-label { font-size: 13px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+  .spec-count-label { font-size: 12px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
 
   /* GRUPOS VIEW */
   .spec-grupos-layout {
@@ -1046,41 +1046,40 @@
   .spec-match-pending { color: var(--muted); font-style: italic; font-size: 11px; padding: 6px 10px; }
 
   /* BRACKET SPECTATOR */
-  .spec-bracket-section { margin-top: 24px; }
+  .spec-bracket-section { margin-top: 12px; }
   .spec-bracket-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(24px, 3.5vw, 42px);
+    font-size: clamp(16px, 2.2vw, 26px);
     color: var(--lime);
-    text-shadow: 0 0 40px var(--lime-glow);
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
-  .spec-bracket-sub { text-align: center; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); margin-bottom: 28px; }
+  .spec-bracket-sub { text-align: center; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
 
   .spec-bracket { display: flex; gap: 0; align-items: center; min-width: max-content; padding: 0 20px; overflow-x: auto; }
   .spec-bracket-round { display: flex; flex-direction: column; justify-content: space-around; }
-  .spec-round-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; padding: 0 0 14px; }
+  .spec-round-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-align: center; padding: 0 0 8px; }
   .spec-match-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    width: 260px;
-    margin: 8px 0;
+    border-radius: 6px;
+    width: 200px;
+    margin: 4px 0;
     overflow: hidden;
     transition: border-color .3s;
   }
   .spec-match-card.has-winner { border-color: rgba(200,241,53,.2); }
   .spec-bracket-team {
-    padding: 10px 14px;
-    font-size: 13px;
+    padding: 6px 10px;
+    font-size: 11px;
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--border);
     transition: background .3s;
-    gap: 8px;
+    gap: 6px;
   }
   .spec-bracket-team span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .spec-bracket-team:last-child { border-bottom: none; }
@@ -1091,57 +1090,57 @@
     text-decoration: line-through;
     text-decoration-color: rgba(107,107,138,.5);
   }
-  .spec-bracket-team.tbd { color: var(--muted); font-style: italic; font-size: 13px; }
-  .spec-elim-icon { width: 14px; height: 14px; color: var(--red); opacity: .7; flex-shrink: 0; }
-  .spec-bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--lime); min-width: 28px; text-align: right; }
-  .spec-connector { width: 32px; display: flex; flex-direction: column; justify-content: space-around; }
+  .spec-bracket-team.tbd { color: var(--muted); font-style: italic; font-size: 11px; }
+  .spec-elim-icon { width: 11px; height: 11px; color: var(--red); opacity: .7; flex-shrink: 0; }
+  .spec-bracket-score { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: var(--lime); min-width: 20px; text-align: right; }
+  .spec-connector { width: 20px; display: flex; flex-direction: column; justify-content: space-around; }
 
   .spec-trophy-card {
     background: linear-gradient(135deg, rgba(200,241,53,.1), rgba(161,0,255,.08));
     border: 2px solid var(--lime);
-    border-radius: 14px;
-    width: 240px;
-    padding: 20px;
+    border-radius: 8px;
+    width: 170px;
+    padding: 12px;
     text-align: center;
-    box-shadow: 0 0 40px rgba(200,241,53,.1);
+    box-shadow: 0 0 20px rgba(200,241,53,.08);
   }
-  .spec-trophy-icon { display: flex; justify-content: center; margin-bottom: 12px; }
-  .spec-trophy-icon svg { width: 44px; height: 44px; color: var(--lime); }
-  .spec-trophy-title { font-family: 'Bebas Neue', sans-serif; font-size: 16px; color: var(--lime); letter-spacing: 3px; margin-bottom: 14px; }
-  .spec-trophy-winner { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--lime); display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .spec-trophy-winner svg { width: 18px; height: 18px; }
-  .spec-trophy-tbd { color: var(--muted); font-style: italic; font-size: 13px; }
-  .spec-trophy-vs { font-size: 12px; color: var(--muted); margin: 6px 0; font-weight: 700; letter-spacing: 2px; }
-  .spec-trophy-finalist { font-size: 14px; font-weight: 600; padding: 6px 10px; background: rgba(161,0,255,.08); border-radius: 6px; margin-bottom: 4px; }
+  .spec-trophy-icon { display: flex; justify-content: center; margin-bottom: 6px; }
+  .spec-trophy-icon svg { width: 28px; height: 28px; color: var(--lime); }
+  .spec-trophy-title { font-family: 'Bebas Neue', sans-serif; font-size: 11px; color: var(--lime); letter-spacing: 2px; margin-bottom: 8px; }
+  .spec-trophy-winner { font-family: 'Bebas Neue', sans-serif; font-size: 13px; color: var(--lime); display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .spec-trophy-winner svg { width: 12px; height: 12px; }
+  .spec-trophy-tbd { color: var(--muted); font-style: italic; font-size: 11px; }
+  .spec-trophy-vs { font-size: 10px; color: var(--muted); margin: 4px 0; font-weight: 700; letter-spacing: 2px; }
+  .spec-trophy-finalist { font-size: 11px; font-weight: 600; padding: 4px 8px; background: rgba(161,0,255,.08); border-radius: 4px; margin-bottom: 3px; }
 
   /* PREDICCIONES SPECTATOR */
-  .spec-pred-layout { margin-top: 24px; }
+  .spec-pred-layout { margin-top: 8px; }
   .spec-pred-poll-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 28px 32px;
+    border-radius: 10px;
+    padding: 14px 18px;
     animation: fadeSlide .6s ease;
   }
   @keyframes fadeSlide { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
   .spec-pred-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(28px, 4vw, 48px);
+    font-size: clamp(20px, 2.5vw, 32px);
     color: var(--lime);
-    letter-spacing: 4px;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .spec-pred-title svg { width: 36px; height: 36px; color: var(--acc); }
-  .spec-pred-desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
-  .spec-pred-progress {
+    letter-spacing: 3px;
+    margin-bottom: 4px;
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 24px;
-    font-size: 12px;
+  }
+  .spec-pred-title svg { width: 24px; height: 24px; color: var(--acc); }
+  .spec-pred-desc { font-size: 12px; color: var(--muted); margin-bottom: 12px; line-height: 1.5; }
+  .spec-pred-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 11px;
     color: var(--muted);
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1163,12 +1162,12 @@
   .spec-poll-rank-item {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 16px 18px;
+    gap: 12px;
+    padding: 8px 12px;
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    margin-bottom: 10px;
+    border-radius: 6px;
+    margin-bottom: 6px;
     transition: border-color .3s;
   }
   .spec-poll-rank-item.rank-1 { border-color: rgba(245,200,66,.3); background: rgba(245,200,66,.04); }
@@ -1176,21 +1175,21 @@
   .spec-poll-rank-item.rank-3 { border-color: rgba(205,127,50,.2); }
   .spec-poll-pos {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    min-width: 44px;
+    font-size: 22px;
+    min-width: 28px;
     text-align: center;
     line-height: 1;
   }
-  .spec-poll-pos.p1 { color: #f5c842; text-shadow: 0 0 16px rgba(245,200,66,.5); }
+  .spec-poll-pos.p1 { color: #f5c842; text-shadow: 0 0 10px rgba(245,200,66,.4); }
   .spec-poll-pos.p2 { color: #b0b8c8; }
   .spec-poll-pos.p3 { color: #cd7f32; }
   .spec-poll-pos.pn { color: var(--muted); }
   .spec-poll-info { flex: 1; min-width: 0; }
-  .spec-poll-name { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; line-height: 1.1; }
-  .spec-poll-voters { font-size: 12px; color: var(--muted); margin-top: 4px; }
-  .spec-poll-bar-wrap { width: 200px; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; flex-shrink: 0; }
-  .spec-poll-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--acc), var(--lime)); transition: width .8s ease; }
-  .spec-poll-count { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--lime); min-width: 44px; text-align: right; line-height: 1; }
+  .spec-poll-name { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 1px; line-height: 1.1; }
+  .spec-poll-voters { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .spec-poll-bar-wrap { width: 120px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+  .spec-poll-bar { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--acc), var(--lime)); transition: width .8s ease; }
+  .spec-poll-count { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--lime); min-width: 28px; text-align: right; line-height: 1; }
 
   .spec-btn {
     display: inline-flex;
@@ -1347,20 +1346,20 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-bottom: 2px solid var(--acc);
-    border-radius: 12px;
-    padding: 20px 28px;
-    margin-bottom: 28px;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 16px;
     flex-wrap: wrap;
   }
   .spec-timer-display {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px;
+    font-size: 42px;
     line-height: 1;
-    letter-spacing: 6px;
-    min-width: 180px;
+    letter-spacing: 4px;
+    min-width: 110px;
     text-align: center;
     transition: color .3s;
   }
@@ -1371,18 +1370,18 @@
   .spec-timer-info { flex: 1; }
   .spec-timer-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
-    letter-spacing: 3px;
+    font-size: 11px;
+    letter-spacing: 2px;
     color: var(--muted);
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
   .spec-timer-next {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
+    font-size: 18px;
     color: var(--text);
-    letter-spacing: 2px;
-    line-height: 1.3;
+    letter-spacing: 1px;
+    line-height: 1.2;
   }
   .spec-timer-next span { color: var(--lime); }
 
