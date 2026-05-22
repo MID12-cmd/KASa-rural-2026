@@ -1897,21 +1897,23 @@ document.addEventListener('firebaseReady', () => {
     dbRef = window._ref(window._db, 'torneo');
     firebaseMode = true;
     window._onValue(dbRef, snap => {
-      if (_ignoreNextSnapshot) {
-        _ignoreNextSnapshot = false; // consume the flag
-        return; // skip this echo — our local state is already correct
-      }
       const d = snap.val();
-      if (d) {
-        state = { ...state, ...d };
-      } else {
-        // Node was deleted (e.g. after reset) — reset local state too
+      if (!d) {
+        // Node was deleted (reset) — always process this, even if _ignoreNextSnapshot is set
+        _ignoreNextSnapshot = false;
         state = {
           players: [], pairs: [], groups: [], groupMatches: [],
           groupsFinished: false, mainBracket: null, consolBracket: null,
           predictions: {}, phase: 'registro'
         };
+        renderAll();
+        return;
       }
+      if (_ignoreNextSnapshot) {
+        _ignoreNextSnapshot = false; // consume the flag — skip echo of our own write
+        return;
+      }
+      state = { ...state, ...d };
       renderAll();
     });
     showToast('Firebase conectado — tiempo real activo', 'success', 'ico-check');
@@ -3284,6 +3286,7 @@ function doResetTorneo() {
   // In Firebase mode: DELETE the node entirely (not overwrite)
   // This triggers the onValue listener on all devices with d=null → clean reset everywhere
   if (firebaseMode && dbRef && window._remove) {
+    _ignoreNextSnapshot = false; // ensure the null snapshot is NOT skipped on any device
     window._remove(dbRef).catch(e => { console.error('Firebase remove error:', e); saveState(); });
   } else {
     saveToLocal();
