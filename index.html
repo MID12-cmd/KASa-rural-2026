@@ -3127,17 +3127,21 @@ function formatMatchLabel(m) {
 
 function getNextPendingMatch() {
   const pending = getPendingList();
+  // When timer is running, pending[0] is the current match — next is pending[1]
+  // When timer is stopped/idle, next is pending[0]
+  const isRunning = timerGetStatus() === 'running';
+  const idx = isRunning ? 1 : 0;
+
   if(state.phase === 'grupos') {
     if(!pending.length) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--lime)"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>FASE DE ELIMINATORIAS';
-    const next = pending[0];
-    // If this is the last pending match, add warning after
-    const isLast = pending.length === 1;
+    if(idx >= pending.length) return null; // timer running and no next match
+    const next = pending[idx];
+    const isLast = (idx === pending.length - 1);
     const g = (state.groups||[]).find(g=>g.id===next.groupId);
     const txt = `[Grupo ${g?g.id:'?'}] ${getPairName(next.pair1Id)} vs ${getPairName(next.pair2Id)}`;
     return isLast ? txt + ' &nbsp;<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;color:var(--acc)"><ellipse cx="10" cy="9" rx="6" ry="7.5"/><line x1="4.5" y1="14.5" x2="2" y2="22"/><line x1="15.5" y1="14.5" x2="18" y2="22"/><line x1="10" y1="4" x2="10" y2="16.5"/><line x1="4.5" y1="9" x2="15.5" y2="9"/></svg><span style="color:var(--acc);font-size:.85em;">ÚLTIMO PARTIDO DE GRUPOS</span>' : txt;
   }
   if(state.phase === 'eliminatoria') {
-    // Collect all pending matches across both brackets
     const allPending = [];
     for(const bracket of [state.mainBracket, state.consolBracket]) {
       if(!bracket) continue;
@@ -3146,11 +3150,11 @@ function getNextPendingMatch() {
       }
     }
     if(!allPending.length) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--gold,#f5c842)"><path d="M2 20h20"/><path d="M2 20l3-9 5 4 2-7 2 7 5-4 3 9"/></svg>REVISIÓN DE ENCUESTAS';
-    const next = allPending[0];
-    // Check if this is the final of main bracket
+    if(idx >= allPending.length) return null; // timer running and no next match
+    const next = allPending[idx];
     const mainRounds = state.mainBracket ? state.mainBracket.rounds : [];
     const isFinalMatch = mainRounds.length > 0 && mainRounds[mainRounds.length-1][0]?.id === next.id;
-    const isLast = allPending.length === 1;
+    const isLast = (idx === allPending.length - 1);
     const txt = `${getPairName(next.pair1Id)} vs ${getPairName(next.pair2Id)}`;
     if(isFinalMatch) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--lime)"><path d="M8 21h8M12 17v4M7 4H4a1 1 0 0 0-1 1v2a4 4 0 0 0 4 4M17 4h3a1 1 0 0 1 1 1v2a4 4 0 0 1-4 4"/><path d="M7 4v8a5 5 0 0 0 10 0V4H7z"/></svg>GRAN FINAL &nbsp;·&nbsp; ' + txt;
     return isLast ? txt + ' · <span style="color:var(--lime)">ÚLTIMA ELIMINATORIA</span>' : txt;
