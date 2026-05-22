@@ -2025,11 +2025,9 @@ function addPlayer() {
   if(!firebaseMode) renderAll();
 }
 function removePlayer(id) {
-  if(state.phase!=='registro') return;
   state.players=state.players.filter(p=>p.id!==id); saveState(); if(!firebaseMode) renderAll();
 }
 function clearAllPlayers() {
-  if(state.phase!=='registro') return;
   openModal('¿Borrar todos los jugadores?','Se eliminarán todos los jugadores. Esta acción no se puede deshacer.',()=>{
     state.players=[]; saveState(); if(!firebaseMode) renderAll(); showToast('Lista borrada','info','ico-trash');
   });
@@ -2039,7 +2037,7 @@ function renderPlayers() {
   document.getElementById('playerCount').textContent=players.length;
   document.getElementById('pairNum').textContent=Math.floor(players.length/2);
   document.getElementById('generateGroupsBtn').disabled=players.length<4;
-  document.getElementById('clearPlayersBtn').disabled=!isR;
+  // clearPlayersBtn always enabled — players can be removed at any phase
   document.getElementById('registroFormCard').style.display=isR?'':'none';
   if(!players.length){
     grid.innerHTML=`<div class="text-center text-muted" style="padding:40px;grid-column:1/-1;font-size:14px;display:flex;align-items:center;justify-content:center;gap:10px;"><svg style="width:24px;height:24px;opacity:.25"><use href="#ico-racket"/></svg>Añade jugadores para empezar el torneo</div>`;
@@ -2056,7 +2054,7 @@ function renderPlayers() {
         <div class="player-meta">${escHtml(p.team)}</div>
         <div class="mt-8"><span class="level-badge ${d.cls}"><svg><use href="#${d.icon}"/></svg>${d.label}</span></div>
       </div>
-      ${isR?`<button class="delete-btn" onclick="removePlayer('${p.id}')" title="Eliminar"><svg><use href="#ico-x"/></svg></button>`:''}
+      <button class="delete-btn" onclick="removePlayer('${p.id}')" title="Eliminar"><svg><use href="#ico-x"/></svg></button>
     </div>`;
   }).join('');
 }
