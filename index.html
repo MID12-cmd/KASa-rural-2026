@@ -1393,134 +1393,43 @@
   .flex-wrap{flex-wrap:wrap} .items-center{align-items:center} .justify-between{justify-content:space-between}
 
   @media(max-width:600px){
-    .form-row { flex-direction:column; }
-    .form-group { min-width:unset; width:100%; }
-    .groups-grid { grid-template-columns:1fr; }
-    .header-inner { padding:14px 16px; }
+    .form-row { flex-direction: column; }
+    .form-group { min-width: unset; width: 100%; }
+    .groups-grid { grid-template-columns: 1fr; }
+    .header-inner { padding: 14px 16px; }
 
-    /* Registration — center everything on mobile */
+    /* Registro — centrado en móvil */
     .card { padding: 14px; }
-    .form-row { gap: 10px; }
     .form-group input,
-    .form-group select { font-size: 16px; } /* prevent iOS zoom */
+    .form-group select { font-size: 16px; } /* evita zoom en iOS */
     .form-group[style*="flex:0"] { width: 100%; }
     .form-group[style*="flex:0"] .btn { width: 100%; justify-content: center; }
 
-    /* Player count / action row */
+    /* Fila conteo / acciones */
     .flex.justify-between.items-center { flex-direction: column; align-items: stretch; gap: 10px; }
     .flex.justify-between.items-center > div:first-child { text-align: center; }
     .flex.justify-between.items-center .flex.gap-8 { flex-direction: column; }
     .flex.justify-between.items-center .btn { width: 100%; justify-content: center; }
 
-    /* Player grid — single column, centered cards */
+    /* Grid jugadores — columna única */
     .player-grid { grid-template-columns: 1fr; }
-    .player-card { justify-content: flex-start; }
 
-    /* Status bar — stack nicely */
+    /* Barra de estado */
     .status-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
-    .status-bar .status-text { width: 100%; }
     .status-bar .btn,
     .status-bar .btn-reset,
     .status-bar .spec-btn-main { width: 100%; justify-content: center; }
 
-    /* Tabs — allow scroll, keep compact */
+    /* Tabs compactas */
     .tab-btn { padding: 8px 10px; font-size: 11px; }
 
-    /* Progress track — smaller on mobile */
+    /* Progress track */
     .step-line { width: 24px; }
     .step-label { font-size: 9px; max-width: 50px; }
     .step-dot { width: 28px; height: 28px; }
     .step-dot svg { width: 12px; height: 12px; }
   }
 
-  /* ── LAPTOP 14" OPTIMISATION (≤1440px) ─────────── */
-  @media (max-width: 1440px) {
-
-    /* Container */
-    .container { padding: 0 12px; }
-
-    /* Header */
-    .header-inner { padding: 12px 16px; }
-
-    /* Tabs — prevent horizontal overflow */
-    .tab-btn { padding: 8px 12px; font-size: 12px; letter-spacing: 0; }
-    .tab-btn svg { width: 13px; height: 13px; }
-
-    /* Progress steps — tighten */
-    .step-line { width: 40px; }
-    .progress-track { margin: 12px 0; }
-
-    /* Hero titles */
-    .sorteo-title { font-size: clamp(22px, 3.5vw, 36px); }
-    .bracket-hero-title { font-size: clamp(16px, 2.8vw, 28px); }
-    .pred-title { font-size: clamp(20px, 3vw, 32px); }
-    .sorteo-title svg { width: 28px; height: 28px; }
-
-    /* Rule cards — tighter grid */
-    .rules-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
-    .rule-card { padding: 18px; }
-    .rule-title { font-size: 20px; }
-    .rule-desc { font-size: 14px; }
-    .rule-icon { width: 40px; height: 40px; margin-bottom: 10px; }
-    .rule-icon svg { width: 22px; height: 22px; }
-
-    /* Timer widget */
-    .timer-display { font-size: 40px; min-width: 100px; }
-    .timer-widget { padding: 12px 16px; gap: 14px; }
-    .timer-next-text { font-size: 18px; }
-    .timer-current-text { font-size: 21px; }
-
-    /* Bracket */
-    .bracket-wrapper { padding: 12px 0; }
-    .bracket-match { width: 200px; }
-    .bracket-team { font-size: 11px; padding: 6px 10px; }
-    .trophy-match { width: 180px; padding: 12px; }
-    .trophy-icon svg { width: 28px; height: 28px; }
-    .trophy-title { font-size: 11px; }
-    .trophy-team { font-size: 12px; }
-    .connector { width: 22px; }
-
-    /* Groups */
-    .groups-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
-    .standings-table td { padding: 7px 8px; }
-    .standings-table th { padding: 6px 8px; }
-
-    /* Match cards */
-    .match-card { padding: 10px 12px; }
-    .pair-label { font-size: 13px; }
-    .set-input { width: 38px; font-size: 16px; padding: 6px 4px; }
-
-    /* Polls */
-    .polls-sidebar { width: 190px; }
-    .poll-panel-title { font-size: 22px; }
-    .pred-rank-pos { font-size: 22px; min-width: 28px; }
-    .pred-rank-count { font-size: 18px; min-width: 24px; }
-    .pred-rank-bar-wrap { width: 90px; }
-
-    /* Sorteo */
-    .sorteo-hero { padding: 20px 0 14px; }
-    .pair-reveal-area { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-    .group-reveal-area { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
-    .sorteo-actions { margin-top: 20px; padding-bottom: 20px; }
-    .btn-lg { padding: 11px 24px; font-size: 13px; }
-
-    /* Buttons */
-    .btn { padding: 8px 14px; font-size: 11px; }
-    .btn svg { width: 12px; height: 12px; }
-
-    /* Cards */
-    .card { padding: 16px; }
-    .tab-pane { padding: 16px 0; }
-
-    /* Section titles */
-    .section-title { font-size: 16px; }
-    .bracket-hero { padding: 18px 0 12px; }
-    .bracket-hero-sub { font-size: 11px; }
-  }
-
-  /* ── PIN MODAL ───────────────────────────────────── */
-  #pinModal .modal { border-top-color: var(--lime); }
-  #pinInput { font-family: 'Bebas Neue', sans-serif; }
 </style>
 </head>
 <body>
@@ -1541,13 +1450,13 @@
 
 <!-- PIN MODAL -->
 <div class="modal-overlay" id="pinModal">
-  <div class="modal">
+  <div class="modal" style="border-top-color:var(--lime);">
     <div class="modal-title">🔒 Acceso de Administrador</div>
-    <div class="modal-body">Introduce el PIN de administrador para continuar.</div>
+    <div class="modal-body">Introduce el PIN para reiniciar el torneo.</div>
     <div class="form-group" style="margin-bottom:20px;">
       <label>PIN</label>
       <input type="password" id="pinInput" placeholder="••••" maxlength="8"
-             style="font-size:24px;letter-spacing:6px;text-align:center;"
+             style="font-size:24px;letter-spacing:6px;text-align:center;font-family:'Bebas Neue',sans-serif;"
              onkeydown="if(event.key==='Enter') checkPin()">
     </div>
     <div id="pinError" style="color:var(--red);font-size:13px;margin-bottom:12px;display:none;">PIN incorrecto. Inténtalo de nuevo.</div>
@@ -2150,65 +2059,55 @@ let _pendingGroups = [];  // computed groups waiting to be animated
 // ── NAVIGATION ────────────────────────────────────
 function goToReglas() {
   if((state.players||[]).length < 4){ showToast('Necesitas al menos 4 jugadores','error','ico-warn'); return; }
-  requirePin(() => {
-    state.phase = 'reglas';
-    saveState();
-    if(!firebaseMode) renderAll();
-    showTab('reglas');
-  });
+  state.phase = 'reglas';
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('reglas');
 }
 function goToSorteoParejas() {
-  requirePin(() => {
-    // Navigate to the tab without starting the draw
-    state.phase = 'sorteo-parejas';
-    saveState();
-    if(!firebaseMode) renderAll();
-    showTab('sorteo-parejas');
-    // Show start button, hide reveal area
-    const startBtn = document.getElementById('sorteoStartPairsBtn');
-    if(startBtn) startBtn.style.display = 'flex';
-    document.getElementById('pairRevealArea').innerHTML = '';
-    document.getElementById('sorteoActionsArea').style.display = 'none';
-  });
+  // Navigate to the tab without starting the draw
+  state.phase = 'sorteo-parejas';
+  saveState();
+  if(!firebaseMode) renderAll();
+  showTab('sorteo-parejas');
+  // Show start button, hide reveal area
+  const startBtn = document.getElementById('sorteoStartPairsBtn');
+  if(startBtn) startBtn.style.display = 'flex';
+  document.getElementById('pairRevealArea').innerHTML = '';
+  document.getElementById('sorteoActionsArea').style.display = 'none';
 }
 function startSorteoParejas() {
-  requirePin(() => {
-    openModal(
-      '¿Iniciar el Sorteo de Parejas?',
-      `Se sortearán ${Math.floor((state.players||[]).length/2)} parejas. El registro quedará cerrado.`,
-      () => {
-        const startBtn = document.getElementById('sorteoStartPairsBtn');
-        if(startBtn) startBtn.style.display = 'none';
-        doStartPairDraw();
-      }
-    );
-  });
+  openModal(
+    '¿Iniciar el Sorteo de Parejas?',
+    `Se sortearán ${Math.floor((state.players||[]).length/2)} parejas. El registro quedará cerrado.`,
+    () => {
+      const startBtn = document.getElementById('sorteoStartPairsBtn');
+      if(startBtn) startBtn.style.display = 'none';
+      doStartPairDraw();
+    }
+  );
 }
 function goToSorteoGrupos() {
-  requirePin(() => {
-    showTab('sorteo-grupos');
-    state.phase = 'sorteo-grupos';
-    saveState();
-    if(!firebaseMode) renderAll();
-    // Show start button, don't auto-start
-    const startBtn = document.getElementById('sorteoStartGroupsBtn');
-    if(startBtn) startBtn.style.display = 'flex';
-    document.getElementById('groupRevealArea').innerHTML = '';
-    document.getElementById('sorteoGroupActions').style.display = 'none';
-  });
+  showTab('sorteo-grupos');
+  state.phase = 'sorteo-grupos';
+  saveState();
+  if(!firebaseMode) renderAll();
+  // Show start button, don't auto-start
+  const startBtn = document.getElementById('sorteoStartGroupsBtn');
+  if(startBtn) startBtn.style.display = 'flex';
+  document.getElementById('groupRevealArea').innerHTML = '';
+  document.getElementById('sorteoGroupActions').style.display = 'none';
 }
 function startSorteoGrupos() {
-  requirePin(() => {
-    openModal(
-      '¿Iniciar el Sorteo de Grupos?',
-      'Se asignarán las parejas a grupos de forma aleatoria.',
-      () => {
-        const startBtn = document.getElementById('sorteoStartGroupsBtn');
-        if(startBtn) startBtn.style.display = 'none';
-        startGroupDraw();
-      }
-    );
-  });
+  openModal(
+    '¿Iniciar el Sorteo de Grupos?',
+    'Se asignarán las parejas a grupos de forma aleatoria.',
+    () => {
+      const startBtn = document.getElementById('sorteoStartGroupsBtn');
+      if(startBtn) startBtn.style.display = 'none';
+      startGroupDraw();
+    }
+  );
 }
 
 // ── STEP 1: CONFIRM → COMPUTE PAIRS → START DRAW ──
@@ -2378,13 +2277,11 @@ function animateGroupDraw(gIdx) {
 
 // ── STEP 3: CONFIRM START GROUP PHASE ─────────────
 function confirmStartGroupPhase() {
-  requirePin(() => {
-    openModal(
-      '¿Comenzar Fase de Grupos?',
-      'Las parejas y grupos quedan fijados. Comenzará la fase de grupos. Esta acción no se puede deshacer.',
-      doStartGroupPhase
-    );
-  });
+  openModal(
+    '¿Comenzar Fase de Grupos?',
+    'Las parejas y grupos quedan fijados. Comenzará la fase de grupos. Esta acción no se puede deshacer.',
+    doStartGroupPhase
+  );
 }
 
 function doStartGroupPhase() {
@@ -2610,7 +2507,7 @@ function renderGroups() {
 }
 
 // ── FINISH GROUPS ─────────────────────────────────
-function confirmFinishGroups(){ requirePin(() => openModal('¿Finalizar Fase de Grupos?','Se generarán los cuadros eliminatorios. Esta acción no se puede deshacer.',doFinishGroups)); }
+function confirmFinishGroups(){ openModal('¿Finalizar Fase de Grupos?','Se generarán los cuadros eliminatorios. Esta acción no se puede deshacer.',doFinishGroups); }
 function doFinishGroups() {
   state.groupsFinished=true; state.phase='eliminatoria';
   const mp=[],cp=[];
@@ -3059,25 +2956,6 @@ function submitPrediction() { submitPollVote('winner'); }
 
 let _timerRAF = null; // requestAnimationFrame handle
 
-// ── BEEP (Web Audio API) ─────────────────────────
-function playTimerBeep() {
-  try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    // Three short beeps
-    [0, 0.35, 0.7].forEach(offset => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.type = 'sine';
-      osc.frequency.value = 880;
-      gain.gain.setValueAtTime(0.6, ctx.currentTime + offset);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + offset + 0.25);
-      osc.start(ctx.currentTime + offset);
-      osc.stop(ctx.currentTime + offset + 0.25);
-    });
-  } catch(e) {}
-}
-
 function timerStart() {
   if(!state.timer) state.timer = { running:false, remainingMs:1200000, lastStarted:null, configuredMs:1200000 };
   if(state.timer.running) return;
@@ -3291,7 +3169,6 @@ function startTimerLoop() {
       state.timer.running = false;
       state.timer.remainingMs = 0;
       renderTimerUI();
-      playTimerBeep();
     }
   }
   _timerRAF = requestAnimationFrame(tick);
@@ -3313,7 +3190,7 @@ function syncTimerFromState() {
 
 // ── RESET TORNEO ──────────────────────────────────
 // ── PIN SYSTEM ───────────────────────────────────
-const ADMIN_PIN = '2026';  // ← cambia esto para personalizar el PIN
+const ADMIN_PIN = '2026';  // ← cambia este valor para personalizar el PIN
 let _pinCallback = null;
 
 function requirePin(callback) {
