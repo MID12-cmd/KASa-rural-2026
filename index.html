@@ -2052,14 +2052,14 @@ function addPlayer() {
   document.getElementById('playerNickname').value='';
   document.getElementById('playerLevel').value='2';
   showToast(`${name} añadido al torneo`,'success','ico-check');
-  if(!firebaseMode) renderAll();
+  renderAll();
 }
 function removePlayer(id) {
-  state.players=state.players.filter(p=>p.id!==id); saveState(); if(!firebaseMode) renderAll();
+  state.players=state.players.filter(p=>p.id!==id); saveState(); renderAll();
 }
 function clearAllPlayers() {
   openModal('¿Borrar todos los jugadores?','Se eliminarán todos los jugadores. Esta acción no se puede deshacer.',()=>{
-    state.players=[]; saveState(); if(!firebaseMode) renderAll(); showToast('Lista borrada','info','ico-trash');
+    state.players=[]; saveState(); renderAll(); showToast('Lista borrada','info','ico-trash');
   });
 }
 function renderPlayers() {
@@ -2099,14 +2099,14 @@ function goToReglas() {
   if((state.players||[]).length < 4){ showToast('Necesitas al menos 4 jugadores','error','ico-warn'); return; }
   state.phase = 'reglas';
   saveState();
-  if(!firebaseMode) renderAll();
+  renderAll();
   showTab('reglas');
 }
 function goToSorteoParejas() {
   // Navigate to the tab without starting the draw
   state.phase = 'sorteo-parejas';
   saveState();
-  if(!firebaseMode) renderAll();
+  renderAll();
   showTab('sorteo-parejas');
   // Show start button, hide reveal area
   const startBtn = document.getElementById('sorteoStartPairsBtn');
@@ -2129,7 +2129,7 @@ function goToSorteoGrupos() {
   showTab('sorteo-grupos');
   state.phase = 'sorteo-grupos';
   saveState();
-  if(!firebaseMode) renderAll();
+  renderAll();
   // Show start button, don't auto-start
   const startBtn = document.getElementById('sorteoStartGroupsBtn');
   if(startBtn) startBtn.style.display = 'flex';
@@ -2166,7 +2166,7 @@ function doStartPairDraw() {
   state.phase = 'sorteo-parejas';
   drawState = { pairsRevealed: 0, groupsRevealed: 0 };
   saveState();
-  if(!firebaseMode) renderAll();
+  renderAll();
   showTab('sorteo-parejas');
 
   // Reset sorteo UI
@@ -2187,7 +2187,7 @@ function animatePairDraw(idx) {
     // Save computed pairs to state
     state.pairs = _pendingPairs;
     saveState();
-    if(!firebaseMode) renderAll();
+    renderAll();
     return;
   }
 
@@ -2345,7 +2345,7 @@ function doStartGroupPhase() {
   state.phase = 'grupos';
   state.timer = { running: false, remainingMs: 1200000, lastStarted: null, configuredMs: 1200000 };
   saveState();
-  if(!firebaseMode) renderAll();
+  renderAll();
   showTab('grupos');
   showToast('¡Fase de grupos iniciada!','success','ico-bolt');
 }
@@ -2567,7 +2567,7 @@ function doFinishGroups() {
   state.mainBracket=generateBracket(shuffle(mp),'main');
   state.consolBracket=generateBracket(shuffle(cp),'consol');
   state.timer = { running: false, remainingMs: 1200000, lastStarted: null, configuredMs: 1200000 };
-  saveState(); if(!firebaseMode) renderAll(); showTab('eliminatoria');
+  saveState(); renderAll(); showTab('eliminatoria');
   showToast('¡Eliminatorias generadas!','success','ico-trophy',4000);
 }
 function generateBracket(ids, prefix) {
