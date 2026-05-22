@@ -3283,11 +3283,17 @@ function doResetTorneo() {
   drawState = { pairsRevealed: 0, groupsRevealed: 0 };
   // Always clear localStorage regardless of Firebase mode
   try { localStorage.removeItem('yuncosTorneo'); } catch(e) {}
-  // In Firebase mode: DELETE the node entirely (not overwrite)
-  // This triggers the onValue listener on all devices with d=null → clean reset everywhere
-  if (firebaseMode && dbRef && window._remove) {
-    _ignoreNextSnapshot = false; // ensure the null snapshot is NOT skipped on any device
-    window._remove(dbRef).catch(e => { console.error('Firebase remove error:', e); saveState(); });
+  // In Firebase mode: overwrite with the empty state explicitly.
+  // Using _set (not _remove) because the Realtime DB SDK caches data locally
+  // and a remove() can get replayed from cache on reload, restoring old data.
+  if (firebaseMode && dbRef && window._set) {
+    const emptyState = {
+      players: [], pairs: [], groups: [], groupMatches: [],
+      groupsFinished: false, mainBracket: null, consolBracket: null,
+      predictions: {}, phase: 'registro'
+    };
+    _ignoreNextSnapshot = true; // skip the echo of this write on this device
+    window._set(dbRef, emptyState).catch(e => { console.error('Firebase reset error:', e); });
   } else {
     saveToLocal();
   }
