@@ -1933,6 +1933,9 @@ document.addEventListener('firebaseReady', () => {
       }
 
       // Case 3: normal update from another device
+      // Reject stale snapshots that arrived after a reset (Firebase cache replay)
+      if (window._resetTs && d._resetTs && d._resetTs < window._resetTs) return;
+      if (window._resetTs && !d._resetTs && state.phase === 'registro') return;
       // Normalize Firebase nulls back to empty arrays
       state = {
         ...state,
@@ -3319,8 +3322,10 @@ function doResetTorneo() {
   //    doesn't strip empty arrays (it can't store []). The onValue listener
   //    on every device will receive this, detect the reset flag, and clean up.
   if (firebaseMode && dbRef && window._set) {
-    _ignoreNextSnapshot = true;
-    window._set(dbRef, { __reset: true, phase: 'registro' })
+    // No _ignoreNextSnapshot here — we WANT the listener to process __reset on all devices
+    const _resetTs = Date.now();
+    window._resetTs = _resetTs; // store locally to reject stale snapshots
+    window._set(dbRef, { __reset: true, phase: 'registro', _resetTs })
       .catch(e => { console.error('Firebase reset error:', e); });
   } else {
     saveToLocal();
