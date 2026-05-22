@@ -1889,6 +1889,7 @@ let state = {
   timer: { running: false, remainingMs: 1200000, lastStarted: null }
 };
 let firebaseMode = false, dbRef = null;
+let _ignoreNextSnapshot = false; // prevents Firebase echo overwriting local changes
 
 // ── FIREBASE ──────────────────────────────────────
 document.addEventListener('firebaseReady', () => {
@@ -1896,6 +1897,10 @@ document.addEventListener('firebaseReady', () => {
     dbRef = window._ref(window._db, 'torneo');
     firebaseMode = true;
     window._onValue(dbRef, snap => {
+      if (_ignoreNextSnapshot) {
+        _ignoreNextSnapshot = false; // consume the flag
+        return; // skip this echo — our local state is already correct
+      }
       const d = snap.val();
       if (d) {
         state = { ...state, ...d };
@@ -1916,7 +1921,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!window._firebaseReady) setTimeout(() => { loadFromLocal(); renderAll(); }, 1500);
 });
 function saveState() {
-  if (firebaseMode && dbRef) window._set(dbRef, state).catch(e => { console.error(e); saveToLocal(); });
+  if (firebaseMode && dbRef) {
+    _ignoreNextSnapshot = true; // ignore the echo Firebase sends back
+    window._set(dbRef, state).catch(e => { console.error(e); saveToLocal(); });
+  }
   else saveToLocal();
 }
 function saveToLocal()  { try { localStorage.setItem('yuncosTorneo', JSON.stringify(state)); } catch(e){} }
