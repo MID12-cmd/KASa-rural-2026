@@ -1393,43 +1393,94 @@
   .flex-wrap{flex-wrap:wrap} .items-center{align-items:center} .justify-between{justify-content:space-between}
 
   @media(max-width:600px){
-    .form-row { flex-direction: column; }
-    .form-group { min-width: unset; width: 100%; }
-    .groups-grid { grid-template-columns: 1fr; }
-    .header-inner { padding: 14px 16px; }
-
-    /* Registro — centrado en móvil */
-    .card { padding: 14px; }
-    .form-group input,
-    .form-group select { font-size: 16px; } /* evita zoom en iOS */
-    .form-group[style*="flex:0"] { width: 100%; }
-    .form-group[style*="flex:0"] .btn { width: 100%; justify-content: center; }
-
-    /* Fila conteo / acciones */
-    .flex.justify-between.items-center { flex-direction: column; align-items: stretch; gap: 10px; }
-    .flex.justify-between.items-center > div:first-child { text-align: center; }
-    .flex.justify-between.items-center .flex.gap-8 { flex-direction: column; }
-    .flex.justify-between.items-center .btn { width: 100%; justify-content: center; }
-
-    /* Grid jugadores — columna única */
-    .player-grid { grid-template-columns: 1fr; }
-
-    /* Barra de estado */
-    .status-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
-    .status-bar .btn,
-    .status-bar .btn-reset,
-    .status-bar .spec-btn-main { width: 100%; justify-content: center; }
-
-    /* Tabs compactas */
-    .tab-btn { padding: 8px 10px; font-size: 11px; }
-
-    /* Progress track */
-    .step-line { width: 24px; }
-    .step-label { font-size: 9px; max-width: 50px; }
-    .step-dot { width: 28px; height: 28px; }
-    .step-dot svg { width: 12px; height: 12px; }
+    .form-row{flex-direction:column} .form-group{min-width:unset}
+    .groups-grid{grid-template-columns:1fr} .header-inner{padding:14px 16px}
   }
 
+  /* ── LAPTOP 14" OPTIMISATION (≤1440px) ─────────── */
+  @media (max-width: 1440px) {
+
+    /* Container */
+    .container { padding: 0 12px; }
+
+    /* Header */
+    .header-inner { padding: 12px 16px; }
+
+    /* Tabs — prevent horizontal overflow */
+    .tab-btn { padding: 8px 12px; font-size: 12px; letter-spacing: 0; }
+    .tab-btn svg { width: 13px; height: 13px; }
+
+    /* Progress steps — tighten */
+    .step-line { width: 40px; }
+    .progress-track { margin: 12px 0; }
+
+    /* Hero titles */
+    .sorteo-title { font-size: clamp(22px, 3.5vw, 36px); }
+    .bracket-hero-title { font-size: clamp(16px, 2.8vw, 28px); }
+    .pred-title { font-size: clamp(20px, 3vw, 32px); }
+    .sorteo-title svg { width: 28px; height: 28px; }
+
+    /* Rule cards — tighter grid */
+    .rules-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .rule-card { padding: 18px; }
+    .rule-title { font-size: 20px; }
+    .rule-desc { font-size: 14px; }
+    .rule-icon { width: 40px; height: 40px; margin-bottom: 10px; }
+    .rule-icon svg { width: 22px; height: 22px; }
+
+    /* Timer widget */
+    .timer-display { font-size: 40px; min-width: 100px; }
+    .timer-widget { padding: 12px 16px; gap: 14px; }
+    .timer-next-text { font-size: 18px; }
+    .timer-current-text { font-size: 21px; }
+
+    /* Bracket */
+    .bracket-wrapper { padding: 12px 0; }
+    .bracket-match { width: 200px; }
+    .bracket-team { font-size: 11px; padding: 6px 10px; }
+    .trophy-match { width: 180px; padding: 12px; }
+    .trophy-icon svg { width: 28px; height: 28px; }
+    .trophy-title { font-size: 11px; }
+    .trophy-team { font-size: 12px; }
+    .connector { width: 22px; }
+
+    /* Groups */
+    .groups-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+    .standings-table td { padding: 7px 8px; }
+    .standings-table th { padding: 6px 8px; }
+
+    /* Match cards */
+    .match-card { padding: 10px 12px; }
+    .pair-label { font-size: 13px; }
+    .set-input { width: 38px; font-size: 16px; padding: 6px 4px; }
+
+    /* Polls */
+    .polls-sidebar { width: 190px; }
+    .poll-panel-title { font-size: 22px; }
+    .pred-rank-pos { font-size: 22px; min-width: 28px; }
+    .pred-rank-count { font-size: 18px; min-width: 24px; }
+    .pred-rank-bar-wrap { width: 90px; }
+
+    /* Sorteo */
+    .sorteo-hero { padding: 20px 0 14px; }
+    .pair-reveal-area { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+    .group-reveal-area { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    .sorteo-actions { margin-top: 20px; padding-bottom: 20px; }
+    .btn-lg { padding: 11px 24px; font-size: 13px; }
+
+    /* Buttons */
+    .btn { padding: 8px 14px; font-size: 11px; }
+    .btn svg { width: 12px; height: 12px; }
+
+    /* Cards */
+    .card { padding: 16px; }
+    .tab-pane { padding: 16px 0; }
+
+    /* Section titles */
+    .section-title { font-size: 16px; }
+    .bracket-hero { padding: 18px 0 12px; }
+    .bracket-hero-sub { font-size: 11px; }
+  }
 </style>
 </head>
 <body>
@@ -1444,25 +1495,6 @@
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
       <button class="btn btn-lime" id="confirmBtn">Confirmar</button>
-    </div>
-  </div>
-</div>
-
-<!-- PIN MODAL -->
-<div class="modal-overlay" id="pinModal">
-  <div class="modal" style="border-top-color:var(--lime);">
-    <div class="modal-title">🔒 Acceso de Administrador</div>
-    <div class="modal-body">Introduce el PIN para reiniciar el torneo.</div>
-    <div class="form-group" style="margin-bottom:20px;">
-      <label>PIN</label>
-      <input type="password" id="pinInput" placeholder="••••" maxlength="8"
-             style="font-size:24px;letter-spacing:6px;text-align:center;font-family:'Bebas Neue',sans-serif;"
-             onkeydown="if(event.key==='Enter') checkPin()">
-    </div>
-    <div id="pinError" style="color:var(--red);font-size:13px;margin-bottom:12px;display:none;">PIN incorrecto. Inténtalo de nuevo.</div>
-    <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closePinModal()">Cancelar</button>
-      <button class="btn btn-lime" onclick="checkPin()"><svg><use href="#ico-check"/></svg>Confirmar</button>
     </div>
   </div>
 </div>
@@ -1889,7 +1921,6 @@ let state = {
   timer: { running: false, remainingMs: 1200000, lastStarted: null }
 };
 let firebaseMode = false, dbRef = null;
-let _ignoreNextSnapshot = false; // prevents Firebase echo overwriting local changes
 
 // ── FIREBASE ──────────────────────────────────────
 document.addEventListener('firebaseReady', () => {
@@ -1897,10 +1928,6 @@ document.addEventListener('firebaseReady', () => {
     dbRef = window._ref(window._db, 'torneo');
     firebaseMode = true;
     window._onValue(dbRef, snap => {
-      if (_ignoreNextSnapshot) {
-        _ignoreNextSnapshot = false; // consume the flag
-        return; // skip this echo — our local state is already correct
-      }
       const d = snap.val();
       if (d) {
         state = { ...state, ...d };
@@ -1921,10 +1948,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!window._firebaseReady) setTimeout(() => { loadFromLocal(); renderAll(); }, 1500);
 });
 function saveState() {
-  if (firebaseMode && dbRef) {
-    _ignoreNextSnapshot = true; // ignore the echo Firebase sends back
-    window._set(dbRef, state).catch(e => { console.error(e); saveToLocal(); });
-  }
+  if (firebaseMode && dbRef) window._set(dbRef, state).catch(e => { console.error(e); saveToLocal(); });
   else saveToLocal();
 }
 function saveToLocal()  { try { localStorage.setItem('yuncosTorneo', JSON.stringify(state)); } catch(e){} }
@@ -2416,38 +2440,30 @@ function computeStandings(gid) {
 
 function renderMatchCard(m, type) {
   const done=!!m.winner, w1=m.winner===m.pair1Id, w2=m.winner===m.pair2Id;
-  const bothKnown = !!(m.pair1Id && m.pair2Id);
   let p1s1='', p2s1='';
   if(m.sets){ p1s1=m.sets.p1[0]??''; p2s1=m.sets.p2[0]??''; }
-  const p1label = m.pair1Id ? getPairName(m.pair1Id) : '<em style="color:var(--muted)">Por determinar</em>';
-  const p2label = m.pair2Id ? getPairName(m.pair2Id) : '<em style="color:var(--muted)">Por determinar</em>';
   return `<div class="match-card ${done?'completed':''}" id="mc-${m.id}">
     <div class="match-header">
       <span class="match-label"><svg><use href="#ico-court"/></svg>${type==='group'?'Partido de grupo':'Eliminatoria'}</span>
-      <span class="match-status ${done?'done':bothKnown?'pending':'pending'}" style="${!bothKnown?'color:var(--muted)':''}">
-        <svg><use href="${done?'#ico-check':bothKnown?'#ico-ball':'#ico-info'}"/></svg>
-        ${done?'Completado':bothKnown?'Pendiente':'Esperando rival'}
-      </span>
+      <span class="match-status ${done?'done':'pending'}"><svg><use href="${done?'#ico-check':'#ico-ball'}"/></svg>${done?'Completado':'Pendiente'}</span>
     </div>
     <div class="score-row">
-      <span class="pair-label ${w1?'text-lime':''}">${p1label}${w1?' ✓':''}</span>
+      <span class="pair-label ${w1?'text-lime':''}">${getPairName(m.pair1Id)}${w1?' ✓':''}</span>
       <div class="sets-input">
-        <input class="set-input" id="${m.id}_p1s1" type="number" min="0" value="${p1s1}" placeholder="-" ${done||!bothKnown?'readonly':''}>
+        <input class="set-input" id="${m.id}_p1s1" type="number" min="0" value="${p1s1}" placeholder="-" ${done?'readonly':''}>
       </div>
     </div>
     <div class="vs-divider"></div>
     <div class="score-row">
-      <span class="pair-label ${w2?'text-lime':''}">${p2label}${w2?' ✓':''}</span>
+      <span class="pair-label ${w2?'text-lime':''}">${getPairName(m.pair2Id)}${w2?' ✓':''}</span>
       <div class="sets-input">
-        <input class="set-input" id="${m.id}_p2s1" type="number" min="0" value="${p2s1}" placeholder="-" ${done||!bothKnown?'readonly':''}>
+        <input class="set-input" id="${m.id}_p2s1" type="number" min="0" value="${p2s1}" placeholder="-" ${done?'readonly':''}>
       </div>
     </div>
     <div class="match-footer">
       ${done
         ? `<button class="btn btn-outline" onclick="resetMatch('${m.id}','${type}')"><svg><use href="#ico-edit"/></svg>Editar</button>`
-        : bothKnown
-          ? `<button class="btn btn-green" onclick="saveMatch('${m.id}','${type}')"><svg><use href="#ico-save"/></svg>Guardar Resultado</button>`
-          : `<span style="font-size:12px;color:var(--muted);font-style:italic;">Disponible cuando avance el otro partido</span>`
+        : `<button class="btn btn-green"   onclick="saveMatch('${m.id}','${type}')"><svg><use href="#ico-save"/></svg>Guardar Resultado</button>`
       }
     </div>
   </div>`;
@@ -2466,19 +2482,13 @@ function saveMatch(mId, type) {
   m.sets = ss;
   m.winner = p1 > p2 ? m.pair1Id : m.pair2Id;
   if(type==='main'||type==='consolacion') propagateWinner(type,mId,m.winner);
-  saveState();
-  renderElim();
-  renderGroups();
-  showToast('Resultado guardado','success','ico-check');
+  saveState(); if(!firebaseMode) renderAll(); showToast('Resultado guardado','success','ico-check');
 }
 function resetMatch(mId, type) {
   const all=getAllElimMatchesRef(type), m=all.find(x=>x.id===mId); if(!m) return;
   m.sets=null; m.winner=null;
   if(type==='main'||type==='consolacion') clearDownstream(type,mId);
-  saveState();
-  // Always re-render immediately (don't wait for Firebase)
-  renderElim();
-  renderGroups();
+  saveState(); if(!firebaseMode) renderAll();
 }
 function getAllElimMatchesRef(type) {
   if(type==='group') return state.groupMatches||[];
@@ -2650,11 +2660,8 @@ function renderElimMatches(type, bracket) {
   let html='';
   bracket.rounds.forEach((round,ri)=>{
     const lbl = getRoundName(ri, bracket.rounds.length);
-    // Show round if at least one match has a known pair (one or both slots filled)
-    const visible = round.filter(m => m.pair1Id || m.pair2Id);
-    if(!visible.length) return;
     html+=`<div class="section-title" style="margin-top:20px;font-size:16px;">${lbl}</div>`;
-    visible.forEach(m=>{ html+=renderMatchCard(m,type); });
+    round.forEach(m=>{ if(!m.pair1Id||!m.pair2Id) return; html+=renderMatchCard(m,type); });
   });
   el.innerHTML=html||'<div class="text-muted" style="padding:20px;text-align:center;">Los cruces se generarán cuando avancen los equipos</div>';
 }
@@ -3125,23 +3132,11 @@ function getPendingList() {
     return list.filter(m=>!m.winner);
   }
   if(state.phase === 'eliminatoria') {
-    // Collect pending matches per bracket, then interleave main/consolación
-    const mainPending = [];
-    const consolPending = [];
-    if(state.mainBracket) {
-      for(const round of state.mainBracket.rounds)
-        round.forEach(m=>{ if(m.pair1Id&&m.pair2Id&&!m.winner) mainPending.push(m); });
-    }
-    if(state.consolBracket) {
-      for(const round of state.consolBracket.rounds)
-        round.forEach(m=>{ if(m.pair1Id&&m.pair2Id&&!m.winner) consolPending.push(m); });
-    }
-    // Interleave: main, consol, main, consol...
     const all = [];
-    const len = Math.max(mainPending.length, consolPending.length);
-    for(let i = 0; i < len; i++) {
-      if(i < mainPending.length)  all.push(mainPending[i]);
-      if(i < consolPending.length) all.push(consolPending[i]);
+    for(const bracket of [state.mainBracket, state.consolBracket]) {
+      if(!bracket) continue;
+      for(const round of bracket.rounds)
+        round.forEach(m=>{ if(m.pair1Id&&m.pair2Id&&!m.winner) all.push(m); });
     }
     return all;
   }
@@ -3164,21 +3159,17 @@ function formatMatchLabel(m) {
 
 function getNextPendingMatch() {
   const pending = getPendingList();
-  // When timer is running, pending[0] is the current match — next is pending[1]
-  // When timer is stopped/idle, next is pending[0]
-  const isRunning = timerGetStatus() === 'running';
-  const idx = isRunning ? 1 : 0;
-
   if(state.phase === 'grupos') {
     if(!pending.length) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--lime)"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>FASE DE ELIMINATORIAS';
-    if(idx >= pending.length) return null; // timer running and no next match
-    const next = pending[idx];
-    const isLast = (idx === pending.length - 1);
+    const next = pending[0];
+    // If this is the last pending match, add warning after
+    const isLast = pending.length === 1;
     const g = (state.groups||[]).find(g=>g.id===next.groupId);
     const txt = `[Grupo ${g?g.id:'?'}] ${getPairName(next.pair1Id)} vs ${getPairName(next.pair2Id)}`;
     return isLast ? txt + ' &nbsp;<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;vertical-align:middle;margin-right:6px;color:var(--acc)"><ellipse cx="10" cy="9" rx="6" ry="7.5"/><line x1="4.5" y1="14.5" x2="2" y2="22"/><line x1="15.5" y1="14.5" x2="18" y2="22"/><line x1="10" y1="4" x2="10" y2="16.5"/><line x1="4.5" y1="9" x2="15.5" y2="9"/></svg><span style="color:var(--acc);font-size:.85em;">ÚLTIMO PARTIDO DE GRUPOS</span>' : txt;
   }
   if(state.phase === 'eliminatoria') {
+    // Collect all pending matches across both brackets
     const allPending = [];
     for(const bracket of [state.mainBracket, state.consolBracket]) {
       if(!bracket) continue;
@@ -3187,11 +3178,11 @@ function getNextPendingMatch() {
       }
     }
     if(!allPending.length) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--gold,#f5c842)"><path d="M2 20h20"/><path d="M2 20l3-9 5 4 2-7 2 7 5-4 3 9"/></svg>REVISIÓN DE ENCUESTAS';
-    if(idx >= allPending.length) return null; // timer running and no next match
-    const next = allPending[idx];
+    const next = allPending[0];
+    // Check if this is the final of main bracket
     const mainRounds = state.mainBracket ? state.mainBracket.rounds : [];
     const isFinalMatch = mainRounds.length > 0 && mainRounds[mainRounds.length-1][0]?.id === next.id;
-    const isLast = (idx === allPending.length - 1);
+    const isLast = allPending.length === 1;
     const txt = `${getPairName(next.pair1Id)} vs ${getPairName(next.pair2Id)}`;
     if(isFinalMatch) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;vertical-align:middle;margin-right:6px;color:var(--lime)"><path d="M8 21h8M12 17v4M7 4H4a1 1 0 0 0-1 1v2a4 4 0 0 0 4 4M17 4h3a1 1 0 0 1 1 1v2a4 4 0 0 1-4 4"/><path d="M7 4v8a5 5 0 0 0 10 0V4H7z"/></svg>GRAN FINAL &nbsp;·&nbsp; ' + txt;
     return isLast ? txt + ' · <span style="color:var(--lime)">ÚLTIMA ELIMINATORIA</span>' : txt;
@@ -3230,43 +3221,12 @@ function syncTimerFromState() {
 }
 
 // ── RESET TORNEO ──────────────────────────────────
-// ── PIN SYSTEM ───────────────────────────────────
-const ADMIN_PIN = '2026';  // ← cambia este valor para personalizar el PIN
-let _pinCallback = null;
-
-function requirePin(callback) {
-  _pinCallback = callback;
-  document.getElementById('pinInput').value = '';
-  document.getElementById('pinError').style.display = 'none';
-  document.getElementById('pinModal').classList.add('open');
-  setTimeout(() => document.getElementById('pinInput').focus(), 100);
-}
-
-function checkPin() {
-  const val = document.getElementById('pinInput').value.trim();
-  if (val === ADMIN_PIN) {
-    closePinModal();
-    if (_pinCallback) { _pinCallback(); _pinCallback = null; }
-  } else {
-    document.getElementById('pinError').style.display = '';
-    document.getElementById('pinInput').value = '';
-    document.getElementById('pinInput').focus();
-  }
-}
-
-function closePinModal() {
-  document.getElementById('pinModal').classList.remove('open');
-  _pinCallback = null;
-}
-
 function confirmResetTorneo() {
-  requirePin(() => {
-    openModal(
-      '¿Reiniciar el torneo completo?',
-      'Se borrarán todos los jugadores, grupos, partidos y eliminatorias. El torneo volverá al estado inicial. Esta acción no se puede deshacer.',
-      doResetTorneo
-    );
-  });
+  openModal(
+    '¿Reiniciar el torneo completo?',
+    'Se borrarán todos los jugadores, grupos, partidos y eliminatorias. El torneo volverá al estado inicial. Esta acción no se puede deshacer.',
+    doResetTorneo
+  );
 }
 function doResetTorneo() {
   // Reset local state immediately
