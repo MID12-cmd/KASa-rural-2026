@@ -1898,23 +1898,53 @@ document.addEventListener('firebaseReady', () => {
     firebaseMode = true;
     window._onValue(dbRef, snap => {
       const d = snap.val();
-      if (!d) {
-        // Node was deleted (reset) — always process this, even if _ignoreNextSnapshot is set
+
+      // Case 1: node deleted or reset sentinel received — full clean reset on all devices
+      if (!d || d.__reset) {
         _ignoreNextSnapshot = false;
         state = {
           players: [], pairs: [], groups: [], groupMatches: [],
           groupsFinished: false, mainBracket: null, consolBracket: null,
-          predictions: {}, phase: 'registro'
+          predictions: {}, phase: 'registro',
+          timer: { running: false, remainingMs: 1200000, lastStarted: null, configuredMs: 1200000 }
         };
+        _pendingPairs = [];
+        _pendingGroups = [];
+        _sorteoAnimating = false;
+        try { localStorage.removeItem('yuncosTorneo'); } catch(e) {}
         renderAll();
+        showTab('registro');
+        // Reset sorteo UI on remote devices too
+        const pra = document.getElementById('pairRevealArea');
+        if(pra) pra.innerHTML='';
+        const gra = document.getElementById('groupRevealArea');
+        if(gra) gra.innerHTML='';
+        const saa = document.getElementById('sorteoActionsArea');
+        if(saa) saa.style.display='none';
+        const sga = document.getElementById('sorteoGroupActions');
+        if(sga) sga.style.display='none';
         return;
       }
+
+      // Case 2: echo of our own write — skip
       if (_ignoreNextSnapshot) {
-        _ignoreNextSnapshot = false; // consume the flag — skip echo of our own write
+        _ignoreNextSnapshot = false;
         return;
       }
-      state = { ...state, ...d };
+
+      // Case 3: normal update from another device
+      // Normalize Firebase nulls back to empty arrays
+      state = {
+        ...state,
+        ...d,
+        players:      Array.isArray(d.players)      ? d.players      : (d.players      ? Object.values(d.players)      : []),
+        pairs:        Array.isArray(d.pairs)         ? d.pairs        : (d.pairs        ? Object.values(d.pairs)        : []),
+        groups:       Array.isArray(d.groups)        ? d.groups       : (d.groups       ? Object.values(d.groups)       : []),
+        groupMatches: Array.isArray(d.groupMatches)  ? d.groupMatches : (d.groupMatches ? Object.values(d.groupMatches) : []),
+        matchOrder:   Array.isArray(d.matchOrder)    ? d.matchOrder   : (d.matchOrder   ? Object.values(d.matchOrder)   : []),
+      };
       renderAll();
+      syncTimerFromState();
     });
     showToast('Firebase conectado — tiempo real activo', 'success', 'ico-check');
   } catch(e) { console.error(e); loadFromLocal(); renderAll(); }
@@ -3268,36 +3298,39 @@ function confirmResetTorneo() {
   });
 }
 function doResetTorneo() {
-  // Reset local state immediately
+  // 1. Reset local state
   state = {
     players: [], pairs: [], groups: [], groupMatches: [],
     groupsFinished: false, mainBracket: null, consolBracket: null,
-    predictions: {}, phase: 'registro'
+    predictions: {}, phase: 'registro',
+    timer: { running: false, remainingMs: 1200000, lastStarted: null, configuredMs: 1200000 }
   };
-  // Clear animation state
+  // 2. Reset animation/draw state
   _pendingPairs = [];
   _pendingGroups = [];
   _sorteoAnimating = false;
   drawState = { pairsRevealed: 0, groupsRevealed: 0 };
-  // Always clear localStorage regardless of Firebase mode
+  stopTimerLoop();
+
+  // 3. Clear localStorage
   try { localStorage.removeItem('yuncosTorneo'); } catch(e) {}
-  // In Firebase mode: overwrite with the empty state explicitly.
-  // Using _set (not _remove) because the Realtime DB SDK caches data locally
-  // and a remove() can get replayed from cache on reload, restoring old data.
+
+  // 4. Write reset marker to Firebase — use a sentinel value so Firebase
+  //    doesn't strip empty arrays (it can't store []). The onValue listener
+  //    on every device will receive this, detect the reset flag, and clean up.
   if (firebaseMode && dbRef && window._set) {
-    const emptyState = {
-      players: [], pairs: [], groups: [], groupMatches: [],
-      groupsFinished: false, mainBracket: null, consolBracket: null,
-      predictions: {}, phase: 'registro'
-    };
-    _ignoreNextSnapshot = true; // skip the echo of this write on this device
-    window._set(dbRef, emptyState).catch(e => { console.error('Firebase reset error:', e); });
+    _ignoreNextSnapshot = true;
+    window._set(dbRef, { __reset: true, phase: 'registro' })
+      .catch(e => { console.error('Firebase reset error:', e); });
   } else {
     saveToLocal();
   }
+
+  // 5. Render immediately on this device
   renderAll();
   showTab('registro');
-  // Reset sorteo UI elements
+
+  // 6. Reset sorteo UI
   const pra = document.getElementById('pairRevealArea');
   if(pra) pra.innerHTML='';
   const gra = document.getElementById('groupRevealArea');
@@ -3306,6 +3339,11 @@ function doResetTorneo() {
   if(saa) saa.style.display='none';
   const sga = document.getElementById('sorteoGroupActions');
   if(sga) sga.style.display='none';
+  const startPairsBtn = document.getElementById('sorteoStartPairsBtn');
+  if(startPairsBtn) startPairsBtn.style.display = 'flex';
+  const startGroupsBtn = document.getElementById('sorteoStartGroupsBtn');
+  if(startGroupsBtn) startGroupsBtn.style.display = 'none';
+
   showToast('Torneo reiniciado. ¡A empezar de nuevo!', 'info', 'ico-reset', 4000);
 }
 
