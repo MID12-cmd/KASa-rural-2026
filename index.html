@@ -2458,13 +2458,19 @@ function saveMatch(mId, type) {
   m.sets = ss;
   m.winner = p1 > p2 ? m.pair1Id : m.pair2Id;
   if(type==='main'||type==='consolacion') propagateWinner(type,mId,m.winner);
-  saveState(); if(!firebaseMode) renderAll(); showToast('Resultado guardado','success','ico-check');
+  saveState();
+  renderElim();
+  renderGroups();
+  showToast('Resultado guardado','success','ico-check');
 }
 function resetMatch(mId, type) {
   const all=getAllElimMatchesRef(type), m=all.find(x=>x.id===mId); if(!m) return;
   m.sets=null; m.winner=null;
   if(type==='main'||type==='consolacion') clearDownstream(type,mId);
-  saveState(); if(!firebaseMode) renderAll();
+  saveState();
+  // Always re-render immediately (don't wait for Firebase)
+  renderElim();
+  renderGroups();
 }
 function getAllElimMatchesRef(type) {
   if(type==='group') return state.groupMatches||[];
